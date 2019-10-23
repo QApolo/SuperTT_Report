@@ -38,13 +38,13 @@
 \section{Requerimientos No Funcionales} 
     A continuación se enlistan los requerimientos no funcionales.
         \begin{enumerate}[label=RNF\arabic*.]
-            %\item Disponibilidad. El sistema debería estar disponible en la mayor parte del tiempo a excepción de operaciones de soporte planeadas y previamente notificadas al usuario final.
-    
             \item Usabilidad. La interfaz de usuario debe de ser intuitiva con el objetivo de hacer uso de las funcionalidades del sistema de una forma fácil para el usuario.
             
             \item Seguridad. La seguridad se solventa al realizar un cifrado de las contraseñas de los usuarios así como una verificación de la cuenta del usuario para poder hacer uso del sistema. Por otro lado, en la comunicación que se realiza entre la aplicación móvil y el API REST se utiliza un token para autenticar las peticiones que se realizan, dicho token es único para cada usuario. 
             
             \item Escalabilidad. El sistema deberá ser fácilmente escalable y con ello poseer la cualidad de que si se agregan nuevas funcionalidades, estas sean fáciles de acoplar con lo ya desarrollado. Además, de que debe de ser posible aumentar sus capacidades para brindar servicio a más usuarios.
+            
+            \item Disponibilidad. El sistema debería estar disponible en la mayor parte del tiempo, para lograr esto el uso de un proveedor de hosting es necesario. Entre las posibles opciones están Amazon Web Services, Azure o Google Cloud
             
         \end{enumerate}    
 \section{Requerimientos técnicos}
@@ -62,6 +62,7 @@
         %\item Procesador: Dualcore de 1.2 GHz.
         \item Memoria RAM: 2 GB.
         \item Espacio de almacenamiento de 50 MB.
+        \item Cámara de al menos 8 Megapixeles.
     \end{enumerate}
     \subsection{Aplicación web}
     \subsubsection{Requerimientos mínimos de software}

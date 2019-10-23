@@ -26,10 +26,10 @@ Con el desarrollo del sistema producto del presente trabajo terminal se involucr
                 \caption{Imagen con bloques (Izquierda) y conjunto de segmentos de linea extraídos (Derecha).}
                 \label{fig:segmentacion}
             \end{figure}
-        \subsection{Extracción de características}
+        %\subsection{Extracción de características}
             
             %http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.375.6848&rep=rep1&type=pdf
-        \subsection{Clasificación e interpretación}
+        %\subsection{Clasificación e interpretación}
             %http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.375.6848&rep=rep1&type=pdf
 
 
@@ -140,7 +140,7 @@ En la Figura \ref{fig:gramaticas}, se puede ver un ejemplo del proceso de recono
     
     Si se trata al problema de reconocer expresiones matemáticas en imagenes como un problema sequence-to-sequence de image captioning, se puede emplear una arquitectura de Encoding-Decoding para hacer la conversión de la imagen a LaTeX de manera directa. Esto permite a la red manejar imagenes de longitud variable y reconocer los símbolos a la vez que va reconociendo las expresiones.
     
-    La arquitectura que se esta utilizando actualmente para solucionar este problema se muestra en la Figura \ref{imgcaptioning} \cite{imagetolatex}\cite{imagemarkup}\cite{chino}.
+    La arquitectura que se esta utilizando actualmente para solucionar este problema se muestra en la Figura \ref{fig:imgcaptioning} \cite{imagetolatex}\cite{imagemarkup}\cite{chino}.
     
     \begin{figure}
 		\centering
@@ -207,7 +207,6 @@ El Modelo-Vista-Template (MTV) es el patrón de diseño que Django implementa. E
     \item \textbf{Vista}: La capa de la lógica de negocios. Esta capa contiene la lógica que accede al modelo y la delega a la plantilla apropiada: puedes pensar en esto como un puente entre el modelos y las plantillas.
 \end{itemize}
 
-
 \subsection{API REST}
 \subsubsection{Application Programming Interface}
 Una Interfaz de Programación de Aplicaciones o API es un conjunto de definiciones y protocolos que se utilizan para desarrollar e integrar el software de las aplicaciones.
@@ -235,7 +234,6 @@ Una aplicación o arquitectura considerada RESTful o REST-style es caracterizada
 \subsubsection{Autentificación}
 Para hablar de autentificación es necesario primero entender la diferencia entre identificación y autentificación, por un lado la identificación es la capacidad de identificar de forma exclusiva a un usuario de un sistema o una aplicación que se está ejecutando, mientras que la autentificación es la capacidad de demostrar que un usuario o una aplicación es quien dicha persona o aplicación asegura ser \cite{authent}.\\\\
 Para el caso de una REST API es en muchas ocasiones necesario que se lleve a cabo la autentificación para permitir o denegar el acceso a recursos de un servidor por ejemplo de acuerdo a los permisos concedidos en función de las credenciales de autentificación para así asegurar que los datos sean visibles únicamente a aquellos que proporcionen las credenciales adecuadas y dispongan de los permisos necesarios.
-
 
 %https://www.ibm.com/support/knowledgecenter/es/SSFKSJ_7.5.0/com.ibm.mq.sec.doc/q009740_.htm
 \input{capitulo2/android/principal.tex}
