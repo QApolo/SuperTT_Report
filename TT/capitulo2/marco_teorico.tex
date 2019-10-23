@@ -3,8 +3,8 @@ Con el desarrollo del sistema producto del presente trabajo terminal se involucr
 \section{Análisis de Imágenes}
         El análisis de imágenes comprende un conjunto de operaciones sobre una o varias imágenes con el propósito de obtener una imagen con mayor realce o para extraer características útiles, es un tipo de dispensación de señales en el que la entrada es una imagen y la salida puede ser otra imagen o características asociadas a la imagen, algunos de los pasos generales se describen a continuación:
         
-        \subsection{ Preprocesamiento}
-            Preprocesamiento es un nombre común para operaciones con imágenes al más bajo nivel de abstracción. Tanto entrada como salida son imágenes de intensidad. Estas imágenes tienen el mismo tipo de datos que la original, con una imagen de intensidad usualmente representada por una matriz de valores de función de imagen (Brillo) El objetivo de preprocesar es la mejora de los datos de la imagen que borre distorciones o realce características importantes para procesamiento posterior, incluso las transformaciones geométricas de las imagenes e.g (rotación, escalamiento y traslación) son también clasificadas como métodos de preprocesamiento, ya que técnicas similares son utilizadas.
+        \subsection{Preprocesamiento}
+            Preprocesamiento es un nombre común para operaciones con imágenes al más bajo nivel de abstracción. Tanto entrada como salida son imágenes de intensidad. Estas imágenes tienen el mismo tipo de datos que la original, con una imagen de intensidad usualmente representada por una matriz de valores de función de imagen (Brillo) El objetivo de preprocesar es la mejora de los datos de la imagen que borre distorciones o realce características importantes para procesamiento posterior, incluso las transformaciones geométricas de las imagenes e.g (rotación, escalamiento y traslación) son también clasificadas como métodos de preprocesamiento, ya que técnicas similares son utilizadas \cite{imgAnalySeg}.
                
                 
         \subsection{Realce de la imagen}
@@ -64,7 +64,7 @@ En la Figura \ref{fig:gramaticas}, se puede ver un ejemplo del proceso de recono
     \label{fig:gramaticas}
 \end{figure}
 
-
+\newpage
 \subsection{Redes Neuronales}
     Existe un tipo de neurona artificial llamada perceptrón desarrolladas entre 1950 y 1960 por el científico Frank Rosenblatt, sin embargo este modelo ha ido evolucionando y hoy en día se utilizan otros modelos de neurona como el llamado sigmoid neuron, que para entender, primero se debe definir al perceptrón como modelo.
     Un perceptrón toma varias entradas binarias $x_{1},x_{2},x_{3},...,x_{n}$ y produce una sola salida binaria:
@@ -107,21 +107,20 @@ En la Figura \ref{fig:gramaticas}, se puede ver un ejemplo del proceso de recono
     \\Una de las propiedades mas importantes que permite el Aprendizaje Profundo es la extracción automática de características que puede ser clave en dicho paso del análisis de imágenes.
     
     \subsubsection{Redes Neuronales Convolucionales}
-    Las redes neuronales convolucionales han ganado porpularidad en los últimos años debido a su efectividad prometedora en el aprendizaje profundo. Partiendo en el procesamiento de imágenes, las capas convolucionales han encontrado su camino en otros subcampos del aprendizaje profundo y muestran éxito en la mayor parte de dichos campos.\\\\ 
+    Las redes neuronales convolucionales han ganado popularidad en los últimos años debido a su efectividad prometedora en el aprendizaje profundo. Partiendo por el procesamiento de imágenes, las capas convolucionales han encontrado su camino en otros subcampos del aprendizaje profundo y muestran éxito en la mayor parte de dichos campos.\\\\ 
     La diferencia fundamental entre \textit{fully connected} (completamente conectadas) y \textit{convolutional neural networks}(redes neuronales convolucionales) es el patrón de conexión entre las capas consecutivas. En el caso de las completamente conectadas como el nombre lo sugiere, cada unidad es conectada a todas las unidades de la previa capa. \\\\
-    En una capa convolucional de una red neuronal, por otra parte, cada unidad está conectada a (típicamente pequeña) un número de unidades cercanas en la capa previa. Más aún, todas las unidades están conectadas a la capa previa de la misma forma con los pesos exactamente iguales y estructura. Esto lleva a una operación conocida como convolución, dando a la arquitectura este nombre, a grandes rasgos esto significa aplicar una pequeña "ventana" de pesos (conocida como filtro) sobre una imágen como se muestra en la figura %fig.
+    En una capa convolucional de una red neuronal, por otra parte, cada unidad está conectada a (típicamente pequeña) un número de unidades cercanas en la capa previa. Más aún, todas las unidades están conectadas a la capa previa de la misma forma con los pesos exactamente iguales y estructura. Esto lleva a una operación conocida como convolución, dando a la arquitectura este nombre, a grandes rasgos esto significa aplicar una pequeña "ventana" de pesos (conocida como filtro) sobre una imágen como se muestra en la figura \ref{fig:CNNFilter}.
     
     
      \begin{figure}[H]
         \centering
         \includegraphics[width=0.7\textwidth]{capitulo2/images/CNN_window.png}
-        \caption{...}
+        \caption{Matriz de pesos conocida como ventana aplicada a una imagen.}
         \label{fig:CNNFilter}
     \end{figure}
+    \newpage
     
-    
-    %\subsection{Aprendizaje profundo como servicio}
-    
+   
   
     \subsubsection{Arquitectura Encoder-Decoder}
     
@@ -149,8 +148,7 @@ En la Figura \ref{fig:gramaticas}, se puede ver un ejemplo del proceso de recono
 		\caption{Arquitectura de image captioning para reconocer expresiones matemáticas en imagenes.}
 		\label{fig:imgcaptioning}
     \end{figure}
-    
-    
+
 \subsection{Análisis estructural}
 
 Este método coincide con el primero en que debe de utilizar una técnica de reconocimiento de patrones para etiquetar primero los símbolos. Las etiquetas que utiliza tienen que ver son su posición en la imagen, así como su tamaño. 
@@ -163,6 +161,20 @@ La diferencia en este método, radica en su segunda etapa. No se realizará un a
 	\caption{Utilización de un árbol de recubrimiento mínimo para el reconocimiento de expresiones matemáticas.}
 	\label{fig:spanningtree}
 \end{figure}
+\newpage
+\subsection{Aprendizaje profundo como servicio}
+El entrenamiento de redes neuronales profundas, conocidas como aprendizaje profundo es en la actualidad áltamente complejo computacionalmente. Requiere un sistema con la combinación correcta de software, drivers, memoria, red y recursos de almacenamiento, por factores como estos los proveedores de cloud computing como Amazon Web Services, Microsoft Azure o Google Cloud ofrecen actualmente servicios de Machine Learning proveyendo API's como pueden ser de entrenamiento de modelos o de visualización de datos y generación de estadísticas, permitiendo que desarrolladores y científicos de datos se enfoquen mas en tareas como el entrenamiento de modelos, análisis de datos, etc.
+\\\\
+Los modelos de aprendizaje profundo requieren de un proceso experimental e iterativo, requiriendo cientos e incluso miles de ejecuciones que requieren de un amplio poder de cómputo para encontrar la combinación correcta de las configuraciones e hiper-parámetros de la red neuronal. Esto puede tomar semanas o incluso meses y este tipo de servicios garantiza una disponibilidad en todo momento y en conjunto permite que un sistema completo esté dividido en módulos consiguiendo que el mantenimiento y detección de fallos sean tareas más sencillas.
+\\\\ 
+En la figura \ref{fig:DLAAS} se puede observar la arquitectura de un sistema divido en módulos y que hace uso de herramientas de Machine Learning para dar respuesta a otros módulos del sistema.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{capitulo2/images/DLAAS.png}
+	\caption{Ejemplo de sistema con módulo de Machine Learning}
+	\label{fig:DLAAS}
+\end{figure}    
 
 
 \section{Aplicación web}
@@ -195,8 +207,33 @@ El Modelo-Vista-Template (MTV) es el patrón de diseño que Django implementa. E
     \item \textbf{Vista}: La capa de la lógica de negocios. Esta capa contiene la lógica que accede al modelo y la delega a la plantilla apropiada: puedes pensar en esto como un puente entre el modelos y las plantillas.
 \end{itemize}
 
+\subsection{API REST}
+\subsubsection{Application Programming Interface}
+Una Interfaz de Programación de Aplicaciones o API es un conjunto de definiciones y protocolos que se utilizan para desarrollar e integrar el software de las aplicaciones.
 
-%\subsection{API REST}
-%\subsubsection{Autenticación}
+Las API permiten que sus servicios se comuniquen con otros, sin necesidad de saber como están implementados. Esto simplifica el desarrollo de las aplicaciones y permite ahorrar tiempo y dinero \cite{apiArticle}.
+\subsubsection{Represenational State Transfer}
 
+Representational State Transfer (REST) es un estilo de arquitectura basado en un conjunto de principios que describen como recursos interconectados son definidos y direccionados. Estos principios fueron descritos en el año 2000 por Roy Fielding como parte de obtención de su doctorado.
+\\
+Es importante hacer énfasis en que REST es un \textbf{estilo de software de arquitectura} y no un conjunto de estandares. Como resultado, dichas aplicaciones o arquitecturas son en ocasiones referidas como aplicaciones RESTful o REST-style \cite{restArticle}. 
+\\
+Una aplicación o arquitectura considerada RESTful o REST-style es caracterizada por:
+\begin{itemize}
+	\item La funcionalidad y estado son dividiad en recursos distribuidos.
+	\item Cada recurso es únicamente direccionable usando un conjunto uniforme y mínimo de comandos (típicamente usando comandos HTTP de GET, POST, PUT o DELETE).
+	\item El protocolo es cliente/servidor, stateless, por capas y soporta almacenamiento cache.
+\end{itemize} 
+ La figura \ref{fig:rest_mess} ilustra el uso de REST para servicios Web.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{capitulo2/images/rest_messages.jpg}
+	\caption{Consumidor y proveedor de servicios comunicandose mediante solicitudes y respuestas REST.}
+	\label{fig:rest_mess}
+\end{figure}  
+\subsubsection{Autentificación}
+Para hablar de autentificación es necesario primero entender la diferencia entre identificación y autentificación, por un lado la identificación es la capacidad de identificar de forma exclusiva a un usuario de un sistema o una aplicación que se está ejecutando, mientras que la autentificación es la capacidad de demostrar que un usuario o una aplicación es quien dicha persona o aplicación asegura ser \cite{authent}.\\\\
+Para el caso de una REST API es en muchas ocasiones necesario que se lleve a cabo la autentificación para permitir o denegar el acceso a recursos de un servidor por ejemplo de acuerdo a los permisos concedidos en función de las credenciales de autentificación para así asegurar que los datos sean visibles únicamente a aquellos que proporcionen las credenciales adecuadas y dispongan de los permisos necesarios.
+
+%https://www.ibm.com/support/knowledgecenter/es/SSFKSJ_7.5.0/com.ibm.mq.sec.doc/q009740_.htm
 \input{capitulo2/android/principal.tex}
