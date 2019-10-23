@@ -1,0 +1,16 @@
+\select@language {spanish}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Arquitectura del sistema.\relax }}{5}{figure.caption.4}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Imagen con bloques (Izquierda) y conjunto de segmentos de linea extra\IeC {\'\i }dos (Derecha).\relax }}{9}{figure.caption.5}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces \textbf {a)} La primera etapa del m\IeC {\'e}todo de reconocimiento, se anotan las coordenadas de de cada caracter. \textbf {b)} Se realiza un an\IeC {\'a}lisis sint\IeC {\'a}ctico con las gram\IeC {\'a}ticas libres de contexto definidas.\relax }}{11}{figure.caption.6}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {}}}{11}{figure.caption.6}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {}}}{11}{figure.caption.6}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Representaci\IeC {\'o}n de un percetr\IeC {\'o}n con entradas $x_{1}$, $x_{2}$ y $x_{3}$\relax }}{11}{figure.caption.7}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Red neuronal de 3 capas\relax }}{12}{figure.caption.8}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces ...\relax }}{13}{figure.caption.9}
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Arquitectura de image captioning para reconocer expresiones matem\IeC {\'a}ticas en imagenes.\relax }}{15}{figure.caption.10}
+\contentsline {figure}{\numberline {2.7}{\ignorespaces Utilizaci\IeC {\'o}n de un \IeC {\'a}rbol de recubrimiento m\IeC {\'\i }nimo para el reconocimiento de expresiones matem\IeC {\'a}ticas.\relax }}{15}{figure.caption.11}
+\contentsline {figure}{\numberline {2.8}{\ignorespaces Representaci\IeC {\'o}n del patr\IeC {\'o}n de dise\IeC {\~n}o Modelo-Vista-Template.\relax }}{16}{figure.caption.12}
+\contentsline {figure}{\numberline {2.9}{\ignorespaces Arquitectura Clean \cite {cleanCodeBlog}\relax }}{17}{figure.caption.13}
+\addvspace {10\p@ }
