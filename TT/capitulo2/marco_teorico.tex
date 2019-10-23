@@ -58,14 +58,14 @@ En la Figura \ref{fig:gramaticas}, se puede ver un ejemplo del proceso de recono
 
 \begin{figure}[h]
     \centering
-    %\subfigure[]{\includegraphics{capitulo2/images/gramaticas1}}
-    %\subfigure[]{\includegraphics{capitulo2/images/gramaticas2}}
-    %\caption{\centering \textbf{a)} La primera etapa del método de reconocimiento, se anotan las coordenadas de de cada caracter. \textbf{b)} Se realiza un análisis sintáctico con las gramáticas libres de contexto definidas.}
+    \subfigure[]{\includegraphics[width=6cm]{capitulo2/images/gramaticas1}}
+    \subfigure[]{\includegraphics[width=6cm]{capitulo2/images/gramaticas2}}
+    \caption{\textbf{a)} La primera etapa del método de reconocimiento, se anotan las coordenadas de de cada caracter. \textbf{b)} Se realiza un análisis sintáctico con las gramáticas libres de contexto definidas.}
     \label{fig:gramaticas}
 \end{figure}
 
 
-\section{Redes Neuronales}
+\subsection{Redes Neuronales}
     Existe un tipo de neurona artificial llamada perceptrón desarrolladas entre 1950 y 1960 por el científico Frank Rosenblatt, sin embargo este modelo ha ido evolucionando y hoy en día se utilizan otros modelos de neurona como el llamado sigmoid neuron, que para entender, primero se debe definir al perceptrón como modelo.
     Un perceptrón toma varias entradas binarias $x_{1},x_{2},x_{3},...,x_{n}$ y produce una sola salida binaria:
      \begin{figure}[H]
@@ -90,10 +90,11 @@ En la Figura \ref{fig:gramaticas}, se puede ver un ejemplo del proceso de recono
         \caption{Red neuronal de 3 capas}
         \label{fig:NNmodel}
     \end{figure}
-    \subsection{Conjunto de entrenamiento}
+    \subsubsection{Conjunto de entrenamiento}
+    El conjunto de entrenamiento es un conjunto de datos que se utiliza a modo de ejemplo para que un modelo pueda aprender. En el aprendizaje supervisado el conjunto de entrenamiento se compone de muchas tuplas (X,Y) siendo X un vector de características del problema y Y un vector del resultado al que queremos llegar \cite{deeplearningbook}.
     
     
-    \subsection{Aprendizaje Profundo}
+    \subsubsection{Aprendizaje Profundo}
         El aprendizaje profundo de forma clásica se refiere al tratamiento de redes neuronales con mas de dos capas, sin embargo, debido al cambio que esta sub-area ha sufrido, se debe definir como el tratamiento de redes neuronales con un largo número de parámetros y capas en una de las cuatro arquitecturas de redes fundamentales:
         \begin{itemize}
             \item Redes pre-entrenadas no supervisadas
@@ -105,7 +106,7 @@ En la Figura \ref{fig:gramaticas}, se puede ver un ejemplo del proceso de recono
     Siendo las Redes Neuronales Convolucionales de las que se expondrá a detalle en  \\%siguiente subseccion.
     \\Una de las propiedades mas importantes que permite el Aprendizaje Profundo es la extracción automática de características que puede ser clave en dicho paso del análisis de imágenes.
     
-    \subsection{Redes Neuronales Convolucionales}
+    \subsubsection{Redes Neuronales Convolucionales}
     Las redes neuronales convolucionales han ganado porpularidad en los últimos años debido a su efectividad prometedora en el aprendizaje profundo. Partiendo en el procesamiento de imágenes, las capas convolucionales han encontrado su camino en otros subcampos del aprendizaje profundo y muestran éxito en la mayor parte de dichos campos.\\\\ 
     La diferencia fundamental entre \textit{fully connected} (completamente conectadas) y \textit{convolutional neural networks}(redes neuronales convolucionales) es el patrón de conexión entre las capas consecutivas. En el caso de las completamente conectadas como el nombre lo sugiere, cada unidad es conectada a todas las unidades de la previa capa. \\\\
     En una capa convolucional de una red neuronal, por otra parte, cada unidad está conectada a (típicamente pequeña) un número de unidades cercanas en la capa previa. Más aún, todas las unidades están conectadas a la capa previa de la misma forma con los pesos exactamente iguales y estructura. Esto lleva a una operación conocida como convolución, dando a la arquitectura este nombre, a grandes rasgos esto significa aplicar una pequeña "ventana" de pesos (conocida como filtro) sobre una imágen como se muestra en la figura %fig.
@@ -119,7 +120,50 @@ En la Figura \ref{fig:gramaticas}, se puede ver un ejemplo del proceso de recono
     \end{figure}
     
     
-    \subsection{Aprendizaje profundo como servicio}
+    %\subsection{Aprendizaje profundo como servicio}
+    
+  
+    \subsubsection{Arquitectura Encoder-Decoder}
+    
+    En particular se discutirá la arquitectura de Long Short-Term Memory (LSTM). LSTM es una arquitectura de una red neuronal recurrente diseñada para resolver problemas secuenciales, normalmente conocidos como sequence-to-sequence. Los problemas secuenciales, tienen usualmente como reto, predecir el siguiente resultado encontrado. Un reto que surge naturalmente de estos problemas, es la longitud variable de las entradas.
+    
+    Una aproximación para resolver los problemas secuenciales es el Encoder-Decoder LSTM él cual ha probado ser efectivo en muchos casos. Esta arquitectura se compone de dos modelos \cite{encoderDecoder}:
+    
+    \begin{itemize}
+    	\item Encoder: Es una red neuronal encargada de leer la entrada de longitud variable y convertirla en un vector de longitud fija.
+    	\item Decoder: Es una red neuronal encargada de tomar la salida del Encoder y como salida obtiene un valor predecido.
+    \end{itemize} 
+
+
+	\subsubsection{Image Captioning}
+    
+    Es una rama emergente del \textit{deep learning} que ha ido ganando atención en los últimos años. Este campo es un punto intermedio entre la vision por computadora y el procesamiento del lenguaje natural. El actual estado del arte en image captioning tiene una aproximación similar a los modelos sequence-to-sequence, los cuales utilizan una arquitecura Encoder-Decoder \cite{imagetolatex}.
+    
+    Si se trata al problema de reconocer expresiones matemáticas en imagenes como un problema sequence-to-sequence de image captioning, se puede emplear una arquitectura de Encoding-Decoding para hacer la conversión de la imagen a LaTeX de manera directa. Esto permite a la red manejar imagenes de longitud variable y reconocer los símbolos a la vez que va reconociendo las expresiones.
+    
+    La arquitectura que se esta utilizando actualmente para solucionar este problema se muestra en la Figura \ref{imgcaptioning} \cite{imagetolatex}\cite{imagemarkup}\cite{chino}.
+    
+    \begin{figure}
+		\centering
+		\includegraphics[width=8cm]{capitulo2/images/imgcaptioning}
+		\caption{Arquitectura de image captioning para reconocer expresiones matemáticas en imagenes.}
+		\label{fig:imgcaptioning}
+    \end{figure}
+    
+    
+\subsection{Análisis estructural}
+
+Este método coincide con el primero en que debe de utilizar una técnica de reconocimiento de patrones para etiquetar primero los símbolos. Las etiquetas que utiliza tienen que ver son su posición en la imagen, así como su tamaño. 
+
+La diferencia en este método, radica en su segunda etapa. No se realizará un análisis con gramáticas, en su lugar se intentara deducir la estructura jerárquica con algún otro método. El artículo \cite{spanningtree} propone utilizar el algoritmo de Kruskal para obtener un árbol de recubrimiento mínimo por niveles, de este modo se puede saber la estructura de la expresión matemática recorriendo el gráfo resultante.La Figura \ref{fig:spanningtree} muestra un ejemplo de como funciona este método.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=8cm]{capitulo2/images/spanningtree}
+	\caption{Utilización de un árbol de recubrimiento mínimo para el reconocimiento de expresiones matemáticas.}
+	\label{fig:spanningtree}
+\end{figure}
+
 
 \section{Aplicación web}
 En la ingeniería de software se denomina aplicación web a aquellas herramientas que los usuarios pueden utilizar accediendo a un servidor web a través de internet o de una intranet mediante un navegador. En otras palabras, es un programa que se codifica en un lenguaje interpretable por los navegadores web en la que se confía la ejecución al navegador \cite{appweb}.
