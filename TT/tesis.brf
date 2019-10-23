@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 \backcite {cleanCodeBlog}{{\es@scroman {v}}{(document)}{Doc-Start}}
 \backcite {latexUsage}{{2}{1.2}{section.1.2}}
 \backcite {mathphix}{{6}{1.4}{section.1.4}}
@@ -32,3 +33,9 @@
 \backcite {ddi}{{30}{3.2}{table.3.2}}
 \backcite {basesComparacion}{{31}{3.6.2}{subsection.3.6.2}}
 \backcite {fComparacion}{{32}{3.6.3}{subsection.3.6.3}}
+=======
+\backcite {ddi}{{8}{1.2}{table.1.2}}
+\backcite {ddi}{{8}{1.2}{table.1.2}}
+\backcite {basesComparacion}{{9}{1.6.2}{subsection.1.6.2}}
+\backcite {fComparacion}{{10}{1.6.3}{subsection.1.6.3}}
+>>>>>>> b0470f3dcc44f1143be3f11fb69bafb33376ce3c

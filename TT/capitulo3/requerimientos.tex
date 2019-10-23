@@ -1,0 +1,87 @@
+\section{Requerimientos funcionales}
+    Los requerimientos funcionales describen los actividades y comportamientos que tendrá el sistema bajo ciertas condiciones.
+    
+    En esta sección se presentan los requerimientos funcionales que se obtuvieron para el sistema. Dichos requerimientos se encuentran separados de acuerdo a los diferentes módulos que se tienen planeados
+    \subsection{Módulo de usuarios}
+    \begin{enumerate}[label=RF\arabic*.]
+    \item Mecanismo de gestión de usuarios.
+    \item Mecanismo de autenticación de usuarios
+    \item Mecanismo de recuperación de contraseñas.
+    \item Mecanismo para la comunicación entre la aplicación android y la aplicación web.
+    \end{enumerate}
+    
+    \subsection{Módulo de proyectos}
+    \begin{enumerate}[label=RF\arabic*.]
+    	\setcounter{enumi}{4}
+    	\item Mecanismo para la gestión de proyectos de \LaTeX{}.
+    	\item Permitir descargar el archivo de \LaTeX{} que se haya traducido.
+    	\item Permitir calificar una traducción realizada.
+    	\item Permitir el uso de la capara del dispositivo android para tomar fotografías.
+    	\item Permitir la visualización del resultado de la traducción.
+    	\item Permitir añadir al portapapeles alguna traducción seleccionada.
+    	\item Mecanismo para el envío de imágenes tomadas por la aplicación android a la aplicación web para su uso.
+    \end{enumerate}
+    
+    \subsection{Módulo de análisis}
+    \begin{enumerate}[label=RF\arabic*.]
+    	\setcounter{enumi}{11}
+    	\item Mecanismo para el tratamiento de la imagen previo a su análisis.
+    	\item Mecanismo para el reconocimiento de un conjunto definido de expresiones matemáticas en imágenes.
+    \end{enumerate}
+    
+    \subsection{Módulo de traducción}
+    \begin{enumerate}[label=RF\arabic*.]
+    	\setcounter{enumi}{13}
+    	\item Mecanismo para la traducción a \LaTeX{} de las expresiones matemáticas encontradas en el modulo de análisis.
+    \end{enumerate}
+    
+\section{Requerimientos No Funcionales} 
+    A continuación se enlistan los requerimientos no funcionales.
+        \begin{enumerate}[label=RNF\arabic*.]
+            %\item Disponibilidad. El sistema debería estar disponible en la mayor parte del tiempo a excepción de operaciones de soporte planeadas y previamente notificadas al usuario final.
+    
+            \item Usabilidad. La interfaz de usuario debe de ser intuitiva con el objetivo de hacer uso de las funcionalidades del sistema de una forma fácil para el usuario.
+            
+            \item Seguridad. La seguridad se solventa al realizar un cifrado de las contraseñas de los usuarios así como una verificación de la cuenta del usuario para poder hacer uso del sistema. Por otro lado, en la comunicación que se realiza entre la aplicación móvil y el API REST se utiliza un token para autenticar las peticiones que se realizan, dicho token es único para cada usuario. 
+            
+            \item Escalabilidad. El sistema deberá ser fácilmente escalable y con ello poseer la cualidad de que si se agregan nuevas funcionalidades, estas sean fáciles de acoplar con lo ya desarrollado. Además, de que debe de ser posible aumentar sus capacidades para brindar servicio a más usuarios.
+            
+        \end{enumerate}    
+\section{Requerimientos técnicos}
+    A continuación se en listan los requerimientos técnicos para un mejor funcionamiento del sistema:
+    \subsection{Aplicación móvil}
+    \subsubsection{Requerimientos mínimos de software}
+    \begin{enumerate}
+        \item Sistema operativo Android 4.5 o superior.
+        \item Conexión a internet.
+    \end{enumerate}
+    
+    \subsubsection{Requerimientos mínimos de hardware}
+    \begin{enumerate}
+        %\item Resolución cámara: 13 Megapixeles
+        %\item Procesador: Dualcore de 1.2 GHz.
+        \item Memoria RAM: 2 GB.
+        \item Espacio de almacenamiento de 50 MB.
+    \end{enumerate}
+    \subsection{Aplicación web}
+    \subsubsection{Requerimientos mínimos de software}
+    \begin{enumerate}
+        \item Cualquiera de las versiones de los siguientes navegadores hasta su versión más reciente.
+        \begin{itemize}
+            \item Google Chrome 7
+            \item Edge 18
+            \item Internet Explorer 11
+            \item Firefox 4
+            \item Safari 5
+            \item Opera 12.1
+            \item iOS Safari 13.1
+            \item Chrome for android 76
+            \item Firefox para android 68
+        \end{itemize}
+    \end{enumerate}
+    \subsubsection{Requerimientos mínimos de hardware}
+    \begin{enumerate}
+        \item Memoria RAM: 2 GB.
+        \item Espacio de almacenamiento de 100 MB.
+    \end{enumerate}
+    %Poner los recomendados?
