@@ -1,0 +1,68 @@
+\subsubsection{A-USR-CU3 Recuperar contraseña}
+En caso de que el usuario no recuerde su contraseña se le brinda un mecanismo para poder recuperar la contraseña y con ello poder ingresar a la aplicación
+\begin{longtable}{|J{5cm}|J{10.3cm}|}
+	\hline
+	\textbf{Nombre del Caso de Uso} &
+		A-USR-CU3 Recuperar contraseña \\ \hline
+	\textbf{Objetivo} &
+		Permitir al actor el recuperar su contraseña \\ \hline
+	\textbf{Actores} &
+		Usuario verificado \\ \hline 
+	\textbf{Disparador} & 
+		El actor requiere recuperar su contraseña \\ \hline 
+	\textbf{Entradas} & 
+		\begin{itemize}
+				\item Correo electrónico.
+		\end{itemize}\\ \hline 
+	\textbf{Salidas} &
+    	\begin{itemize}
+		\item Correo electrónico para la recuperación de la contraseña
+		\item \hyperref[MSG6]{\bf MSG6 Envio de correo de recuperación}
+		\end{itemize} \\ \hline
+	\textbf{Precondiciones} &
+		\begin{itemize}
+				\item El actor debe de tener una cuenta verificada
+		\end{itemize} \\ \hline
+	\textbf{Postcondiciones} &
+		\begin{itemize}
+			\item El actor recupera su contraseña
+		\end{itemize}\\ \hline
+	\textbf{Prioridad} & 
+		Baja \\ \hline
+	\textbf{Reglas de Negocio} & 
+		\begin{itemize}
+			\item \hyperref[RN001]{RN-001 Campos obligatorios}
+			\item \hyperref[RN002]{RN-002 Datos correctos}
+			\item \hyperref[RN006]{RN-006 Usuario verificado}
+		\end{itemize} \\ \hline
+
+	% \caption{}
+	%\label{desc:SUB-M-CU1}
+\end{longtable}
+% Me faltan las referencias chidas
+\paragraph{Trayectoria Principal}
+	\begin{enumerate}
+	    \item {[Actor]} Presiona el enlace \textit{Recuperar contraseña} de la \hyperref[fig:MIUA-1]{\bf MIUA 1 Iniciar Sesión}.
+	    \item {[Sistema]} Muestra la pantalla \hyperref[fig:MIUA-3]{\bf MIUA 3 Recuperar Contraseña}.
+	    \item {[Actor]} Ingresa la información solicitada en pantalla.
+	    \item {[Actor]} Presiona el botón \textit{Enviar correo de recuperación}.
+	    \item {[Sistema]} Valida la información introducida según la regla de negocio \hyperref[RN001]{RN-001} y \hyperref[RN002]{RN-002}. \hyperref[A-USR-CU3:TA]{[Trayectoria alternativa A]}.
+	    \item {[Sistema]} Verifica la información introducida según la regla de negocio \hyperref[RN006]{RN-006}. \hyperref[A-USR-CU3:TB]{[Trayectoria alternativa B]}.
+	    \item {[Sistema]} Envía un correo de recuperación.
+	    \item {[Sistema]} Muestra el mensaje \hyperref[MSG6]{\bf MSG6 Envio de correo de recuperación} en la pantalla \hyperref[fig:MIUA-3]{\bf MIUA 3 Recuperar Contraseña}.
+	\end{enumerate}
+	Fin del caso de uso.
+
+\paragraph{Trayectoria Alternativa A} \label{A-USR-CU3:TA}
+	La información ingresada por el actor no es valida.
+	\begin{enumerate}[label=A\arabic*.]
+		\item {[Sistema]} Muestra el mensaje \hyperref[MSG1]{\bf MSG1 Datos no validos} en la pantalla \hyperref[fig:MIUA-3]{\bf MIUA 3 Recuperar Contraseña}.
+	\end{enumerate}
+	Fin de la trayectoria alternativa.
+
+\paragraph{Trayectoria Alternativa B} \label{A-USR-CU3:TB}
+	El correo electrónico no se encuentra registrado.
+	\begin{enumerate}[label=A\arabic*.]
+		\item {[Sistema]} Muestra el mensaje \hyperref[MSG3]{\bf MSG3 Correo electronico no registrado} en la pantalla \hyperref[fig:MIUA-3]{\bf MIUA 3 Recuperar Contraseña}.
+	\end{enumerate}
+	Fin de la trayectoria alternativa.

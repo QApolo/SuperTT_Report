@@ -1,0 +1,52 @@
+\subsubsection{A-USR-CU5 Cerrar Sesión}
+Este caso de uso permite al usuario cerrar su sesión en la aplicación.
+
+\begin{longtable}{|J{5cm}|J{10.3cm}|}
+	\hline
+	\textbf{Nombre del Caso de Uso} &
+		A-USR-CU5 Cerrar sesión \\ \hline
+	\textbf{Objetivo} &
+		Cerrar sesión en la aplicación \\ \hline
+	\textbf{Actores} &
+		Usuario verificado \\ \hline 
+	\textbf{Disparador} & 
+		El actor requiere cerrar su sesión \\ \hline 
+	\textbf{Entradas} & 
+		Ninguna. \\ \hline 
+	\textbf{Salidas} & 
+		Ninguna. \\ \hline
+	\textbf{Precondiciones} &
+		\begin{itemize}
+		    \item El actor debe haber iniciado sesión
+		\end{itemize} \\ \hline
+	\textbf{Postcondiciones} &
+        \begin{itemize}
+		    \item La sesión del actor se cierra
+		\end{itemize} \\ \hline
+	\textbf{Prioridad} & 
+		Baja \\ \hline
+	\textbf{Reglas de Negocio} & 
+		Ninguna \\ \hline
+
+	% \caption{}
+	%\label{desc:SUB-M-CU1}
+\end{longtable}
+
+\paragraph{Trayectoria Principal}
+\label{CUA_Cerrar_Sesion}
+	\begin{enumerate}
+	    \item {[Actor]} Presiona el botón \textit{Cerrar Sesión} del menú \textbf{\nameref{fig:MIUA-4}}.
+	    \item {[Sistema]} Cierra la sesión del actor en el servidor.
+	    \item {[Sistema]} Muestra el mensaje \hyperref[MSG11]{\bf MSG11 Confirmar operación}.
+	    \item {[Actor]} Presiona el botón \textit{Sí}. \hyperref[A-USR-CU5:TA]{[Trayectoria alternativa A]}
+	    \item {[Sistema]} Finaliza la sesión del usuario.
+	    \item {[Sistema]} Muestra la pantalla \textbf{\nameref{fig:MIUA-1}}.
+	\end{enumerate}
+	Fin del caso de uso.
+
+\paragraph{Trayectoria Alternativa A} \label{A-USR-CU5:TA}
+    Cancelar la operación.
+	\begin{enumerate}[label=A\arabic*.]
+		\item {[Sistema]} Muestra el menú \textbf{\nameref{fig:MIUA-4}}.
+	\end{enumerate}
+	Fin de la trayectoria alternativa.

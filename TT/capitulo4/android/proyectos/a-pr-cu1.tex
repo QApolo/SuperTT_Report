@@ -1,0 +1,47 @@
+\subsubsection{A-PR-CU1 Gestionar proyectos}
+Se tiene un punto de partida para la gestión de los proyectos en la cual se muestran todos los proyectos que se han creado y la posibilidad de crear nuevos.
+\begin{longtable}{|J{5cm}|J{10.3cm}|}
+	\hline
+	\textbf{Nombre del Caso de Uso} &
+		A-PR-CU1 Gestionar proyectos \\ \hline
+	\textbf{Objetivo} &
+		Permitir al actor el gestionar sus proyectos y crear nuevos \\ \hline
+	\textbf{Actores} &
+		Usuario verificado \\ \hline 
+	\textbf{Disparador} & 
+		El actor requiere trabajar con sus proyectos realizados \\ \hline 
+	\textbf{Entradas} & 
+		Ninguna \\ \hline 
+	\textbf{Salidas} & 
+		Ninguna \\ \hline
+	\textbf{Precondiciones} &
+		\begin{itemize}
+				\item El actor debe de haber iniciado sesión
+		\end{itemize} \\ \hline
+	\textbf{Postcondiciones} &
+		\begin{itemize}
+			\item El actor pude gestionar sus proyectos o crear uno nuevo
+		\end{itemize}\\ \hline
+	\textbf{Prioridad} & 
+		Alta \\ \hline
+	\textbf{Reglas de Negocio} & 
+		Ninguna \\ \hline
+
+	% \caption{}
+	%\label{desc:SUB-M-CU1}
+\end{longtable}
+% Me faltan las referencias chidas
+\paragraph{Trayectoria Principal}
+	\begin{enumerate}
+	    \item {[Actor]} Ingresa a la aplicación después de haber iniciado sesión.
+	    \item {[Sistema]} Recupera todos los proyectos asociados con el actor ordenados del más reciente al más antiguo. \hyperref[A-PR-CU1:TA]{[Trayectoria alternativa A]}
+	    \item {[Sistema]} Muestra la pantalla \hyperref[fig:MIUA-5]{\bf MIUA 5 Lista de Proyectos} con los proyectos recuperados.
+	\end{enumerate}
+	Fin del caso de uso.
+
+\paragraph{Trayectoria Alternativa A} \label{A-PR-CU1:TA}
+	No se obtuvo ningún proyecto
+	\begin{enumerate}[label=A\arabic*.]
+		\item {[Sistema]} Muestra el mensaje \hyperref[MSG7]{\bf MSG7 No existen proyectos para mostrar} en la pantalla \hyperref[fig:MIUA-5]{\bf MIUA 5 Lista de Proyectos}.
+	\end{enumerate}
+	Fin de la trayectoria alternativa.

@@ -1,0 +1,81 @@
+\subsubsection{W-PR-CU1.1.1 Editar proyecto}
+Este caso de uso permite al actor cambiar el nombre de algún proyecto previamente creado por él.
+
+\begin{longtable}{|J{5cm}|J{10.3cm}|}
+	\hline
+	\textbf{Nombre del Caso de Uso} &
+		W-PR-CU1.1.1 Editar proyecto \\ \hline
+	\textbf{Objetivo} &
+		Cambiar la información de algún proyecto \\ \hline
+	\textbf{Actores} &
+		Usuario verificado \\ \hline 
+	\textbf{Disparador} & 
+		El actor requiere cambiar la información de algún proyecto. \\ \hline 
+	\textbf{Entradas} & 
+		\begin{itemize}
+				\item Nombre del proyecto
+		\end{itemize}\\ \hline 
+	\textbf{Salidas} & 
+		\begin{itemize}
+			\item \hyperref[MSG9]{\bf MSG9 Operación exitosa}
+		\end{itemize} \\ \hline
+	\textbf{Precondiciones} &
+		\begin{itemize}
+		    \item El actor debe estar registrado en el sistema con un estatus de validado
+		    \item El usuario debe haber iniciado sesión
+		    \item El proyecto debe de pertenecer al actor
+		\end{itemize} \\ \hline
+	\textbf{Postcondiciones} &
+		Los datos del proyecto se modifican \\ \hline
+	\textbf{Prioridad} & 
+		Baja \\ \hline
+	\textbf{Reglas de Negocio} & 
+		\begin{itemize}
+    		\item \hyperref[RN001]{RN-001 Campos obligatorios}
+    		\item \hyperref[RN002]{RN-002 Datos correctos} 
+    		\item \hyperref[RN005]{RN-005 Fecha de modificación}
+    	\end{itemize}\\ \hline
+
+	% \caption{}
+	%\label{desc:SUB-M-CU1}
+\end{longtable}
+
+\paragraph{Trayectoria Principal}
+\label{W-PR-CU1.1.1}
+	\begin{enumerate}
+	    \item {[Actor]} Presiona el botón \textit{Editar} en la pantalla \textbf{\nameref{fig:MIUW-6}}.
+	    
+	    \item {[Sistema]} Muestra un campo de texto con el actual nombre del proyecto en la pantalla \textbf{\nameref{fig:MIUW-6}}.
+	    
+	    \item {[Actor]} Ingresa el nuevo nombre del proyecto.
+	    
+	    \item {[Actor]} Presiona el botón aceptar \textit{Aceptar} de la pantalla \textbf{\nameref{fig:MIUW-6}}.  \hyperref[W-PR-CU1.1.1:TA]{[Trayectoria alternativa A]}
+	    
+	    \item {[Sistema]} Verifica los datos como se especifica en las reglas de negocio \hyperref[RN001]{RN-001} y \hyperref[RN002]{RN-002}. \hyperref[W-PR-CU1.1.1:TB]{[Trayectoria alternativa B]}
+	    
+	    \item {[Sistema]} Calcula la fecha de modificación del proyecto en el sistema según la regla de negocio \hyperref[RN005]{RN-005}.
+	    
+	    \item {[Sistema]} Persiste los cambios realizados.
+	    
+	    \item {[Sistema]} Muestra el mensaje \hyperref[MSG9]{\bf MSG9 Operación exitosa} en la pantalla \textbf{\nameref{fig:MIUW-6}}y actualiza la información mostrada. 
+
+	\end{enumerate}
+	Fin del caso de uso.
+	
+\paragraph{Trayectoria Alternativa A} \label{W-PR-CU1.1.1:TA}
+	El actor cancela la operación.
+	%para más trayectorias, copiar y pegar toda esta sección y en el comando siguiente cambiar por la letra correspondiente
+	\begin{enumerate}[label=A\arabic*.]
+		\item {[Actor]} Solicita cancelar la operación oprimiendo el botón \textit{Cancelar} en la pantalla \textbf{\nameref{fig:MIUW-6}}.
+		\item {[Sistema]} Muestra la pantalla \textbf{\nameref{fig:MIUW-6}}.
+	\end{enumerate}
+	Fin de la trayectoria alternativa.
+
+\paragraph{Trayectoria Alternativa B} \label{W-PR-CU1.1.1:TB}
+	Datos no validos.
+	%para más trayectorias, copiar y pegar toda esta sección y en el comando siguiente cambiar por la letra correspondiente
+	\begin{enumerate}[label=B\arabic*.]
+		\item {[Sistema]} Muestra el mensaje \hyperref[MSG1]{\bf MSG1 Datos no validos} en la pantalla \textbf{\nameref{fig:MIUW-6}}.
+		\item {[Actor]} Continua con el paso 3 de la Trayectoria Principal.
+	\end{enumerate}
+	Fin de la trayectoria alternativa.

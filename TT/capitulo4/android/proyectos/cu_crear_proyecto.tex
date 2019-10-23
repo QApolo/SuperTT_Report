@@ -1,0 +1,80 @@
+% Este caso de uso quiero ver bien como se va a hacer
+\subsubsection{A-PR-CU1.2 Crear proyecto}
+Este caso de uso permite al usuario final crear un nuevo proyecto para almacenar sus traducciones.
+
+\begin{longtable}{|J{5cm}|J{10.3cm}|}
+	\hline
+	\textbf{Nombre del Caso de Uso} &
+		A-PR-CU1.2 Crear proyecto \\ \hline
+	\textbf{Objetivo} &
+		Crear un nuevo proyecto en el cual se puedan almacenar traducciones \\ \hline
+	\textbf{Actores} &
+		Usuario verificado \\ \hline 
+	\textbf{Disparador} & 
+		El actor requiere crear un nuevo proyecto \\ \hline 
+	\textbf{Entradas} & 
+		\begin{itemize}
+				\item Nombre del proyecto
+		\end{itemize}\\ \hline 
+	\textbf{Salidas} & 
+		\begin{itemize}
+			\item \textbf{\nameref{MSG9}}
+		\end{itemize} \\ \hline
+	\textbf{Precondiciones} &
+		\begin{itemize}
+		    \item El actor debe estar registrado en el sistema con un estatus de validado
+		    \item El usuario debe haber iniciado sesión
+		\end{itemize} \\ \hline
+	\textbf{Postcondiciones} &
+			\begin{itemize}
+			    \item Se crea un nuevo proyecto
+			\end{itemize} \\ \hline
+	\textbf{Prioridad} & 
+		Media \\ \hline
+	\textbf{Reglas de Negocio} & 
+		\begin{itemize}
+			\item %\ref{RN1}.
+			\item %\ref{RN2}.
+		\end{itemize} \\ \hline
+
+	% \caption{}
+	%\label{desc:SUB-M-CU1}
+\end{longtable}
+
+\paragraph{Trayectoria Principal}
+\label{CUA_Crear_Proyecto}
+	\begin{enumerate}
+	    \item {[Actor]} Presiona el botón \textit{Crear Proyecto} en la pantalla \textbf{\nameref{fig:MIUA-5}}.
+	    
+	    \item {[Sistema]} Muestra un nuevo recuadro en la pantalla \textbf{\nameref{fig:MIUA-5}} solicitando el nombre del nuevo proyecto.
+	    
+	    \item {[Actor]} Ingresa el nombre del nuevo proyecto.
+	    
+	    \item {[Actor]} Solicita guardar el nuevo proyecto oprimiendo el botón \textit{Aceptar} de la pantalla \textbf{\nameref{fig:MIUA-5}}. \hyperref[A-PR-CU1.2:TA]{[Trayectoria A]}
+	    
+	    \item {[Sistema]} Verifica que el nombre del proyecto sea válido como se especifica en las reglas de negocio REGLAS-DE-NEGOCIO. \hyperref[A-PR-CU1.2:TB]{[Trayectoria B]}
+	    
+	    \item {[Sistema]} Registra el nuevo proyecto en el sistema.
+	    
+	    \item {[Sistema]} Muestra la pantalla \textbf{\nameref{fig:MIUA-5}} y actualiza la lista de proyectos.
+
+	\end{enumerate}
+	Fin del caso de uso.
+	
+\paragraph{Trayectoria Alternativa A} \label{A-PR-CU1.2:TA}
+	El actor cancela la operación.
+	%para más trayectorias, copiar y pegar toda esta sección y en el comando siguiente cambiar por la letra correspondiente
+	\begin{enumerate}[label=A\arabic*.]
+		\item {[Actor]} Solicita cancelar la operación oprimiendo el botón \textit{Cancelar} en la pantalla emergente de \textbf{\nameref{fig:MIUA-5}}.
+		\item {[Sistema]} Muestra la pantalla \textbf{\nameref{fig:MIUA-5}}.
+	\end{enumerate}
+	Fin de la trayectoria alternativa.
+
+\paragraph{Trayectoria Alternativa B} \label{A-PR-CU1.2:TB}
+	Datos no validos.
+	%para más trayectorias, copiar y pegar toda esta sección y en el comando siguiente cambiar por la letra correspondiente
+	\begin{enumerate}[label=B\arabic*.]
+		\item {[Sistema]} Muestra el mensaje NOMBRE-MENSAJE en la pantalla emergente de \textbf{\nameref{fig:MIUA-5}} especificando que campo falta por llenar.
+		\item {[Actor]} Continua con el paso 3 de la Trayectoria Principal.
+	\end{enumerate}
+	Fin de la trayectoria alternativa.

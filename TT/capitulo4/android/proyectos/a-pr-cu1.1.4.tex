@@ -1,0 +1,61 @@
+\subsubsection{A-PR-CU1.1.4 Eliminar traducción}
+Un proyecto puede tener asociadas varias traducciones por lo que es posible eliminar alguna traducción que no se requiera.
+\begin{longtable}{|J{5cm}|J{10.3cm}|}
+	\hline
+	\textbf{Nombre del Caso de Uso} &
+		A-PR-CU1.1.4 Eliminar traducción \\ \hline
+	\textbf{Objetivo} &
+		Permitir al actor eliminar alguna traducción en particular de algún proyecto \\ \hline
+	\textbf{Actores} &
+		Usuario verificado \\ \hline 
+	\textbf{Disparador} & 
+		El actor requiere eliminar una traducción en especifico \\ \hline 
+	\textbf{Entradas} & 
+		Ninguna \\ \hline 
+	\textbf{Salidas} & 
+		\begin{itemize}
+		    \item \hyperref[MSG9]{\bf MSG9 Operación exitosa}
+		\end{itemize} \\ \hline
+	\textbf{Precondiciones} &
+		\begin{itemize}
+				\item El actor debe de haber iniciado sesión
+				\item Deben de existir proyectos que eliminar
+				\item Deben de existir traducciones asociadas a algún proyecto
+		\end{itemize} \\ \hline
+	\textbf{Postcondiciones} &
+		\begin{itemize}
+			\item Se elimina una traducción
+		\end{itemize}\\ \hline
+	\textbf{Prioridad} & 
+		Baja \\ \hline
+	\textbf{Reglas de Negocio} & 
+		Ninguna. \\ \hline
+
+	% \caption{}
+	%\label{desc:SUB-M-CU1}
+\end{longtable}
+% Me faltan las referencias chidas
+\paragraph{Trayectoria Principal}
+	\begin{enumerate}
+	    \item {[Actor]} Presiona el icono \textit{Eliminar traducción} de la pantalla \hyperref[fig:MIUA-6]{\bf MIUA 6 Lista de Traducciones}.
+	    \item {[Sistema]} Muestra el mensaje \hyperref[MSG11]{\bf MSG11 Confirmación de operación}. 
+	    \item {[Actor]} Presiona el botón \textit{Sí}. \hyperref[A-PR-CU1.1.4:TA]{[Trayectoria Alternativa A]}.
+	    \item {[Sistema]} Elimina la traducción del proyecto. \hyperref[A-PR-CU1.1.4:TB]{[Trayectoria Alternativa B]}.
+	    \item {[Sistema]} Muestra el mensaje \hyperref[fig:MIUA-5]{\bf MSG8 Operación exitosa} en la pantalla \hyperref[fig:MIUA-5]{\bf MIUA 5 Lista de Traducciones}.
+	\end{enumerate}
+	Fin del caso de uso.
+
+\paragraph{Trayectoria Alternativa A} \label{A-PR-CU1.1.4:TA}
+	Cancelar la operación.
+	\begin{enumerate}[label=A\arabic*.]
+		\item {[Sistema]} Muestra la pantalla \hyperref[fig:MIUA-6]{\bf MIUA 6 Lista de Traducciones}.
+	\end{enumerate}
+	Fin de la trayectoria alternativa.
+	
+\paragraph{Trayectoria Alternativa B} \label{A-PR-CU1.1.4:TB}
+	No se puede eliminar la traducción.
+	\begin{enumerate}[label=B\arabic*.]
+		\item {[Sistema]} Muestra el mensaje \hyperref[MSG10]{\bf MSG10 Operación fallida} en la pantalla \hyperref[fig:MIUA-6]{\bf MIUA 6 Lista de Traducciones}.
+	\end{enumerate}
+	Fin de la trayectoria alternativa.
+	

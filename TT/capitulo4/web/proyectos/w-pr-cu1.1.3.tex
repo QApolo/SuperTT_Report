@@ -1,0 +1,64 @@
+\subsubsection{W-PR-CU1.1.3 Eliminar traducción}
+Este caso de uso permite al usuario final eliminar una traducción previamente solicitada por él.
+
+\begin{longtable}{|J{5cm}|J{10.3cm}|}
+	\hline
+	\textbf{Nombre del Caso de Uso} &
+		W-PR-CU1.1.3 Eliminar traducción \\ \hline
+	\textbf{Objetivo} &
+		Eliminar una traducción del usuario \\ \hline
+	\textbf{Actores} &
+		Usuario verificado \\ \hline 
+	\textbf{Disparador} & 
+		El actor requiere eliminar una traducción \\ \hline 
+	\textbf{Entradas} & 
+		Ninguna \\ \hline 
+	\textbf{Salidas} & 
+		\begin{itemize}
+			\item \hyperref[MSG9]{\bf MSG9 Operación exitosa}
+		\end{itemize} \\ \hline
+	\textbf{Precondiciones} &
+		\begin{itemize}
+		    \item El actor debe estar registrado en el sistema con un estatus de validado
+		    \item El actor debe haber iniciado sesión
+		    \item La traducción debe de existir en el sistema
+		    \item La traducción debe de pertenecer al actor
+		\end{itemize} \\ \hline
+	\textbf{Postcondiciones} &
+		\begin{itemize}
+		    \item Al aceptar la eliminación de una traducción, toda su información correspondiente será eliminada del sistema
+		\end{itemize} \\ \hline
+	\textbf{Prioridad} & 
+		Baja \\ \hline
+	\textbf{Reglas de Negocio} & 
+		Ninguna \\ \hline
+
+	% \caption{}
+	%\label{desc:SUB-M-CU1}
+\end{longtable}
+
+\paragraph{Trayectoria Principal}
+\label{W-PR-CU1.1.3}
+	\begin{enumerate}
+	    \item {[Actor]} Presiona el botón \textit{Eliminar} de algún registro mostrado en la pantalla \textbf{\nameref{fig:MIUW-6}}.
+	    
+	    \item {[Sistema]} Muestra el mensaje \hyperref[MSG11]{\bf MSG11 Confirmación de operación}.
+	    
+	    \item {[Actor]} Acepta la eliminación oprimiendo el botón \textit{Aceptar}. \hyperref[W-PR-CU1.1.3:TA]{[Trayectoria alternativa A]}
+	    
+	    \item {[Sistema]} Verifica que la traducción pertenezca al usuario.
+	    
+	    \item {[Sistema]} Elimina toda la información correspondiente a la traducción.
+	    
+	    \item {[Sistema]} Muestra el mensaje \hyperref[MSG9]{\bf MSG9 Operación exitosa} en la pantalla \textbf{\nameref{fig:MIUW-6}} indicando que la operación se ha realizado exitosamente y actualiza la lista de traducciones.
+	\end{enumerate}
+	Fin del caso de uso.
+	
+\paragraph{Trayectoria Alternativa A} \label{W-PR-CU1.1.3:TA}
+	El actor cancela la operación.
+	%para más trayectorias, copiar y pegar toda esta sección y en el comando siguiente cambiar por la letra correspondiente
+	\begin{enumerate}[label=A\arabic*.]
+		\item {[Actor]} Solicita cancelar la operación oprimiendo el botón \textit{Cancelar}.
+		\item {[Sistema]} Muestra la pantalla \textbf{\nameref{fig:MIUW-6}}.
+	\end{enumerate}
+	Fin de la trayectoria alternativa.

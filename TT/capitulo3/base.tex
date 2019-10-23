@@ -1,0 +1,89 @@
+\subsection{Base de datos}
+
+Un Sistema Gestor de Bases de Datos (SGBD) o DGBA (Data Base Management System) es un conjunto de programas no visibles que administran y gestionan la información que contiene una base de datos. Para el caso del presente Trabajo Terminal, se decidio utilizar una base de datos relacional. La Tabla \ref{tbl:analisis-bases} muestra una comparativa de los tres principales gestores de bases de datos \cite{basesComparacion}.
+
+\begin{center}
+    \begin{longtable}{|m{3.5cm}|m{3.5cm}|m{3.5cm}|m{3.5cm}|}
+    
+    \hline
+    \begin{center}
+        \textbf{Características}
+    \end{center}                &
+    \begin{center}
+        \textbf{MySQL}
+    \end{center}                &
+    \begin{center}
+        \textbf{Oracle}
+    \end{center}                &
+    \begin{center}
+        \textbf{PostgreSQL}
+    \end{center} \\
+    
+    \hline
+    Modelo de base de datos primario    &
+    Relacional                          &
+    Relacional                          &
+    Relacional  \\
+    
+    \hline
+    Modelo de base de datos secundario  &
+    Documento                           &
+    Documento, gráfo, RDF               &
+    Documento \\
+    
+    \hline
+    Distribución                        &
+    Código abierto                      &
+    Comercial                           &
+    Código abierto \\
+    
+    \hline
+    Implementación                      &
+    C y C++                             &
+    C y C++                             &
+    C \\
+    
+    \hline
+    Sistemas operativos soportados           &
+    FreeBSD, Linux, OS X, Solaris y Windows. &
+    AIX, HP-UX, Linux, OS X, Solaris, 
+    Windows y z/OS.                          &
+    FreeBSD, HP-UX, Linux, NetBSD, 
+    OpenBSD, OS X, Solaris, Unix, Windows. \\
+    
+    \hline
+    Soporte de XML                      &
+    Si                                  &
+    Si                                  &
+    Si \\
+    
+    \hline
+    Scripts del lado del servidor       &
+    Si                                  &
+    PL/SQL                              &
+    Funciones definidas por el usuario. \\
+    
+    \hline
+    Triggers                            &
+    Si                                  &
+    Si                                  &
+    Si \\
+    
+    \hline
+    Transacciones                       &
+    ACID                                &
+    ACID                                &
+    ACID \\
+    
+    \hline
+    
+    \caption{Comparación de diferentes gestores de bases de datos.}
+    \label{tbl:analisis-bases}
+    
+    \end{longtable}
+\end{center}
+
+Para el desarrollo del presente proyecto, se selecciono PostgreSQL como gestor de bases de datos, debido a que es de código abierto y contiene más funcionalidades avanzadas de lo que MySQL soporta.
+
+
+

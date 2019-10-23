@@ -1,0 +1,69 @@
+\subsubsection{A-USR-CU4 Editar perfil}
+La posibilidad de modificar los datos de una cuenta es indispensable para un usuario por lo que se proporciona un mecanismo para realizar esta tarea.
+\begin{longtable}{|J{5cm}|J{10.3cm}|}
+	\hline
+	\textbf{Nombre del Caso de Uso} &
+		A-USR-CU4 Editar perfil \\ \hline
+	\textbf{Objetivo} &
+		Permitir al actor editar los datos de su cuenta \\ \hline
+	\textbf{Actores} &
+		Usuario verificado \\ \hline 
+	\textbf{Disparador} & 
+		El actor requiere modificar su información \\ \hline 
+	\textbf{Entradas} & 
+		\begin{itemize}
+		    \item Nombre
+		    \item Contraseña
+		    \item Confirmación de contraseña
+		    \item Grado de estudio
+		\end{itemize} \\ \hline 
+	\textbf{Salidas} & 
+		\begin{itemize}
+		    \item \hyperref[MSG9]{\bf MSG9 Operación exitosa}
+		\end{itemize} \\ \hline
+	\textbf{Precondiciones} &
+		\begin{itemize}
+				\item El actor debe de haber iniciado sesión
+		\end{itemize} \\ \hline
+	\textbf{Postcondiciones} &
+		\begin{itemize}
+			\item El actor modifica la información de su cuenta
+		\end{itemize}\\ \hline
+	\textbf{Prioridad} & 
+		Baja \\ \hline
+	\textbf{Reglas de Negocio} &
+	    \begin{itemize}
+		    \item \hyperref[RN001]{RN-001 Campos obligatorios}
+		    \item \hyperref[RN002]{RN-002 Datos correctos}
+		\end{itemize} \\ \hline
+
+	% \caption{}
+	%\label{desc:SUB-M-CU1}
+\end{longtable}
+% Me faltan las referencias chidas
+\paragraph{Trayectoria Principal}
+	\begin{enumerate}
+	    \item {[Actor]} Presiona el la opción \textit{Cuenta} del menú \hyperref[fig:MIUA-4]{\bf MIUA 4 Menú de Opciones}.
+	    \item {[Sistema]} Muestra la pantalla  \hyperref[fig:MIUA-7]{\bf MIUA 7 Editar Perfil}.
+	    \item {[Actor]} Modifica la información.
+	    \item {[Sistema]} Muestra el mensaje \hyperref[MSG11]{\bf MSG11 Confirmación de operación}.
+	    \item {[Actor]} Presiona el botón \textit{Sí}. \hyperref[A-USR-CU4:TA]{[Trayectoria Alternativa A]}
+	    \item {[Sistema]} Valida los datos según la regla de negocio \hyperref[RN001]{RN-001} y \hyperref[RN002]{RN-002}
+	    \item {[Sistema]} Persiste la información modificada. 
+	    \item {[Sistema]} Muestra el mensaje \hyperref[MSG9]{\bf MSG9 Operación exitosa} en la pantalla \hyperref[fig:MIUA-7]{\bf MIUA 7 Editar Perfil}.
+	\end{enumerate}
+	Fin del caso de uso.
+
+\paragraph{Trayectoria Alternativa A} \label{A-USR-CU4:TA}
+	Cancela la operación.
+	\begin{enumerate}[label=A\arabic*.]
+		\item {[Sistema]} Muestra la pantalla \hyperref[fig:MIUA-7]{\bf MIUA 7 Editar Perfil}.
+	\end{enumerate}
+	Fin de la trayectoria alternativa.
+
+\paragraph{Trayectoria Alternativa B} \label{A-USR-CU4:TB}
+	Datos incorrectos.
+	\begin{enumerate}[label=B\arabic*.]
+		\item {[Sistema]} Muestra el mensaje \hyperref[MSG1]{\bf MSG11 Datos no validos} en la pantalla \hyperref[fig:MIUA-7]{\bf MIUA 7 Editar Perfil}.
+	\end{enumerate}
+	Fin de la trayectoria alternativa.

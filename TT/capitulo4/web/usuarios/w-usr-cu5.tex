@@ -1,0 +1,43 @@
+\subsubsection{W-USR-CU5 Cerrar sesión}
+Este caso de uso permite al usuario final cerrar su sesión en la aplicación.
+
+\begin{longtable}{|J{5cm}|J{10.3cm}|}
+	\hline
+	\textbf{Nombre del Caso de Uso} &
+		W-USR-CU5 Cerrar sesión \\ \hline
+	\textbf{Objetivo} &
+		Cerrar sesión en la aplicación \\ \hline
+	\textbf{Actores} &
+		Usuario verificado \\ \hline 
+	\textbf{Disparador} & 
+		El actor requiere cerrar su sesión \\ \hline 
+	\textbf{Entradas} & 
+		Ninguna. \\ \hline 
+	\textbf{Salidas} & 
+		Ninguna. \\ \hline
+	\textbf{Precondiciones} &
+		\begin{itemize}
+		    \item El actor debe estar registrado en el sistema con un estatus de verificado
+		    \item El actor debe haber iniciado sesión
+		\end{itemize} \\ \hline
+	\textbf{Postcondiciones} &
+	        Se cierra la sesión \\ \hline
+	\textbf{Prioridad} & 
+		Media \\ \hline
+	\textbf{Reglas de Negocio} & 
+		Ninguna \\ \hline
+
+	% \caption{}
+	%\label{desc:SUB-M-CU1}
+\end{longtable}
+
+\paragraph{Trayectoria Principal}
+\label{W-USR-CU5}
+	\begin{enumerate}
+	    \item {[Actor]} Solicita cerrar sesión oprimiendo el botón \textit{Cerrar Sesión} del menú \textbf{\nameref{fig:MIUW-7}}.
+	    
+	    \item {[Sistema]} Cierra la sesión del actor en el servidor.
+	    
+	    \item {[Sistema]} Muestra la pantalla \textbf{\nameref{fig:MIUW-1}}.
+	\end{enumerate}
+	Fin del caso de uso.

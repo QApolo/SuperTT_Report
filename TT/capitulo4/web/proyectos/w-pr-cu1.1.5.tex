@@ -1,0 +1,64 @@
+\subsubsection{W-PR-CU1.1.5 Eliminar proyecto}
+Este caso de uso permite al usuario final eliminar un proyecto previamente creado por él. 
+
+\begin{longtable}{|J{5cm}|J{10.3cm}|}
+	\hline
+	\textbf{Nombre del Caso de Uso} &
+		W-PR-CU1.1.5 Eliminar proyecto \\ \hline
+	\textbf{Objetivo} &
+		Eliminar un proyecto del usuario \\ \hline
+	\textbf{Actores} &
+		Usuario validado \\ \hline 
+	\textbf{Disparador} & 
+		El actor requiere eliminar un proyecto \\ \hline 
+	\textbf{Entradas} & 
+		Ninguna \\ \hline 
+	\textbf{Salidas} & 
+		\begin{itemize}
+			\item \hyperref[MSG9]{\bf MSG9 Operación exitosa}
+		\end{itemize} \\ \hline
+	\textbf{Precondiciones} &
+		\begin{itemize}
+		    \item El actor debe estar registrado en el sistema con un estatus de verificado
+		    \item El actor debe haber iniciado sesión
+		    \item El proyecto debe de existir en el sistema
+		    \item El proyecto debe de pertenecer al actor
+		\end{itemize} \\ \hline
+	\textbf{Postcondiciones} &
+		\begin{itemize}
+		    \item Al aceptar la eliminación del proyecto, todas sus traducciones asociadas serán eliminadas del sistema
+		\end{itemize} \\ \hline
+	\textbf{Prioridad} & 
+		Media \\ \hline
+	\textbf{Reglas de Negocio} & 
+		Ninguna \\ \hline
+
+	% \caption{}
+	%\label{desc:SUB-M-CU1}
+\end{longtable}
+
+\paragraph{Trayectoria Principal}
+\label{CUW_Eliminar_Proyecto}
+	\begin{enumerate}
+	    \item {[Actor]} Presiona el botón \textit{Eliminar Proyecto} de la pantalla \textbf{\nameref{fig:MIUW-6}}.
+	    
+	    \item {[Sistema]} Muestra el mensaje \hyperref[MSG11]{\bf MSG11 Confirmación de operación}.
+	    
+	    \item {[Actor]} Presiona el botón \textit{Aceptar}. \hyperref[W-PR-CU1.1.5:TA]{[Trayectoria alternativa A]}
+	    
+	    \item {[Sistema]} Verifica que el proyecto pertenezca al usuario.
+	    
+	    \item {[Sistema]} Elimina toda la información correspondiente al proyecto.
+	    
+	    \item {[Sistema]} Muestra el mensaje \hyperref[MSG9]{\bf MSG9 Operación exitosa} en la pantalla \textbf{\nameref{fig:MIUW-5}} y actualiza la lista de proyectos.
+	\end{enumerate}
+	Fin del caso de uso.
+	
+\paragraph{Trayectoria Alternativa A} \label{W-PR-CU1.1.5:TA}
+	El actor cancela la operación.
+	%para más trayectorias, copiar y pegar toda esta sección y en el comando siguiente cambiar por la letra correspondiente
+	\begin{enumerate}[label=A\arabic*.]
+		\item {[Actor]} Solicita cancelar la operación oprimiendo el botón \textit{Cancelar}.
+		\item {[Sistema]} Muestra la pantalla \textbf{\nameref{fig:MIUW-6}}.
+	\end{enumerate}
+	Fin de la trayectoria alternativa.

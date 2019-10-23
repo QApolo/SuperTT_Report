@@ -1,0 +1,69 @@
+\subsubsection{W-USR-CU1 Crear cuenta}
+Para que un usuario no registrado pueda acceder a la funcionalidad del sistema debe de crear una cuenta utilizando información como su correo electrónico y una contraseña para su posterior autenticación.
+\begin{longtable}{|J{5cm}|J{10.3cm}|}
+	\hline
+	\textbf{Nombre del Caso de Uso} &
+		W-USR-CU1 Crear cuenta \\ \hline
+	\textbf{Objetivo} &
+		Permitir a un usuario no registrado el crear una cuenta \\ \hline
+	\textbf{Actores} &
+		Usuario no registrado \\ \hline 
+	\textbf{Disparador} & 
+		El actor requiere crear una cuenta para ingresar al sistema \\ \hline 
+	\textbf{Entradas} & 
+		\begin{itemize}
+				\item Correo electrónico
+				\item Contraseña
+			    \item Confirmación de contraseña
+			    \item Nombre
+		\end{itemize}\\ \hline 
+	\textbf{Salidas} & 
+	    \begin{itemize}
+		\item Correo electrónico para la verificación de la cuenta
+		\item \hyperref[MSG5]{\bf MSG5 Verifique su cuenta}
+		\end{itemize} \\ \hline
+	\textbf{Precondiciones} &
+        Ninguna. \\ \hline
+	\textbf{Postcondiciones} &
+		\begin{itemize}
+			\item El actor creara una cuenta no verificada.
+		\end{itemize}\\ \hline
+	\textbf{Prioridad} & 
+		Alta. \\ \hline
+	\textbf{Reglas de Negocio} & 
+		\begin{itemize}
+			\item \hyperref[RN001]{RN-001 Campos obligatorios}
+			\item \hyperref[RN002]{RN-002 Datos correctos}
+			\item \hyperref[RN003]{RN-003 Unicidad de identificadores}
+		\end{itemize} \\ \hline
+
+	% \caption{}
+	%\label{desc:SUB-M-CU1}
+\end{longtable}
+% Me faltan las referencias chidas
+\paragraph{Trayectoria Principal}
+	\begin{enumerate}
+	    \item {[Actor]} Presiona el botón \textit{Crear cuenta} de la pantalla \hyperref[fig:MIUW-1]{\bf MIUW 1 Iniciar Sesión}.
+	    \item {[Sistema]} Muestra la pantalla \hyperref[fig:MIUW-2]{\bf MIUW 2 Registro}.
+	    \item {[Actor]} Ingresa la información solicitada en pantalla.
+	    \item {[Actor]} Presiona el botón \textit{Crear cuenta}.
+	    \item {[Sistema]} Verifica la información introducida según la regla de negocio \hyperref[RN001]{RN-001} y \hyperref[RN002]{RN-002}.. \hyperref[W-USR-CU1:TA]{[Trayectoria alternativa A]}
+	    \item {[Sistema]} Valida la información introducida. \hyperref[W-USR-CU1:TB]{[Trayectoria alternativa B]}
+	    \item {[Sistema]} Persiste la información del usuario con estado cuenta no verificada.
+	    \item {[Sistema]} Envía un correo de verificación.
+	    \item {[Sistema]} Muestra el mensaje \hyperref[MSG5]{\bf MSG5 Verifique su cuenta} en la pantalla \hyperref[fig:MIUW-1]{\bf MIUW 1 Iniciar Sesión}.
+	\end{enumerate}
+	Fin del caso de uso.
+
+\paragraph{Trayectoria Alternativa A} \label{W-USR-CU1:TA}
+	Datos no validos.
+	\begin{enumerate}[label=A\arabic*.]
+		\item {[Sistema]} Muestra el mensaje \hyperref[MSG2]{\bf MSG2 Datos no validos} en la pantalla \hyperref[fig:MIUW-2]{\bf MIUW 2 Registro}.
+	\end{enumerate}
+	Fin de la trayectoria alternativa.
+\paragraph{Trayectoria Alternativa B} \label{W-USR-CU1:TB}
+    El correo electrónico ya se encuentra en uso.
+	\begin{enumerate}[label=B\arabic*.]
+		\item {[Sistema]} Muestra el mensaje \hyperref[MSG4]{\bf MSG4 Correo electrónico ya registrado} en la pantalla \hyperref[fig:MIUW-2]{\bf MIUW 2 Registro}.
+	\end{enumerate}
+	Fin de la trayectoria alternativa.

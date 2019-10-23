@@ -1,0 +1,59 @@
+\subsubsection{SUB-X-CUX-Nombre}
+Resumen del caso de uso.
+\begin{longtable}{|J{5cm}|J{10.3cm}|}
+	\hline
+	\textbf{Nombre del Caso de Uso} &
+		Esto no estoy seguro de dejarlo, SUB-X-CUX-Nombre \\ \hline
+	\textbf{Objetivo} &
+		Que tiene que hacer el caso de uso. \\ \hline
+	\textbf{Actores} &
+		Lista de actores \\ \hline 
+	\textbf{Disparador} & 
+		Que hace que se ejecute el caso de uso. \\ \hline 
+	\textbf{Entradas} & 
+		\begin{itemize}
+				\item Marca de tiempo de inicio de la recarga.
+		\end{itemize}\\ \hline 
+	\textbf{Salidas} & 
+		\begin{itemize}
+			\item Cantidad de combustible recargado al automóvil.
+		\end{itemize} \\ \hline
+	\textbf{Precondiciones} &
+		Ninguna.\\ \hline
+	\textbf{Postcondiciones} &
+		\begin{itemize}
+			\item El Cliente confirma la cantidad de combustible que le fue recargada.
+			\item La medición calculada junto con la fecha y hora son almacenados.
+		\end{itemize}\\ \hline
+	\textbf{Condiciones de término} & 
+		\begin{itemize}
+			\item Condiciones para que se termine el caso de uso
+		\end{itemize} \\ \hline 
+	\textbf{Prioridad} & 
+		Alta. \\ \hline
+	\textbf{Errores} & 
+		\begin{itemize}
+			\item \label{SUB-M-CU1:Error1} Error 1: Describir el motivo del error y que sucede con el caso de uso (termina, continúa en cierto paso, etc).
+		\end{itemize} \\ \hline
+	\textbf{Reglas de Negocio} & 
+		\begin{itemize}
+			\item \ref{RN1}.
+			\item \ref{RN2}.
+		\end{itemize} \\ \hline
+
+	% \caption{}
+	%\label{desc:SUB-M-CU1}
+\end{longtable}
+
+\paragraph{Trayectoria Principal}
+	\begin{enumerate}
+		\item \label{SUB-X-CUX:MarcaInicio} {[Actor]} Detecta un cambio de voltaje en la salida del sensor y envía una trama indicando un pulso de voltaje en alta. \hyperref[SUB-M-CU1:Error1]{Error 1} %De esta misma forma se referencia a las trayectorias alternativas
+	\end{enumerate}
+
+\paragraph{Trayectoria Alternativa A} \label{SUB-M-CU1:TA}
+	Descripción de la condición para que se ejecute la trayectoria alternativa.
+	%para más trayectorias, copiar y pegar toda esta sección y en el comando siguiente cambiar por la letra correspondiente
+	\begin{enumerate}[label=A\arabic*.]
+		\item {[Sistema]} Continúa en el paso \ref{SUB-X-CUX:MarcaInicio} de la Trayectoria Principal.
+	\end{enumerate}
+	Fin de la trayectoria alternativa

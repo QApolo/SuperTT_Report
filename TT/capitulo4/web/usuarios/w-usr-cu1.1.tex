@@ -1,0 +1,40 @@
+\subsubsection{W-USR-CU1.1 Verificar cuenta}
+Este caso de uso permite al usuario verificar su cuenta en el sistema.
+
+\begin{longtable}{|J{5cm}|J{10.3cm}|}
+	\hline
+	\textbf{Nombre del Caso de Uso} &
+		W-USR-CU1.1 Verificar cuenta \\ \hline
+	\textbf{Objetivo} &
+		Completar el registro de un usuario mediante la verificación de su cuenta \\ \hline
+	\textbf{Actores} &
+		Usuario no verificado \\ \hline 
+	\textbf{Entradas} & 
+		Ninguna \\ \hline 
+	\textbf{Salidas} & 
+		Ninguna \\ \hline
+	\textbf{Precondiciones} &
+		\begin{itemize}
+		    \item El actor debe estar registrado en el sistema con un estatus no verificado
+		\end{itemize} \\ \hline
+	\textbf{Postcondiciones} &
+	        La cuenta del actor será registrada con el estatus de verificada \\ \hline
+	\textbf{Prioridad} & 
+		Alta. \\ \hline
+	\textbf{Reglas de Negocio} & 
+		Ninguna \\ \hline
+
+	% \caption{}
+	%\label{desc:SUB-M-CU1}
+\end{longtable}
+
+\paragraph{Trayectoria Principal}
+\label{W-USR-CU1.1}
+	\begin{enumerate}
+	    \item {[Sistema]} Verifica el código de autenticación.
+	    
+	    \item {[Sistema]} Cambia el estatus del actor como \textit{Verificado}.
+	    
+	    \item {[Sistema]} Muestra el mensaje \hyperref[MSG9]{MS9 Operación exitosa} en la pantalla \textbf{\nameref{fig:MIUW-1}}.
+	\end{enumerate}
+	Fin del caso de uso.

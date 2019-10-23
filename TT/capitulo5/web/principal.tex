@@ -1,0 +1,15 @@
+\section{Web}
+
+Esta sección tiene como objetivo presentar las principales características en el desarrollo de la aplicación Web.
+
+\subsection{Arquitectura de la aplicación}
+Para el desarrollo de la aplicación se implemento el patrón de diseño Modelo Vista Template (MTV), que como se menciono previamente, es el patrón que Django utiliza.
+
+\subsubsection{Modelo}
+En esta capa se maneja todo el acceso a los datos de la aplicación. Django provee de un ORM que permite controlar una base de datos (PostgreSQL para este proyecto). De este modo, todas las tablas que componen la base de datos, están declaradas en esta capa.
+
+\subsubsection{Vista}
+En esta capa se maneja la lógica del negocio. Se implementan las validaciones necesarias y se decide que datos deben de ser mostrados al usuario sin indicar como deben de ser presentados a diferencia del tradicional MVC. Esta capa debe de ser vista como un puente entre el Modelo y los Templates.
+
+\subsubsection{Template}
+Esta es la capa de presentación. En ella se maneja la forma en la que serán mostrados los datos de la aplicación.

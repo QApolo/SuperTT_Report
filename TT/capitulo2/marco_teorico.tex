@@ -1,0 +1,158 @@
+\chapter{Marco teórico}
+Con el desarrollo del sistema producto del presente trabajo terminal se involucran ciertos conceptos provenientes en su mayoría de ramas de ciencias de la computación y en general en alusión a la Inteligencia Artificial, por lo que es conveniente dar contexto sobre los elementos necesarios para el desarrollo del trabajo terminal.
+\section{Análisis de Imágenes}
+        El análisis de imágenes comprende un conjunto de operaciones sobre una o varias imágenes con el propósito de obtener una imagen con mayor realce o para extraer características útiles, es un tipo de dispensación de señales en el que la entrada es una imagen y la salida puede ser otra imagen o características asociadas a la imagen, algunos de los pasos generales se describen a continuación:
+        
+        \subsection{ Preprocesamiento}
+            Preprocesamiento es un nombre común para operaciones con imágenes al más bajo nivel de abstracción. Tanto entrada como salida son imágenes de intensidad. Estas imágenes tienen el mismo tipo de datos que la original, con una imagen de intensidad usualmente representada por una matriz de valores de función de imagen (Brillo) El objetivo de preprocesar es la mejora de los datos de la imagen que borre distorciones o realce características importantes para procesamiento posterior, incluso las transformaciones geométricas de las imagenes e.g (rotación, escalamiento y traslación) son también clasificadas como métodos de preprocesamiento, ya que técnicas similares son utilizadas.
+               
+                
+        \subsection{Realce de la imagen}
+            El objetivo principal de realce de imagen es también procesar una imagen dada tal que el resultado sea mas ajustable que la imagen original para aplicaciones específicas. Por ejemplo para la remoción de ruido.
+            \\\\%\bigskip
+            Acentúa o afina características de la imagen como ejes, límites o contraste para hacer un despliegue gráfico mas útil para el análisis.
+            \\\\%%\bigskip
+            El realce no incrementa o decrementa el contenido de la información inherente de los datos pero sí incrementa el rango dinámico de las características elegidas de tal modo que puedan ser detectadas fácilmente.
+            \\\\%\bigskip
+            Proveé \'mejor\' entrada para otras técnicas avanzadas de procesamiento automatizadas de imágenes.
+                        
+        \subsection{Segmentación de la imagen}
+            El término segmentación utilizada en el contexto de análisis de imágenes se refiere a la partición de una imagen en un conjunto de regiones que la cubren. El objetivo en muchas de las tareas es que para las regiones se representen áreas significativas de la imagen, como áreas urbanas, fronteras o bosques de una imagen satelital. En otras tareas de análisis, las regiones pueden ser conjuntos de bordes de pixeles agrupados en estructuras como segmentos de líneas y segmentos de arcos circulares en imágenes de objetos industriales en 3D. Las regiones pueden también estar definidas como grupos de pixeles teniendo ambos un borde y una forma particular como un circulo o una elipse or polígono. Cuando las regiones de interés no cubren la imagen completa, aún se requiere el proceso de segmentación en regiones de y de fondo para ignorarse. 
+            \cite{imgAnalySeg}
+            %REF courses.cs.washington.edu/courses/cse576/book/ch10.pdf
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.7\textwidth]{capitulo2/images/segmentation.PNG}
+                \caption{Imagen con bloques (Izquierda) y conjunto de segmentos de linea extraídos (Derecha).}
+                \label{fig:segmentacion}
+            \end{figure}
+        \subsection{Extracción de características}
+            
+            %http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.375.6848&rep=rep1&type=pdf
+        \subsection{Clasificación e interpretación}
+            %http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.375.6848&rep=rep1&type=pdf
+
+
+\section{Métodos de reconocimiento de expresiones matemáticas}
+\subsection{Análisis sintáctico dirigido}
+Los lenguajes libres de contexto, son aquellos que tienen una notación recursiva natural llamada \textit{gramática libre de contexto}. Por ende, un lenguaje libre de contexto es todo aquel que puede ser representado por una gramática libre de contexto.
+
+Una gramática libre de contexto G, queda definida de la siguiente manera:
+
+\begin{equation}
+    G = (V, T, P, S)
+\end{equation}
+
+de donde, V es el conjunto de variables, T el conjunto de símbolos terminales, P el conjunto de producciones y S el punto de inicio \cite{automata}.
+
+El lenguaje matemático, es decir, las expresiones matemáticas son un lenguaje libre de contexto. Esto quiere decir que es posible definir una gramática libre de contexto para definir a las expresiones matemáticas. Esta es una práctica muy común en la teoría de compiladores.
+
+Sabiendo esto, una aproximación a la resolución del problema de reconocer expresiones matemáticas en imágenes es la que describe \cite{gramaticasAnderson}. El método consiste en dos etapas:
+
+\begin{itemize}
+    \item Reconocimiento de caracteres: Utilizar algún método de reconocimiento de patrones para localizar los caracteres y anotar sus coordenadas. 
+    \item Análisis sintáctico dirigido: Utilizar la etapa previa para determinar la jerarquía, basándose en un conjunto de reglas definidas (las gramáticas libres de contexto).
+\end{itemize}
+
+En la Figura \ref{fig:gramaticas}, se puede ver un ejemplo del proceso de reconocimiento propuesto por este método.
+
+\begin{figure}[h]
+    \centering
+    \subfigure[]{\includegraphics{capitulo2/images/gramaticas1}}
+    \subfigure[]{\includegraphics{capitulo2/images/gramaticas2}}
+    \caption{\centering \textbf{a)} La primera etapa del método de reconocimiento, se anotan las coordenadas de de cada caracter. \textbf{b)} Se realiza un análisis sintáctico con las gramáticas libres de contexto definidas.}
+    \label{fig:gramaticas}
+\end{figure}
+
+
+\section{Redes Neuronales}
+    Existe un tipo de neurona artificial llamada perceptrón desarrolladas entre 1950 y 1960 por el científico Frank Rosenblatt, sin embargo este modelo ha ido evolucionando y hoy en día se utilizan otros modelos de neurona como el llamado sigmoid neuron, que para entender, primero se debe definir al perceptrón como modelo.
+    Un perceptrón toma varias entradas binarias $x_{1},x_{2},x_{3},...,x_{n}$ y produce una sola salida binaria:
+     \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\textwidth]{capitulo2/images/perceptron.PNG}
+        \caption{Representación de un percetrón con entradas $x_{1}$, $x_{2}$ y $x_{3}$}
+        \label{fig:perceptron}
+    \end{figure}
+    La regla que Rosenblatt introdujo para calcular la salida involucra valores llamados pesos $w_{1},w_{2},w_{3},...$ que pueden tomar valores reales expresando la importancia de las respectivas entradas a la salida, la salida de la neurona (0 o 1) es determinado por la suma ponderada $\sum_{j} w_{j} x_{j}$ es menor o igual a un valor de umbral. Así como los pesos, el valor de umbral es un número real el cuál es un parámetro de la neurona:
+     \begin{equation}
+        output = \left\{ \begin{array}{lcc}
+             0 &   si  & \sum_{j} w_{j} x_{j} \leq threshold \\
+             \\ 1 &  si & \sum_{j} w_{j} x_{j} \ge threshold\\
+             \end{array}
+        \right.
+    \end{equation}
+    \newpage
+    Una red neuronal es una red de perceptrones que agrega complejidad a las decisiones.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=1\textwidth]{capitulo2/images/NNmodel.PNG}
+        \caption{Red neuronal de 3 capas}
+        \label{fig:NNmodel}
+    \end{figure}
+    \subsection{Conjunto de entrenamiento}
+    
+    
+    \subsection{Aprendizaje Profundo}
+        El aprendizaje profundo de forma clásica se refiere al tratamiento de redes neuronales con mas de dos capas, sin embargo, debido al cambio que esta sub-area ha sufrido, se debe definir como el tratamiento de redes neuronales con un largo número de parámetros y capas en una de las cuatro arquitecturas de redes fundamentales:
+        \begin{itemize}
+            \item Redes pre-entrenadas no supervisadas
+            \item Redes Neuronales Convolucionales
+            \item Redes neuronales recurrentes
+            \item Redes neuronales recursivas.
+        \end{itemize}
+    
+    Siendo las Redes Neuronales Convolucionales de las que se expondrá a detalle en  \\%siguiente subseccion.
+    \\Una de las propiedades mas importantes que permite el Aprendizaje Profundo es la extracción automática de características que puede ser clave en dicho paso del análisis de imágenes.
+    
+    \subsection{Redes Neuronales Convolucionales}
+    Las redes neuronales convolucionales han ganado porpularidad en los últimos años debido a su efectividad prometedora en el aprendizaje profundo. Partiendo en el procesamiento de imágenes, las capas convolucionales han encontrado su camino en otros subcampos del aprendizaje profundo y muestran éxito en la mayor parte de dichos campos.\\\\ 
+    La diferencia fundamental entre \textit{fully connected} (completamente conectadas) y \textit{convolutional neural networks}(redes neuronales convolucionales) es el patrón de conexión entre las capas consecutivas. En el caso de las completamente conectadas como el nombre lo sugiere, cada unidad es conectada a todas las unidades de la previa capa. \\\\
+    En una capa convolucional de una red neuronal, por otra parte, cada unidad está conectada a (típicamente pequeña) un número de unidades cercanas en la capa previa. Más aún, todas las unidades están conectadas a la capa previa de la misma forma con los pesos exactamente iguales y estructura. Esto lleva a una operación conocida como convolución, dando a la arquitectura este nombre, a grandes rasgos esto significa aplicar una pequeña "ventana" de pesos (conocida como filtro) sobre una imágen como se muestra en la figura %fig.
+    
+    
+     \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\textwidth]{capitulo2/images/CNN_window.png}
+        \caption{...}
+        \label{fig:CNNFilter}
+    \end{figure}
+    
+    
+    \subsection{Aprendizaje profundo como servicio}
+
+\section{Aplicación web}
+En la ingeniería de software se denomina aplicación web a aquellas herramientas que los usuarios pueden utilizar accediendo a un servidor web a través de internet o de una intranet mediante un navegador. En otras palabras, es un programa que se codifica en un lenguaje interpretable por los navegadores web en la que se confía la ejecución al navegador \cite{appweb}.
+
+\subsection{Django}
+Django es un framework de desarrollo web completamente desarrollado en Python. Permite de una manera rápida poder implementar una aplicación web en el lenguaje Python. Las siguientes, son de las principales características de Django:
+
+\begin{itemize}
+    \item \textbf{Rápido}: Tiene como filosofía ayudar a los desarrolladores a crear aplicaciones en el menor tiempo posible.
+    \item \textbf{Completo}: Incluye cientos de librerías que permiten ahorrar tiempo y automatizar tareas.
+    \item \textbf{Seguro}: Es una de las principales características de Django ya que incluye soluciones a los principales ataques que puede sufrir una aplicación web.
+    \item \textbf{Escalable}: Con el patrón de diseño de Django es posible incrementar o decrementar la capacidad de un sitio.
+    \item \textbf{Versátil}: Es utilizado por muchas empresas y organizaciones a lo largo del mundo para crear diferentes tipos de proyectos.
+\end{itemize}
+
+\subsubsection{Modelo-Vista-Template}
+El Modelo-Vista-Template (MTV) es el patrón de diseño que Django implementa. Este patrón es una modificación al conocido Modelo-Vista-Controlador (MVC). La diferencia radica en que Django se encarga de hacer la parte del controlador, por ende el desarrollador solamente tiene que preocuparse por implementar la lógica de negocio y de como mostrará los datos. En la Figura \ref{fig:mtv}, se puede ver una representación del patrón MTV. En el patrón de diseño MTV \cite{mtv}:
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{capitulo2/images/mtv.png}
+    \caption{Representación del patrón de diseño Modelo-Vista-Template.}
+    \label{fig:mtv}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Modelo}: La capa de acceso a la base de datos. Esta capa contiene toda la información sobre los datos: cómo acceder a estos, cómo validarlos, cuál es el comportamiento que tiene, y las relaciones entre los datos.
+    \item \textbf{Template}: La capa de presentación. Esta capa contiene las decisiones relacionadas a la presentación: como algunas cosas son mostradas sobre una página web o otro tipo de documento.
+    \item \textbf{Vista}: La capa de la lógica de negocios. Esta capa contiene la lógica que accede al modelo y la delega a la plantilla apropiada: puedes pensar en esto como un puente entre el modelos y las plantillas.
+\end{itemize}
+
+
+\subsection{API REST}
+\subsubsection{Autenticación}
+
+\input{capitulo2/android/principal.tex}

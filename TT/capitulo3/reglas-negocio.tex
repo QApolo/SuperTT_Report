@@ -1,0 +1,80 @@
+\section{Reglas de Negocio}
+En esta sección se presentan las reglas de negocio que se necesitan para la elaboración del sistema.
+\subsection{RN-001 Campos obligatorios} \label{RN001}
+    \begin{enumerate}[label= ]
+        %\item Tipo: Derivación. 
+        %\item Nivel: Controla la operación.
+        \item \textbf{Descripción:} Aquellos campos que son obligatorios no pueden dejarse vacíos.
+        \item \textbf{Ejemplo:} Si se tiene un formulario donde existan los siguientes campos:
+        \begin{itemize}
+            \item Campo 1
+            \item Campo 2 (obligatorio)
+            \item Campo 3
+        \end{itemize}
+        El usuario puede dejar los campos 1 y 2 vacíos pero el obligatorio no se podrá omitir.
+    \end{enumerate}
+    
+\subsection{RN-002 Datos correctos} \label{RN002}
+    \begin{enumerate}[label= ]
+        %\item Tipo: Derivación. 
+        %\item Nivel: Controla la operación.
+        \item \textbf{Descripción:} Para que los datos sean considerados correctos deben de cumplir con lo establecido en el modelo de información del sistema.
+    \end{enumerate}
+
+\subsection{RN-003 Unicidad de identificadores} \label{RN003}
+    \begin{enumerate}[label= ]
+        %\item Tipo: Restricción. 
+        %\item Nivel: Controla la operación.
+        \item \textbf{Descripción:} En el conjunto de entidades del sistema, no puede existir elementos con el mismo identificador.
+        \item \textbf{Ejemplo de cumplimiento:} Registro de usuario en el cual el correo es el identificador y se puede dar el siguiente caso.
+              \begin{itemize}
+                  \item Usuario1: \{nombre=Carlos, correo=carlos\_isc7@outlook.com\}
+                  \item Usuario2: \{nombre=Juan, correo=gladwell45@outlook.com”\}
+              \end{itemize}
+        \item \textbf{Ejemplo de fallo:} Registro de usuario en el cual el correo es el identificador y por ende no se puede dar el siguiente caso.
+            \begin{itemize}
+                \item Usuario1: \{nombre=Ian, correo=carlos\_isc7@outlook.com\}
+                \item  Usuario2: \{nombre=Juan, correo=carlos\_isc7@outlook.com\}
+            \end{itemize}
+    \end{enumerate}
+
+\subsection{RN-004 Calificación proyecto} \label{RN004}
+    \begin{enumerate}[label= ]
+        %\item Tipo:  
+        %\item Nivel: Controla la operación.
+        \item \textbf{Descripción:} La calificación de un proyecto tendrá un valor entre 1 y 5 resultado del promedio de las traducciones asociadas a dicho proyecto sin decimales que se hará a través de un redondeo.
+        \item \textbf{Sentencia:} Sea: \\
+        \[ C_p = \frac{1}{n} \sum_{i=1}^{n} x_i \]
+        Donde $C_p$ es la calificación del proyecto, $x_i$ es la calificación de la $i$ traducción y $n$ es el número de traducciones calificadas en el proyecto, deberá actualizarse cada que se agregue o elimine una traducción calificada.
+         \item \textbf{Ejemplo:} Si se tiene un proyecto con cinco traducción pero solo tres de ellas tienen calificación se tiene lo siguiente:
+         \begin{itemize}
+             \item Traducción 1: calificación=4
+             \item Traducción 2: Sin calificación
+             \item Traducción 3: Sin calificación
+             \item Traducción 4: calificación=2
+             \item Traducción 5: calificación=5
+         \end{itemize}
+         La calificación del proyecto sera:
+           \[ C_p= \frac{4+3+5}{3} = 4 \]
+    \end{enumerate}
+
+\subsection{RN-005 Fecha de modificación} \label{RN005}
+    \begin{enumerate}[label= ]
+        %\item Tipo: . 
+        %\item Nivel: Controla la operación.
+        \item \textbf{Descripción:} La fecha de modificación se actualizará cada que se agregue o modifique una traducción al proyecto o que se modifique el proyecto en si la fecha se actualizará con el valor al momento en que se haga la modificación.
+       \item \textbf{Ejemplo}. Si se tiene un proyecto con la fecha 2019-05-03 y se realiza una modificación el día 2019-05-20 ahora la fecha de modificación del proyecto será 2019-05-20.
+    \end{enumerate}
+    
+\subsection{RN-006 Usuario verificado} \label{RN006}
+    \begin{enumerate}[label= ]
+        %\item Tipo: Controladora (Batiz puso esta en una similar) 
+        %\item Nivel: Controla la operación.
+        \item \textbf{Descripción:} Para que un usuario pueda acceder al sistema su cuenta debe de estar verificada.
+    \end{enumerate}
+\subsection{RN-007 Información necesaria para descargar un proyecto} \label{RN007}
+    \begin{enumerate}[label= ]
+        %\item Tipo: Controladora (Batiz puso esta en una similar) 
+        %\item Nivel: Controla la operación.
+        \item \textbf{Descripción:} Para poder descargar un proyecto es necesario que este cuente con un nombre y al menos una traducción realizada.
+    \end{enumerate}

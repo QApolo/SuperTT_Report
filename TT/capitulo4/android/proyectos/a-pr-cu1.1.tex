@@ -1,0 +1,48 @@
+\subsubsection{A-PR-CU1.1 Visualizar proyecto}
+El mostrar información especifica sobre los proyectos así como las traducciones que lo componen es algo importante para el usuario.
+\begin{longtable}{|J{5cm}|J{10.3cm}|}
+	\hline
+	\textbf{Nombre del Caso de Uso} &
+		A-PR-CU1.1 Visualizar proyecto \\ \hline
+	\textbf{Objetivo} &
+		Permitir al actor el ver información de algún proyecto en particular \\ \hline
+	\textbf{Actores} &
+		Usuario verificado \\ \hline 
+	\textbf{Disparador} & 
+		El actor quiere gestionar un proyecto en especifico \\ \hline 
+	\textbf{Entradas} & 
+		Ninguna \\ \hline 
+	\textbf{Salidas} & 
+		Ninguna \\ \hline
+	\textbf{Precondiciones} &
+		\begin{itemize}
+				\item El actor debe de haber iniciado sesión
+				\item Deben de existir proyectos que visualizar
+		\end{itemize} \\ \hline
+	\textbf{Postcondiciones} &
+		\begin{itemize}
+			\item El actor puede gestionar un proyecto en especifico
+		\end{itemize}\\ \hline
+	\textbf{Prioridad} & 
+		Alta \\ \hline
+	\textbf{Reglas de Negocio} & 
+		Ninguna \\ \hline
+
+	% \caption{}
+	%\label{desc:SUB-M-CU1}
+\end{longtable}
+% Me faltan las referencias chidas
+\paragraph{Trayectoria Principal}
+	\begin{enumerate}
+	    \item {[Actor]} Selecciona alguno de los proyectos mostrados en la pantalla \hyperref[fig:MIUA-5]{\bf MIUA 5 Lista de Proyectos}.
+	    \item {[Sistema]} Recupera la información asociada al proyecto seleccionado. \hyperref[A-PR-CU1.1:TA]{[Trayectoria alternativa A]}
+	    \item {[Sistema]} Muestra la pantalla \hyperref[fig:MIUA-6]{\bf MIUA 6 Lista de Traducciones} con la información recuperada.
+	\end{enumerate}
+	Fin del caso de uso.
+
+\paragraph{Trayectoria Alternativa A} \label{A-PR-CU1.1:TA}
+	No se pudo recuperar la información del proyecto.
+	\begin{enumerate}[label=A\arabic*.]
+		\item {[Sistema]} Muestra el mensaje \hyperref[MSG8]{\bf MSG8 No se puede mostrar el proyecto} en la pantalla \hyperref[fig:MIUA-6]{\bf MIUA 6 Lista de Traducciones}.
+	\end{enumerate}
+	Fin de la trayectoria alternativa.

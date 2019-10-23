@@ -1,0 +1,60 @@
+\subsection{Framework de desarrollo web}
+
+Un framework de desarrollo es un conjunto de utilerías y funciones que permiten de una manera consistente acelerar el proceso de creación de una aplicación web. La Tabla \ref{tbl:analisis-frameworks} muestra una comparativa entre los principales frameworks en la industria \cite{fComparacion}.
+
+\begin{center}
+    \begin{longtable}{|m{3.5cm}|m{3.5cm}|m{3.5cm}|m{3.5cm}|}
+    
+    \hline
+    \begin{center}
+        \textbf{Características}
+    \end{center}                &
+    \begin{center}
+        \textbf{Django}
+    \end{center}                &
+    \begin{center}
+        \textbf{Ruby on Rails}
+    \end{center}                &
+    \begin{center}
+        \textbf{Laravel}
+    \end{center} \\
+    
+    \hline
+    Lenguaje soportado          &
+    Python                      &
+    Ruby                        &
+    PHP \\
+    
+    \hline
+    Mercado                     &
+    1,192 compañías lo utilizan &
+    2,723 compañías lo utilizan &
+    1,032 compañías lo utilizan \\
+    
+    \hline
+    Ecosistema                  &
+    Muchos paquetes disponibles, entre las más importantes se encuentran: Django REST Framework, Django allauth para la autenticación con redes sociales y Celery.  &
+    Cientos de gemas disponibles, librerias como Action Mailer y Active Storage, frameworks como Active Job y Action Cable. &
+    Se compone de mas de 15k paquetes. Los más populares son: Cashier, Envoy and Passport, Scout, Socialite, Envoyer, Forge, Horizon, Lumen, entre otros. \\
+    
+    \hline
+    Desempeño                   &
+    Respuestas rápidas de texto plano, actualizaciones de la BD eficientes, excelente en la serialización de JSON.      &
+    Respuestas buenas de texto plano, eficiente en las actualizaciones de la DB, eficiente respuesta en JSON.  &
+    Respuestas buenas de texto plano, excelente en las actualizaciones de la DB. \\
+    
+    \hline
+    Seguridad                                           &
+    Provee métodos contra inyección SQL, ataques XSS, CSRF y \textit{clickjacking}. Excelente en el manejo de autenticación de usuarios y permisos. Actualizaciones constantes. &
+    Provee métodos contra inyección SQL, ataques XSS, CSRF y \textit{clickjacking}.                              &
+    Es vulnerable a ataques, provee métodos de autenticación y hashing. \\
+    
+    \hline
+    \caption{Comparación de frameworks de desarrollo web.}
+    \label{tbl:analisis-frameworks}
+    
+    \end{longtable}
+\end{center}
+
+Para el desarrollo de la parte web del presente proyecto, se eligió Django como framework de desarrollo debido a que esta enteramente desarrollado en python, lo que nos permite el uso de las mejores librerias de deep learning, las cuales solo estan soportadas en este lenguaje. Además, Django provee de un conjunto muy robusto de métodos para mantener segura la información.
+

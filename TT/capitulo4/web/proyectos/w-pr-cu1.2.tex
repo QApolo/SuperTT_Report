@@ -1,0 +1,77 @@
+\subsubsection{W-PR-CU1.2 Crear proyecto}
+Este caso de uso permite al usuario final crear un nuevo proyecto para almacenar sus traducciones.
+
+\begin{longtable}{|J{5cm}|J{10.3cm}|}
+	\hline
+	\textbf{Nombre del Caso de Uso} &
+		W-PR-CU1.2 Crear proyecto \\ \hline
+	\textbf{Objetivo} &
+		Crear un nuevo proyecto en el cual se puedan almacenar traducciones \\ \hline
+	\textbf{Actores} &
+		Usuario verificado \\ \hline 
+	\textbf{Disparador} & 
+		El actor requiere crear un nuevo proyecto \\ \hline 
+	\textbf{Entradas} & 
+		\begin{itemize}
+				\item Nombre del proyecto
+		\end{itemize}\\ \hline 
+	\textbf{Salidas} & 
+		\begin{itemize}
+			\item \hyperref[MSG9]{\bf MSG9 Operación exitosa}
+		\end{itemize} \\ \hline
+	\textbf{Precondiciones} &
+		\begin{itemize}
+		    \item El actor debe estar registrado en el sistema con un estatus de verificado.
+		    \item El usuario debe haber iniciado sesión.
+		\end{itemize} \\ \hline
+	\textbf{Postcondiciones} &
+		Ninguna. \\ \hline
+	\textbf{Prioridad} & 
+		Media. \\ \hline
+	\textbf{Reglas de Negocio} & 
+		\begin{itemize}
+			\item \hyperref[RN001]{RN-001 Campos obligatorios}
+			\item \hyperref[RN002]{RN-002 Datos correctos}
+		\end{itemize} \\ \hline
+
+	% \caption{}
+	%\label{desc:SUB-M-CU1}
+\end{longtable}
+
+\paragraph{Trayectoria Principal}
+\label{CUW_Crear_Proyecto}
+	\begin{enumerate}
+	    \item {[Actor]} Presiona el botón \textit{Crear Proyecto} en la pantalla \textbf{\nameref{fig:MIUW-5}}.
+	    
+	    \item {[Sistema]} Muestra el mensaje \hyperref[MSG12]{\bf MSG12 Ingrese nombre} en la pantalla \textbf{\nameref{fig:MIUW-5}} solicitando el nombre del nuevo proyecto.
+	    
+	    \item {[Actor]} Ingresa el nombre del nuevo proyecto.
+	    
+	    \item {[Actor]} Presiona el botón \textit{Aceptar} en el mensaje \hyperref[MSG12]{ \bf MSG12 Ingrese nombre}. \hyperref[W-PR-CU1.2:TA]{[Trayectoria alternativa A]}
+	    
+	    \item {[Sistema]} Verifica la información según la regla de negocio \hyperref[RN001]{RN-001} y \hyperref[RN002]{RN-002}.\hyperref[W-PR-CU1.2:TB]{[Trayectoria alternativa B]}
+	    
+	    \item {[Sistema]} Persiste el nuevo proyecto en el sistema.
+	    
+	    \item {[Sistema]} Muestra el mensaje \hyperref[MSG9]{\bf Operación exitosa} en la pantalla \textbf{\nameref{fig:MIUW-5}} y actualiza la lista de proyectos.
+
+	\end{enumerate}
+	Fin del caso de uso.
+	
+\paragraph{Trayectoria Alternativa A} \label{W-PR-CU1.2:TA}
+	El actor cancela la operación.
+	%para más trayectorias, copiar y pegar toda esta sección y en el comando siguiente cambiar por la letra correspondiente
+	\begin{enumerate}[label=A\arabic*.]
+		\item {[Actor]} Solicita cancelar la operación oprimiendo el botón \textit{Cancelar} en el mensaje \hyperref[MSG12]{\bf MSG12 Ingrese nombre}.
+		\item {[Sistema]} Muestra la pantalla \textbf{\nameref{fig:MIUW-5}}.
+	\end{enumerate}
+	Fin de la trayectoria alternativa.
+
+\paragraph{Trayectoria Alternativa B} \label{W-PR-CU1.2:TB}
+	Datos no validos.
+	%para más trayectorias, copiar y pegar toda esta sección y en el comando siguiente cambiar por la letra correspondiente
+	\begin{enumerate}[label=B\arabic*.]
+		\item {[Sistema]} Muestra el mensaje \hyperref[MSG1]{\bf MSG1 Datos no validos} en la pantalla \textbf{\nameref{fig:MIUW-5}}.
+		\item {[Actor]} Continua con el paso 3 de la Trayectoria Principal.
+	\end{enumerate}
+	Fin de la trayectoria alternativa.

@@ -1,0 +1,77 @@
+\subsubsection{A-PR-CU1.1.2 Editar proyecto}
+Un proyecto tiene asociado un nombre por lo que se debe de modificar de acuerdo a las necesidades que tenga el usuario.
+\begin{longtable}{|J{5cm}|J{10.3cm}|}
+	\hline
+	\textbf{Nombre del Caso de Uso} &
+		A-PR-CU1.1.2 Editar proyecto \\ \hline
+	\textbf{Objetivo} &
+		Permitir al actor editar algún proyecto en particular \\ \hline
+	\textbf{Actores} &
+		Usuario verificado \\ \hline 
+	\textbf{Disparador} & 
+		El actor requiere modificar un proyecto en especifico \\ \hline 
+	\textbf{Entradas} & 
+	    \begin{itemize}
+	        \item Nombre del proyecto
+	    \end{itemize} \\ \hline 
+	\textbf{Salidas} & 
+		\begin{itemize}
+		    \item \hyperref[MSG9]{\bf MSG9 Operación exitosa}
+		\end{itemize} \\ \hline
+	\textbf{Precondiciones} &
+		\begin{itemize}
+				\item El actor debe de haber iniciado sesión
+				\item Deben de existir proyectos que editar
+		\end{itemize} \\ \hline
+	\textbf{Postcondiciones} &
+		\begin{itemize}
+			\item Se modifica la información del proyecto
+		\end{itemize}\\ \hline
+	\textbf{Prioridad} & 
+		Baja \\ \hline
+	\textbf{Reglas de Negocio} & 
+    	\begin{itemize}
+    		\item \hyperref[RN001]{RN-001 Campos obligatorios}
+    		\item \hyperref[RN002]{RN-002 Datos correctos}
+    		\item \item \hyperref[RN005]{RN-005 Fecha de modificación}
+    	\end{itemize}\\ \hline
+
+	% \caption{}
+	%\label{desc:SUB-M-CU1}
+\end{longtable}
+% Me faltan las referencias chidas
+\paragraph{Trayectoria Principal}
+	\begin{enumerate}
+	    \item {[Actor]} Presiona el icono \textit{Opciones} de la pantalla \hyperref[fig:MIUA-6]{\bf MIUA 6 Lista de Traducciones}.
+	    \item {[Sistema]} Muestra la opción de \textit{Editar Proyecto}.
+	    \item {[Actor]} Presiona la opción \textit{Editar Proyecto}.
+	    \item {[Sistema]} Muestra el mensaje \hyperref[MSG12]{\bf MSG12 Ingrese el nombre}.
+	    \item {[Actor]} Ingresa la información requerida.
+	    \item {[Actor]} Presiona el botón \textit{Aceptar}. \hyperref[A-PR-CU1.1.2:TA]{[Trayectoria Alternativa A]}
+	    \item {[Sistema]} Verifica la información introducida según la regla de negocio \hyperref[RN001]{RN-001} y \hyperref[RN002]{RN-002}. \hyperref[A-PR-CU1.1.2:TB]{[Trayectoria Alternativa B]}
+	    \item {[Sistema]} Calcula la fecha de modificación del proyecto en el sistema según la regla de negoció \hyperref[RN005]{RN-005}.
+	    \item {[Sistema]} Modifica la información almacenada. \hyperref[A-PR-CU1.1.2:TC]{[Trayectoria Alternativa C]}
+	    \item {[Sistema]} Muestra el mensaje \hyperref[MSG8]{\bf MSG8 Operación exitosa} en la pantalla \hyperref[fig:MIUA-5]{\bf MIUA 5 Lista de Traducciones}.
+	\end{enumerate}
+	Fin del caso de uso.
+
+\paragraph{Trayectoria Alternativa A} \label{A-PR-CU1.1.2:TA}
+	Cancela la operación.
+	\begin{enumerate}[label=A\arabic*.]
+		\item {[Sistema]} Muestra la pantalla \hyperref[fig:MIUA-6]{\bf MIUA 6 Lista de Traducciones}.
+	\end{enumerate}
+	Fin de la trayectoria alternativa.
+	
+\paragraph{Trayectoria Alternativa B} \label{A-PR-CU1.1.2:TB}
+	Datos no validos.
+	\begin{enumerate}[label=B\arabic*.]
+		\item {[Sistema]} Muestra el mensaje \hyperref[MSG1]{\bf MSG1 Datos no validos} la pantalla \hyperref[fig:MIUA-6]{\bf MIUA 6 Lista de Traducciones}.
+	\end{enumerate}
+	Fin de la trayectoria alternativa.
+
+\paragraph{Trayectoria Alternativa C} \label{A-PR-CU1.1.2:TC}
+	No se puede modificar el proyecto.
+	\begin{enumerate}[label=C\arabic*.]
+		\item {[Sistema]} Muestra el mensaje \hyperref[MSG10]{\bf MSG10 Operación fallida} en la pantalla \hyperref[fig:MIUA-6]{\bf MIUA 6 Lista de Traducciones}.
+	\end{enumerate}
+	Fin de la trayectoria alternativa.
