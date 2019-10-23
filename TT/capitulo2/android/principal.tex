@@ -4,7 +4,7 @@ El escribir código de buena calidad puede resultar difícil por lo cual es nece
 
 \begin{figure}[H]
         \centering
-        \includegraphics[width=0.7\textwidth]{capitulo2/android/img/cleanArquitectura.png}
+        \includegraphics[width=0.7\textwidth]{capitulo2/android/img/cleanArquitectura.jpg}
         \caption{Arquitectura Clean \cite{cleanCodeBlog}} 
         \label{fig:cleanArquitectura}
 \end{figure}
@@ -17,12 +17,17 @@ La arquitectura Clean como se muestra en la figura \ref{fig:cleanArquitectura} f
     \item Independientes de la base de datos. Las reglas de negocio no están ligadas a la fuente de datos por lo cual esta puede cambiar.
     \item Independencia de cualquier agente externo. Las reglas de negocio no dependen de otras capas, por lo cual se vuelve la parte más importante de la arquitectura.
 \end{itemize}
-%y todos sus componentes
-    % UI fragments y actividades
-    % MVVM
-    % entidades
-    % repository pattern
-    % fuente de datos
+
+La forma en la que se estructura la arquitectura permite seguir la regla de dependencia en la cual capas internas no deben conocer nada sobre las capas externas.
+\subsection{Componentes}
+\subsubsection{Entidades}
+Son objetos de negocio de la aplicación, por lo cual en esta capa se tienen las reglas de negocio y también se tienen DTOs. 
+\subsubsection{Casos de uso}
+En esta capa se ejecutan las reglas de negocio del sistema, se implementan todos los casos de uso que se tienen. Un caso de uso tiene que recibir datos estructurados y devolver datos estructurados por lo cual esta capa no se debe de ver afectada por capas superiores.
+\subsubsection{Adaptadores}
+La información que viene de los casos de uso y de las entidades se transforma en esta capa a algo que pueda ser entendido por la capa externa la cual puede ser una conexión a base de datos, una interfaz de usuario o un servidor web.
+\subsubsection{Frameworks y controladores}
+Esta capa externa está compuesta por framworks y herramientas tales como la base de datos, una interfaz de usuario, un cliente HTTP o un framework web.
 \subsection{SOLID}
 SOLID es un acrónimo que hace referencia a los cinco principios de la programación orientada a objetos, este acrónimo fue descrito por Robert C. Martin el seguir estos conceptos permite tener software que sea escalable y fácil de mantener, estos principios están ligados con la alta cohesión y bajo acoplamiento en el software. \cite{solidCode}
 \paragraph{S-Responsabilidad simple} Cada clase debe de tener una sola responsabilidad. De no seguir esto puede generar el problema de que alguna clase tenga comportamiento que nada tiene que ver con ella debido a que dicho comportamiento no se aisló en otra clase diferente. \cite{solidEjemplos}
