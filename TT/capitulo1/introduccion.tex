@@ -86,7 +86,7 @@ Los cuales se describen en la tabla \ref{tab:state_of_art}: \\\\
 
 
 \section{Objetivos}
-%\textbf{OBJETIVO}
+\subsection{Objetivo general}
 Desarrollar un sistema que reconozca un conjunto delimitado de tipos de expresiones matemáticas en una imagen dada y las traduzca a un formato que un compilador de LaTeX pueda procesar.
 \subsection{Objetivos específicos}
 \begin{enumerate}
@@ -98,7 +98,7 @@ Desarrollar un sistema que reconozca un conjunto delimitado de tipos de expresio
 
 
 \section{Resultados esperados}
-Podemos separar el sistema en dos bloques principales, el primero el lado del cliente el cual se compondrá de la aplicación móvil y de la interfaz web con las cuales el usuario podrá interactuar. Por otro lado, se tiene la parte del servidor web que se conectará con la aplicación móvil, en el servidor se encontrará la parte de análisis de imágenes junto con el módulo de traducción. Finalmente se tiene el módulo de gestión de usuarios. Esto se puede apreciar en la Figura \ref{fig:arquitectura}.%ref %%AYUDA, NO ESTA REFERENCIANDO
+Podemos separar el sistema en dos bloques principales, el primero el lado del cliente el cual se compondrá de la aplicación móvil y de la interfaz web con las cuales el usuario podrá interactuar. Por otro lado, se tiene la parte del servidor web que se conectará con la aplicación móvil, en el servidor se encontrará la parte de análisis de imágenes junto con el módulo de traducción. Finalmente se tiene el módulo de gestión de usuarios. Esto se puede apreciar en la Figura \ref{fig:arquitecturaInicial}.%ref %%AYUDA, NO ESTA REFERENCIANDO
 
 El sistema se compone de cinco módulos:
 \begin{enumerate}
@@ -122,17 +122,18 @@ Los productos esperados del Trabajo Terminal son:
 \centering
 \includegraphics[width=1.0\textwidth]{capitulo1/images/arquitectura.png}
 \caption{Arquitectura del sistema.}
-\label{fig:arquitectura}
+\label{fig:arquitecturaInicial}
 \end{figure}
 \newpage
 
-\section{Metodología} Para el desarrollo del proyecto se eligió la metodología incremental debido a que permite dividir el proyecto en pequeñas iteraciones secuenciales \cite{iterativeDevelopment}. En cada iteración, se tendrá la libertad de implementar los requerimientos más apropiados para un correcto flujo en el desarrollo de la aplicación. A pesar de que la metodología por incrementos permite flexibilidad para modificar los requerimientos funcionales, se tienen planeadas las siguientes actividades que se llevarán a cabo en distintas iteraciones:
-\bigskip
+\section{Metodología} Para el desarrollo del proyecto se eligió la metodología incremental debido a que permite dividir el proyecto en pequeños incrementos \cite{iterativeDevelopment}. Este modelo nos permite flexibilidad a la hora de decidir que requerimientos funcionales se trabajaran primero, es decir, primero se trabajan aquellos con mayor prioridad en los primeros incrementos del sistema para después trabajar el resto o realizar un análisis más profundo a dichos requerimientos de incrementos futuros \cite{sommerville}. De esta forma, se plantean los siguientes incrementos con el objetivo de que al final de cada uno de estos se obtenga la funcionalidad requerida y validar que lo que se trabajo sea correcto para que al final de todos los incrementos se tenga el sistema completo.
 \begin{itemize}
-    \item Se realizará obtención de requerimientos, el análisis y diseño (modelado) del módulo de análisis de imágenes, construcción del módulo y finalmente se harán pruebas sobre este.
-    \item El módulo de traducción se realizará paralelamente al módulo anterior, al tener esto listo y con sus respectivas validaciones aprobadas se realizará el desarrollo y con ello realizar pruebas sobre todos los componentes que se tengan hasta este punto.
-    \item Se desarrollará la aplicación móvil la cual su principal funcionalidad es la obtención de las imágenes y su comunicación con el servidor web.
-    \item Se desarrollará el módulo de servidor web ya que es lo que nos servirá para conectar el módulo de análisis de imágenes con la aplicación móvil y se probará la comunicación entre cada uno de estos elementos.
+	\item Se desarrollará la aplicación móvil la cual su principal funcionalidad es la obtención de las imágenes y su comunicación con el servidor web.
+	\item Se desarrollará la aplicación web ya que es lo que nos servirá para conectar con la aplicación móvil con el resto de los módulos que se desarrollaran en un futuro.
+	\item Se hará la integración entre la aplicación móvil y la aplicación web.
+    \item Se detallaran a fondo requerimientos si es necesario, se realizara el análisis y diseño del módulo de análisis de imágenes, construcción del módulo y finalmente se harán pruebas sobre este.
+    \item El módulo de traducción va de la mano con el módulo anterior, al tener esto listo y con sus respectivas validaciones aprobadas se realizará el desarrollo y con ello realizar pruebas sobre todos los componentes que se tengan hasta este punto.
+    \item Este incremento final tendrá como objetivo el integrar todo lo desarrollado hasta este punto.
 \end{itemize}
 
 
