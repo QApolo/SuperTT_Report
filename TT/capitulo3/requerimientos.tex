@@ -1,38 +1,40 @@
 \section{Requerimientos funcionales}
-    Los requerimientos funcionales describen los actividades y comportamientos que tendrá el sistema bajo ciertas condiciones.
+    Los requerimientos funcionales describen los actividades y comportamientos que tendrá el sistema bajo ciertas condiciones, de igual forma pueden declarar lo que el sistema no debe de hacer.
     
-    En esta sección se presentan los requerimientos funcionales que se obtuvieron para el sistema. Dichos requerimientos se encuentran separados de acuerdo a los diferentes módulos que se tienen planeados
+    En esta sección se presentan los requerimientos funcionales que se obtuvieron para el sistema. Dichos requerimientos se encuentran separados de acuerdo a los diferentes módulos que se tienen planeados.
     \subsection{Módulo de usuarios}
     \begin{enumerate}[label=RF\arabic*.]
-    \item Mecanismo de gestión de usuarios.
-    \item Mecanismo de autenticación de usuarios
-    \item Mecanismo de recuperación de contraseñas.
-    \item Mecanismo para la comunicación entre la aplicación android y la aplicación web.
+    \item Mecanismo de gestión de usuarios. Proporcionar al usuario la posibilidad de creación, consulta y modificación de los datos de su cuenta de usuario. Estas operaciones debe de estar presentes en la aplicación web y de android y solo serán permitidas para usuarios con cuenta verificada.
+    \item Mecanismo de autenticación de usuarios. Proporcionar un mecanismo para el inicio y cierre de sesión de la cuenta del usuario cuya cuenta haya sido verificada en la aplicación web y android.
+    \item Mecanismo de verificación de cuenta. Proporcionar al usuario una forma para verificar que una cuenta creada es valida a través de una verificación basada en el envió de un correo electrónico para la confirmar dicha validez y hacer uso del resto de funcionalidad del sistema. Esta verificación solo se podra realizar a través de la aplicación web.
+    \item Mecanismo de recuperación de contraseñas. Proporcionar al usuario la posibilidad de recuperar la contraseña asociada a su cuenta a través de un envío de correo electrónico con el cual podrá acceder a una interfaz en la aplicación web para recuperar el acceso a su cuenta. La recuperación de contraseñas estará disponible en la aplicación android y web.
+    \item Mecanismo para la comunicación entre la aplicación android y web. El sistema debe de contar con una interfaz para la comunicación entre las dos aplicaciones que se tienen, la forma en que se realizara sera un API REST y el formato para el envió de información sera JSON.
+    \item Mecanismo para la autenticación en el API REST. El sistema debe de brindar una forma de garantizar que la comunicación entre la aplicación web y android es seguro mediante el uso de tokens de autenticación en cada petición y respuesta que se realice.
     \end{enumerate}
     
     \subsection{Módulo de proyectos}
     \begin{enumerate}[label=RF\arabic*.]
     	\setcounter{enumi}{4}
-    	\item Mecanismo para la gestión de proyectos de \LaTeX{}.
-    	\item Permitir descargar el archivo de \LaTeX{} que se haya traducido.
-    	\item Permitir calificar una traducción realizada.
-    	\item Permitir el uso de la capara del dispositivo android para tomar fotografías.
-    	\item Permitir la visualización del resultado de la traducción.
-    	\item Permitir añadir al portapapeles alguna traducción seleccionada.
-    	\item Mecanismo para el envío de imágenes tomadas por la aplicación android a la aplicación web para su uso.
+    	\item Mecanismo para la gestión de proyectos de \LaTeX{}. Proporcionar al usuario un mecanismo para visualizar, editar, crear o borrar proyectos asociados a su cuenta. La gestión se podrá realizar en la aplicación web y android.
+    	\item Permitir descargar el archivo de \LaTeX{} que se haya traducido. Proporcionar al usuario la funcionalidad de generar un archivo \LaTeX{} que contenga la traducción de expresiones matemáticas que se encuentren en un proyecto. La descarga de dicho archivo solo estará disponible en la aplicación web.
+    	\item Permitir calificar una traducción realizada. Proporcionar al usuario la funcionalidad de calificar que tan buena fue la traducción de una expresión matemática en una imagen para brindar retroalimentación, dicha calificación podrán ser valores enteros entre 1 y 5. Para poder calificar una traducción se tendrá que hacer uso de la aplicación web.
+    	\item Permitir el uso de la cámara del dispositivo android para tomar fotografías. Proporcionar un mecanismo en la aplicación web que permita acceder a la cámara del dispositivo, tomar una fotografía, visualizarla.
+    	\item Permitir la visualización del resultado de la traducción. Proporcionar al usuario una interfaz en la cual pueda observar la traducción a \LaTeX{} que se realizó a partir de una imagen. Esto se podrá hacer en la aplicación web y android.
+    	\item Permitir añadir al portapapeles alguna traducción seleccionada. Proporcionar al usuario la funcionalidad para copiar el código de una traducción a su portapapeles para su posterior uso. Esta funcionalidad está limitada a solo la aplicación web.
+    	\item Mecanismo para el envío de imágenes tomadas por la aplicación android a la aplicación web para su uso. El sistema debe de tener un mecanismo que a través del uso del API REST permita a la aplicación android el enviar una imagen a la aplicación web para que esta sea tratada. 
     \end{enumerate}
     
     \subsection{Módulo de análisis}
     \begin{enumerate}[label=RF\arabic*.]
     	\setcounter{enumi}{11}
-    	\item Mecanismo para el tratamiento de la imagen previo a su análisis.
-    	\item Mecanismo para el reconocimiento de un conjunto definido de expresiones matemáticas en imágenes.
+    	\item Mecanismo para el tratamiento de la imagen previo a su análisis. El sistema deberá de realizar un tratamiento al imagen que reciba de la aplicación android para hacer que esta sea más sencilla de trabajar destacando sus partes importantes.
+    	\item Mecanismo para el reconocimiento de un conjunto definido de expresiones matemáticas en imágenes. El sistema deberá de reconocer ciertas expresiones en particular con la posibilidad de que expresiones que no se encuentren en este conjunto produzcan resultados no esperados.
     \end{enumerate}
     
     \subsection{Módulo de traducción}
     \begin{enumerate}[label=RF\arabic*.]
     	\setcounter{enumi}{13}
-    	\item Mecanismo para la traducción a \LaTeX{} de las expresiones matemáticas encontradas en el modulo de análisis.
+    	\item Mecanismo para la traducción a \LaTeX{} de las expresiones matemáticas encontradas en el modulo de análisis. Implementar un algoritmo basado de gramáticas, redes neuronales o arboles de recubrimiento mínimo que permita transformar la salida que proporcione el módulo de análisis a código \LaTeX que pueda ser interpretado por un compilador.
     \end{enumerate}
     
 \section{Requerimientos No Funcionales} 
