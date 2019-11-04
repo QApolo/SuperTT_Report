@@ -26,11 +26,66 @@
 \section{Modelo de datos del sistema}
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=\textwidth]{capitulo4/imagenes/db.png}
+	\includegraphics[width=\textwidth]{capitulo4/imagenes/tt_base.png}
 	\caption{Modelo de datos del sistema.}
 	\label{fig:db}
 \end{figure}
 
+\subsection{Entidad: Usuario}
+Se refiere a la cuenta que un usuario puede tener, es la forma en la que accede al sistema.
+\subsubsection{Atributos}
+\begin{center}
+	\begin{longtable}{|J{4cm}|J{4cm}|J{3cm}|J{2cm}|J{2cm}|}
+		\hline
+		\textbf{Nombre} & \textbf{Descripción} & \textbf{Tipo} & \textbf{Requerido} & \textbf{Único} \\ \hline
+		\caption{Tabla de los atributos de la entidad usuario}
+		\label{tbl:entidad-usuario}
+	\end{longtable}
+\end{center}
+\subsection{Entidad: Proyecto}
+Se refiere a los proyectos que están asociados a un usuario, un proyecto esta compuesto por varias traducciones.
+\subsubsection{Atributos}
+\begin{center}
+	\begin{longtable}{|J{4cm}|J{4cm}|J{3cm}|J{2cm}|J{2cm}|}
+		\hline
+		\textbf{Nombre} & \textbf{Descripción} & \textbf{Tipo} & \textbf{Requerido} & \textbf{Único} \\ \hline
+		\caption{Tabla de los atributos de la entidad proyecto}
+		\label{tbl:entidad-proyecto}
+	\end{longtable}
+\end{center}
+\subsection{Entidad: Traducción}
+Hace referencia a la traducción de \LaTeX que forma parte de un proyecto y que pertenece a un usuario. Esta traducción es el resultado de analizar una imagen.
+\subsubsection{Atributos}
+\begin{center}
+	\begin{longtable}{|J{4cm}|J{4cm}|J{3cm}|J{2cm}|J{2cm}|}
+		\hline
+		\textbf{Nombre} & \textbf{Descripción} & \textbf{Tipo} & \textbf{Requerido} & \textbf{Único} \\ \hline
+		\caption{Tabla de los atributos de la entidad traducción}
+		\label{tbl:entidad-traduccion}
+	\end{longtable}
+\end{center}
+\subsection{Entidad: Tipo estudios}
+Hace referencia a los distintos grados de estudios que tiene un usuario.
+\subsubsection{Atributos}
+\begin{center}
+	\begin{longtable}{|J{4cm}|J{4cm}|J{3cm}|J{2cm}|J{2cm}|}
+		\hline
+		\textbf{Nombre} & \textbf{Descripción} & \textbf{Tipo} & \textbf{Requerido} & \textbf{Único} \\ \hline
+		\caption{Tabla de los atributos de la entidad tipo de estudios}
+		\label{tbl:entidad-tipo-estudios}
+	\end{longtable}
+\end{center}
+\subsection{Entidad: Usuario Token}
+Se refiere al token de autenticación que tiene un usuario al momento de crear una cuenta y que su utiliza en la comunicación entre la aplicación web y android.
+\subsubsection{Atributos}
+\begin{center}
+	\begin{longtable}{|J{4cm}|J{4cm}|J{3cm}|J{2cm}|J{2cm}|}
+		\hline
+		\textbf{Nombre} & \textbf{Descripción} & \textbf{Tipo} & \textbf{Requerido} & \textbf{Único} \\ \hline
+		\caption{Tabla de los atributos de la entidad usuario token}
+		\label{tbl:entidad-usuario-token}
+	\end{longtable}
+\end{center}
 
 \section{Aplicación de Android}
 \input{capitulo4/android/principal}
