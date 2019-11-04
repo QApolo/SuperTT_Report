@@ -24,6 +24,7 @@
 \end{figure}
 
 \section{Modelo de datos del sistema}
+En la figura \ref{fig:db} se aprecia el modelo de datos del sistema y se describen las entidades que lo conforman, así como los respectivos atributos de cada una de estas entidades.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=\textwidth]{capitulo4/imagenes/tt_base.png}
@@ -35,9 +36,17 @@
 Se refiere a la cuenta que un usuario puede tener, es la forma en la que accede al sistema.
 \subsubsection{Atributos}
 \begin{center}
-	\begin{longtable}{|J{4cm}|J{4cm}|J{3cm}|J{2cm}|J{2cm}|}
+	\begin{longtable}{|J{3cm}|J{4cm}|J{3cm}|J{2cm}|J{2cm}|}
 		\hline
 		\textbf{Nombre} & \textbf{Descripción} & \textbf{Tipo} & \textbf{Requerido} & \textbf{Único} \\ \hline
+		id & & & Sí & Sí\\ \hline
+		nombre & & & Sí & No \\ \hline
+		apellidos & & & Sí & No \\ \hline
+		email & & & Sí & Sí\\ \hline
+		imagen\_perfil & & & Sí & No \\ \hline
+		activo & & & Sí & No \\ \hline
+		id\_estudios & & & No & No \\ \hline
+		password & & & Sí & No \\ \hline
 		\caption{Tabla de los atributos de la entidad usuario}
 		\label{tbl:entidad-usuario}
 	\end{longtable}
@@ -46,9 +55,15 @@ Se refiere a la cuenta que un usuario puede tener, es la forma en la que accede 
 Se refiere a los proyectos que están asociados a un usuario, un proyecto esta compuesto por varias traducciones.
 \subsubsection{Atributos}
 \begin{center}
-	\begin{longtable}{|J{4cm}|J{4cm}|J{3cm}|J{2cm}|J{2cm}|}
+	\begin{longtable}{|J{3cm}|J{4cm}|J{3cm}|J{2cm}|J{2cm}|}
 		\hline
 		\textbf{Nombre} & \textbf{Descripción} & \textbf{Tipo} & \textbf{Requerido} & \textbf{Único} \\ \hline
+		id & & & Sí & Sí \\ \hline
+		usuario\_id & & & Sí & No \\ \hline
+		nombre & & & Sí & No \\ \hline
+		fechaModificacion & & & Sí & No \\ \hline
+		fechaCreacion & & & Sí & No \\ \hline
+		calificacion & & & Sí & No \\ \hline
 		\caption{Tabla de los atributos de la entidad proyecto}
 		\label{tbl:entidad-proyecto}
 	\end{longtable}
@@ -57,9 +72,15 @@ Se refiere a los proyectos que están asociados a un usuario, un proyecto esta c
 Hace referencia a la traducción de \LaTeX que forma parte de un proyecto y que pertenece a un usuario. Esta traducción es el resultado de analizar una imagen.
 \subsubsection{Atributos}
 \begin{center}
-	\begin{longtable}{|J{4cm}|J{4cm}|J{3cm}|J{2cm}|J{2cm}|}
+	\begin{longtable}{|J{3cm}|J{4cm}|J{3cm}|J{2cm}|J{2cm}|}
 		\hline
 		\textbf{Nombre} & \textbf{Descripción} & \textbf{Tipo} & \textbf{Requerido} & \textbf{Único} \\ \hline
+		id & & & Sí & Sí \\ \hline
+		proyecto\_id & & & Sí & No \\ \hline
+		usuario\_id & & & Sí & No \\ \hline
+		nombre & & & Sí & No \\ \hline
+		calificacion & & & Sí & No\\ \hline
+		fechaCreacion & & & Sí & No \\ \hline
 		\caption{Tabla de los atributos de la entidad traducción}
 		\label{tbl:entidad-traduccion}
 	\end{longtable}
@@ -68,9 +89,11 @@ Hace referencia a la traducción de \LaTeX que forma parte de un proyecto y que 
 Hace referencia a los distintos grados de estudios que tiene un usuario.
 \subsubsection{Atributos}
 \begin{center}
-	\begin{longtable}{|J{4cm}|J{4cm}|J{3cm}|J{2cm}|J{2cm}|}
+	\begin{longtable}{|J{3cm}|J{4cm}|J{3cm}|J{2cm}|J{2cm}|}
 		\hline
 		\textbf{Nombre} & \textbf{Descripción} & \textbf{Tipo} & \textbf{Requerido} & \textbf{Único} \\ \hline
+		id & & & Sí & Sí \\ \hline
+		grado & & & Sí & No \\ \hline
 		\caption{Tabla de los atributos de la entidad tipo de estudios}
 		\label{tbl:entidad-tipo-estudios}
 	\end{longtable}
@@ -79,9 +102,12 @@ Hace referencia a los distintos grados de estudios que tiene un usuario.
 Se refiere al token de autenticación que tiene un usuario al momento de crear una cuenta y que su utiliza en la comunicación entre la aplicación web y android.
 \subsubsection{Atributos}
 \begin{center}
-	\begin{longtable}{|J{4cm}|J{4cm}|J{3cm}|J{2cm}|J{2cm}|}
+	\begin{longtable}{|J{3cm}|J{4cm}|J{3cm}|J{2cm}|J{2cm}|}
 		\hline
 		\textbf{Nombre} & \textbf{Descripción} & \textbf{Tipo} & \textbf{Requerido} & \textbf{Único} \\ \hline
+		token & & & Sí &  Sí\\ \hline
+		created & & & Sí & No\\ \hline
+		user\_id & & & Sí & No\\ \hline
 		\caption{Tabla de los atributos de la entidad usuario token}
 		\label{tbl:entidad-usuario-token}
 	\end{longtable}
