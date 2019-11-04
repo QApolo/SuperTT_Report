@@ -39,14 +39,14 @@ Se refiere a la cuenta que un usuario puede tener, es la forma en la que accede 
 	\begin{longtable}{|J{3cm}|J{4cm}|J{3cm}|J{2cm}|J{2cm}|}
 		\hline
 		\textbf{Nombre} & \textbf{Descripción} & \textbf{Tipo} & \textbf{Requerido} & \textbf{Único} \\ \hline
-		id & & & Sí & Sí\\ \hline
-		nombre & & & Sí & No \\ \hline
-		apellidos & & & Sí & No \\ \hline
-		email & & & Sí & Sí\\ \hline
-		imagen\_perfil & & & Sí & No \\ \hline
-		activo & & & Sí & No \\ \hline
-		id\_estudios & & & No & No \\ \hline
-		password & & & Sí & No \\ \hline
+		id & Llave primaria autoincrementable del usuario & integer & Sí & Sí\\ \hline
+		nombre & Nombre que tiene un usuario & varchar(30) & Sí & No \\ \hline
+		apellidos & Apellidos de un usuario & varchar(150) & Sí & No \\ \hline
+		email & Correo electrónico asociado a un usuario & varchar(254) & Sí & Sí\\ \hline
+		imagen\_perfil & Ruta relativa de la ubicación de la imagen de perfil del usuario & varchar(30) & Sí & No \\ \hline
+		activo & Bandera que nos permite saber si un usuario ha verificado su cuenta & boolean & Sí & No \\ \hline
+		id\_estudios & Identificador para relacionar al usuario con el grado de estudio que tiene del catalogo de tipos de estudios & integer & No & No \\ \hline
+		password & Contraseña cifrada del usuario & varchar(128) & Sí & No \\ \hline
 		\caption{Tabla de los atributos de la entidad usuario}
 		\label{tbl:entidad-usuario}
 	\end{longtable}
@@ -58,12 +58,12 @@ Se refiere a los proyectos que están asociados a un usuario, un proyecto esta c
 	\begin{longtable}{|J{3cm}|J{4cm}|J{3cm}|J{2cm}|J{2cm}|}
 		\hline
 		\textbf{Nombre} & \textbf{Descripción} & \textbf{Tipo} & \textbf{Requerido} & \textbf{Único} \\ \hline
-		id & & & Sí & Sí \\ \hline
-		usuario\_id & & & Sí & No \\ \hline
-		nombre & & & Sí & No \\ \hline
-		fechaModificacion & & & Sí & No \\ \hline
-		fechaCreacion & & & Sí & No \\ \hline
-		calificacion & & & Sí & No \\ \hline
+		id & Identificador autoincrementable del proyecto, forma parte de la llave primaria & integer & Sí & Sí \\ \hline
+		usuario\_id & Identificador del usuario que tiene el proyecto, forma parte de la llave primaria & integer & Sí & No \\ \hline
+		nombre & Nombre del proyecto & varchar(200) & Sí & No \\ \hline
+		fechaModificacion & Fecha que se actualiza cada vez que se modifica el proyecto & timestamp & Sí & No \\ \hline
+		fechaCreacion & Fecha en la cual se crea el proyecto & timestamp & Sí & No \\ \hline
+		calificacion & Calificación que se calcula a través de las calificaciones de las traducciones asociadas con el proyecto, puede contener decimales & numeric & Sí & No \\ \hline
 		\caption{Tabla de los atributos de la entidad proyecto}
 		\label{tbl:entidad-proyecto}
 	\end{longtable}
@@ -75,12 +75,12 @@ Hace referencia a la traducción de \LaTeX que forma parte de un proyecto y que 
 	\begin{longtable}{|J{3cm}|J{4cm}|J{3cm}|J{2cm}|J{2cm}|}
 		\hline
 		\textbf{Nombre} & \textbf{Descripción} & \textbf{Tipo} & \textbf{Requerido} & \textbf{Único} \\ \hline
-		id & & & Sí & Sí \\ \hline
-		proyecto\_id & & & Sí & No \\ \hline
-		usuario\_id & & & Sí & No \\ \hline
-		nombre & & & Sí & No \\ \hline
-		calificacion & & & Sí & No\\ \hline
-		fechaCreacion & & & Sí & No \\ \hline
+		id & Identificador autoincrementable de la traducción, forma parte de la llave primaria & integer & Sí & Sí \\ \hline
+		proyecto\_id & Identificador del proyecto al cual pertenece la traducción, forma parte de la llave primaria & integer & Sí & No \\ \hline
+		usuario\_id & Identificador del usuario, forma parte de la llave primaria & integer & Sí & No \\ \hline
+		nombre & Nombre que se le da a la traducción & varchar(200) & Sí & No \\ \hline
+		calificacion & Calificación que se le da a la traducción para retroalimentación del usuario y del sistema & integer & Sí & No\\ \hline
+		fechaCreacion & Fecha en la cual se crea la traducción & timestamp & Sí & No \\ \hline
 		\caption{Tabla de los atributos de la entidad traducción}
 		\label{tbl:entidad-traduccion}
 	\end{longtable}
@@ -92,8 +92,8 @@ Hace referencia a los distintos grados de estudios que tiene un usuario.
 	\begin{longtable}{|J{3cm}|J{4cm}|J{3cm}|J{2cm}|J{2cm}|}
 		\hline
 		\textbf{Nombre} & \textbf{Descripción} & \textbf{Tipo} & \textbf{Requerido} & \textbf{Único} \\ \hline
-		id & & & Sí & Sí \\ \hline
-		grado & & & Sí & No \\ \hline
+		id & Llave primaria autoincrementable & integer & Sí & Sí \\ \hline
+		grado & Nombre del grado de estudio & varchar(200) & Sí & No \\ \hline
 		\caption{Tabla de los atributos de la entidad tipo de estudios}
 		\label{tbl:entidad-tipo-estudios}
 	\end{longtable}
@@ -105,9 +105,9 @@ Se refiere al token de autenticación que tiene un usuario al momento de crear u
 	\begin{longtable}{|J{3cm}|J{4cm}|J{3cm}|J{2cm}|J{2cm}|}
 		\hline
 		\textbf{Nombre} & \textbf{Descripción} & \textbf{Tipo} & \textbf{Requerido} & \textbf{Único} \\ \hline
-		token & & & Sí &  Sí\\ \hline
-		created & & & Sí & No\\ \hline
-		user\_id & & & Sí & No\\ \hline
+		token & Llave primaria y token de autenticación del usuario para la API REST & varchar(40) & Sí &  Sí\\ \hline
+		created & Fecha de generación del token & timestamp & Sí & No\\ \hline
+		user\_id & Identificador del usuario al que pertenece el token& integer & Sí & No\\ \hline
 		\caption{Tabla de los atributos de la entidad usuario token}
 		\label{tbl:entidad-usuario-token}
 	\end{longtable}
