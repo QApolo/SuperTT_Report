@@ -33,134 +33,122 @@ Con el desarrollo del sistema producto del presente trabajo terminal se involucr
             %http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.375.6848&rep=rep1&type=pdf
 
 
-\section{Métodos de reconocimiento de expresiones matemáticas}
-\subsection{Análisis sintáctico dirigido}
-Los lenguajes libres de contexto, son aquellos que tienen una notación recursiva natural llamada \textit{gramática libre de contexto}. Por ende, un lenguaje libre de contexto es todo aquel que puede ser representado por una gramática libre de contexto.
-
-Una gramática libre de contexto G, queda definida de la siguiente manera:
-
-\begin{equation}
-    G = (V, T, P, S)
-\end{equation}
-
-de donde, V es el conjunto de variables, T el conjunto de símbolos terminales, P el conjunto de producciones y S el punto de inicio \cite{automata}.
-
-El lenguaje matemático, es decir, las expresiones matemáticas son un lenguaje libre de contexto. Esto quiere decir que es posible definir una gramática libre de contexto para definir a las expresiones matemáticas. Esta es una práctica muy común en la teoría de compiladores.
-
-Sabiendo esto, una aproximación a la resolución del problema de reconocer expresiones matemáticas en imágenes es la que describe \cite{gramaticasAnderson}. El método consiste en dos etapas:
-
-\begin{itemize}
-    \item Reconocimiento de caracteres: Utilizar algún método de reconocimiento de patrones para localizar los caracteres y anotar sus coordenadas. 
-    \item Análisis sintáctico dirigido: Utilizar la etapa previa para determinar la jerarquía, basándose en un conjunto de reglas definidas (las gramáticas libres de contexto).
-\end{itemize}
-
-En la Figura \ref{fig:gramaticas}, se puede ver un ejemplo del proceso de reconocimiento propuesto por este método.
-
-\begin{figure}[h]
-    \centering
-    \subfigure[]{\includegraphics[width=6cm]{capitulo2/images/gramaticas1}}
-    \subfigure[]{\includegraphics[width=6cm]{capitulo2/images/gramaticas2}}
-    \caption{\textbf{a)} La primera etapa del método de reconocimiento, se anotan las coordenadas de de cada caracter. \textbf{b)} Se realiza un análisis sintáctico con las gramáticas libres de contexto definidas.}
-    \label{fig:gramaticas}
-\end{figure}
-
 \newpage
-\subsection{Redes Neuronales}
-    Existe un tipo de neurona artificial llamada perceptrón desarrolladas entre 1950 y 1960 por el científico Frank Rosenblatt, sin embargo este modelo ha ido evolucionando y hoy en día se utilizan otros modelos de neurona como el llamado sigmoid neuron, que para entender, primero se debe definir al perceptrón como modelo.
-    Un perceptrón toma varias entradas binarias $x_{1},x_{2},x_{3},...,x_{n}$ y produce una sola salida binaria:
-     \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.5\textwidth]{capitulo2/images/perceptron.PNG}
-        \caption{Representación de un percetrón con entradas $x_{1}$, $x_{2}$ y $x_{3}$}
-        \label{fig:perceptron}
-    \end{figure}
-    La regla que Rosenblatt introdujo para calcular la salida involucra valores llamados pesos $w_{1},w_{2},w_{3},...$ que pueden tomar valores reales expresando la importancia de las respectivas entradas a la salida, la salida de la neurona (0 o 1) es determinado por la suma ponderada $\sum_{j} w_{j} x_{j}$ es menor o igual a un valor de umbral. Así como los pesos, el valor de umbral es un número real el cuál es un parámetro de la neurona:
-     \begin{equation}
-        output = \left\{ \begin{array}{lcc}
-             0 &   si  & \sum_{j} w_{j} x_{j} \leq threshold \\
-             \\ 1 &  si & \sum_{j} w_{j} x_{j} \ge threshold\\
-             \end{array}
-        \right.
-    \end{equation}
-    \newpage
-    Una red neuronal es una red de perceptrones que agrega complejidad a las decisiones.
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=1\textwidth]{capitulo2/images/NNmodel.PNG}
-        \caption{Red neuronal de 3 capas}
-        \label{fig:NNmodel}
-    \end{figure}
-    \subsubsection{Conjunto de entrenamiento}
-    El conjunto de entrenamiento es un conjunto de datos que se utiliza a modo de ejemplo para que un modelo pueda aprender. En el aprendizaje supervisado el conjunto de entrenamiento se compone de muchas tuplas (X,Y) siendo X un vector de características del problema y Y un vector del resultado al que queremos llegar \cite{deeplearningbook}.
-    
-    
-    \subsubsection{Aprendizaje Profundo}
-        El aprendizaje profundo de forma clásica se refiere al tratamiento de redes neuronales con mas de dos capas, sin embargo, debido al cambio que esta sub-area ha sufrido, se debe definir como el tratamiento de redes neuronales con un largo número de parámetros y capas en una de las cuatro arquitecturas de redes fundamentales:
-        \begin{itemize}
-            \item Redes pre-entrenadas no supervisadas
-            \item Redes Neuronales Convolucionales
-            \item Redes neuronales recurrentes
-            \item Redes neuronales recursivas.
-        \end{itemize}
-    
-    Siendo las Redes Neuronales Convolucionales de las que se expondrá a detalle en  \\%siguiente subseccion.
-    \\Una de las propiedades mas importantes que permite el Aprendizaje Profundo es la extracción automática de características que puede ser clave en dicho paso del análisis de imágenes.
-    
-    \subsubsection{Redes Neuronales Convolucionales}
-    Las redes neuronales convolucionales han ganado popularidad en los últimos años debido a su efectividad prometedora en el aprendizaje profundo. Partiendo por el procesamiento de imágenes, las capas convolucionales han encontrado su camino en otros subcampos del aprendizaje profundo y muestran éxito en la mayor parte de dichos campos.\\\\ 
-    La diferencia fundamental entre \textit{fully connected} (completamente conectadas) y \textit{convolutional neural networks}(redes neuronales convolucionales) es el patrón de conexión entre las capas consecutivas. En el caso de las completamente conectadas como el nombre lo sugiere, cada unidad es conectada a todas las unidades de la previa capa. \\\\
-    En una capa convolucional de una red neuronal, por otra parte, cada unidad está conectada a (típicamente pequeña) un número de unidades cercanas en la capa previa. Más aún, todas las unidades están conectadas a la capa previa de la misma forma con los pesos exactamente iguales y estructura. Esto lleva a una operación conocida como convolución, dando a la arquitectura este nombre, a grandes rasgos esto significa aplicar una pequeña "ventana" de pesos (conocida como filtro) sobre una imágen como se muestra en la figura \ref{fig:CNNFilter}.
-    
-    
-     \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.7\textwidth]{capitulo2/images/CNN_window.png}
-        \caption{Matriz de pesos conocida como ventana aplicada a una imagen.}
-        \label{fig:CNNFilter}
-    \end{figure}
-    \newpage
-    
-   
-  
-    \subsubsection{Arquitectura Encoder-Decoder}
-    
-    En particular se discutirá la arquitectura de Long Short-Term Memory (LSTM). LSTM es una arquitectura de una red neuronal recurrente diseñada para resolver problemas secuenciales, normalmente conocidos como sequence-to-sequence. Los problemas secuenciales, tienen usualmente como reto, predecir el siguiente resultado encontrado. Un reto que surge naturalmente de estos problemas, es la longitud variable de las entradas.
-    
-    Una aproximación para resolver los problemas secuenciales es el Encoder-Decoder LSTM él cual ha probado ser efectivo en muchos casos. Esta arquitectura se compone de dos modelos \cite{encoderDecoder}:
-    
-    \begin{itemize}
-    	\item Encoder: Es una red neuronal encargada de leer la entrada de longitud variable y convertirla en un vector de longitud fija.
-    	\item Decoder: Es una red neuronal encargada de tomar la salida del Encoder y como salida obtiene un valor predecido.
-    \end{itemize} 
+\section{Deep Learning}
+	
+El aprendizaje profundo o \textit{deep learning} es una rama del aprendizaje automático (\textit{machine learning} en inglés) que intenta modelar abstracciones de alto nivel a través de complejas arquitecturas computacionales que admiten transformaciones no lineales. El deep learning es la evolución de las ya conocidas redes neuronales las cuales experimentaban problemas de desvanecimiento del gradiente si se usaban demasiadas capas. Con las nuevas técnicas propuestas en el deep learning se logro evitar este problema y así, poder entrenar arquitecturas de millones de parámetros. \\
 
+El perceptrón multicapa (MLP) es el modelo más básico y aún así uno de los más útiles en el campo de las redes neuronales. Su principal objetivo es tratar de aproximar una función $f^{*}$. En el caso del \textit{aprendizaje supervisado}, la función $f^{*}$ toma la forma $y^{*} = f^{*}(x)$ de donde x es un parámetro de entrada que puede ser desde un simple número hasta un tensor y $y^{*}$ es la salida de la función. Entonces, una red neuronal que quiera aproximar $f^{*}$ definirá una función de mapeo de la forma $y = f(x,\theta)$ y aprenderá los parámetros $\theta$ (usualmente conocidos como $W$ y $b$) que dan como resultado la mejor aproximación de tal forma que $y \approx y^{*}$. \\
 
-	\subsubsection{Image Captioning}
-    
-    Es una rama emergente del \textit{deep learning} que ha ido ganando atención en los últimos años. Este campo es un punto intermedio entre la vision por computadora y el procesamiento del lenguaje natural. El actual estado del arte en image captioning tiene una aproximación similar a los modelos sequence-to-sequence, los cuales utilizan una arquitecura Encoder-Decoder \cite{imagetolatex}.
-    
-    Si se trata al problema de reconocer expresiones matemáticas en imagenes como un problema sequence-to-sequence de image captioning, se puede emplear una arquitectura de Encoding-Decoding para hacer la conversión de la imagen a LaTeX de manera directa. Esto permite a la red manejar imagenes de longitud variable y reconocer los símbolos a la vez que va reconociendo las expresiones.
-    
-    La arquitectura que se esta utilizando actualmente para solucionar este problema se muestra en la Figura \ref{fig:imgcaptioning} \cite{imagetolatex}\cite{imagemarkup}\cite{chino}.
-    
-    \begin{figure}
+Las redes neuronales profundas son llamadas redes porque pueden representarse mediante la composición de varias funciones de mapeo. Es decir, un MLP que quiera aproximar una función puede expresarse como $y^{n} = f^{n}(y^{n-1}, \theta^{n})$ con $y^{1} = f^{1}(x, \theta^{1})$ y $n$ siendo la profundidad de la red. 
+
+	\subsection{Gráfos computacionales}
+	Para describir con formalidad a las redes neuronales es preciso utilizar una notación que pueda ser expresada a través de gráfos. Según \cite{deeplearningbook} se puede indicar cada nodo del gráfo como una variable que puede ser un tensor para no perder generalidad. 
+	
+	Para terminar con la definición de estos gráfos, es necesario introducir el concepto de operación, la cual simplemente es una función entre dos o mas nodos del gráfo. Sin perder generalidad, se dice que una operación retorna únicamente una variable, es decir, un solo nodo.
+	
+	En la Figura \ref{fig:grafo-computacional} se puede ver un ejemplo de un perceptrón de una sola capa que es representado mediante un gráfo computacional. Gracias a esta definición, se puede extender facilmente el gráfo mostrado en \ref{fig:grafo-computacional} para modelar a un perceptrón de $n$ capas.
+	
+	\begin{figure}[h]
 		\centering
-		\includegraphics[width=8cm]{capitulo2/images/imgcaptioning}
-		\caption{Arquitectura de image captioning para reconocer expresiones matemáticas en imagenes.}
-		\label{fig:imgcaptioning}
+		\includegraphics[width=10cm]{capitulo2/images/grafo}
+		\caption{Ejemplo de un perceptrón de una sola capa representado mediante un gráfo computacional, siendo $x$ la entrada, $w^{1}$ la matriz de pesos, $b^{1}$ la matriz de bias, $u^{(1)}$ y $u^{(2)}$ nodos intermedios en el gráfo y $y^{1}$ la salida de la red.}
+		\label{fig:grafo-computacional}
+	\end{figure}
+
+	%\subsection{Algoritmos de aprendizaje}
+    
+    \subsection{Redes Neuronales Convolucionales}
+    
+    Las redes neuronales convolucionales también llamadas convolutivas (CNN), son una arquitectura especial de redes neuronales que permite el procesamiento de datos que tengan una estructura de grilla. Algunos ejemplos de esta estructura son: una serie de tiempo es una grilla 1D o una imágene, la cual puede ser vista como una grilla 2D de pixeles. Se puede decir, que una red convolutiva no es más que una red neuronal que utiliza la operación de convolución en lugar de una multiplicación tensorial normal \cite{deeplearningbook}. \\
+    
+    La operación de convolución que se utiliza en matemáticas e ingeniería esta definida de la siguiente manera:
+    
+    \begin{equation}
+    	y(t) = \int_{-\infty}^{\infty} x(\tau)w(t-\tau)d\tau
+    \end{equation}
+    
+    En terminolgía de las CNN $x$ es la entrada a la red, $w$ es llamado el \textbf{kernel} o \textbf{filtro} y $y$ el mapa de características. \\
+    
+    Propiamente en los sitemas computacionales no se pueden tener funciones continuas, estas tienen que ser discretas, por lo tanto la operación de convolución que una CNN utiliza es:
+    
+    \begin{equation}
+    	y(t) = \sum_{\tau = -\infty}^{\infty} x(\tau)w(t-\tau)
+    \end{equation}
+    
+    Naturalmente, si lo que se esta trabajando es una imagen, tenemos que aplicar la operación de convolución en dos ejes, es decir:
+    
+    \begin{equation}
+    	y(i,j) = \sum_{m}\sum_{n} x(i,j)w(i-m, j-n)
+    \end{equation}
+    
+    En la Figura \ref{fig:CNNFilter} se puede ver un ejemplo de cómo una imagen es procesada por la etapa de convolución en una CNN.
+    
+    \begin{figure}[H]
+    	\centering
+    	\includegraphics[width=0.7\textwidth]{capitulo2/images/CNN_window.png}
+    	\caption{Matriz de pesos conocida como kernel o filtro aplicada a una imagen.}
+    	\label{fig:CNNFilter}
     \end{figure}
+    
+    \subsubsection{Pooling}
+    Es una de las operaciones adicionales que se implementan en las CNN. En general se puede establecer que una típica capa convolucional tiene tres partes:
+    
+    \begin{enumerate}
+    	\item Operación de convolución: Es donde utiliza una entrada y la convoluciona con un filtro $w$.
+    	\item Función de activación: A veces es llamada fase de detección. Consiste en aplicar una función $f$ al resultado de la primera etapa para modificar la salida y volverla no lineal.
+    	\item Etapa de Pooling: Es una manera de modificar aún más la salida de modo que se incremente la significancia estadística de los datos extraidos.
+    \end{enumerate}
 
-\subsection{Análisis estructural}
+	La operación de pooling permite que la red sea tolerante a traslaciones y rotaciones leves de la imagen. Por ejemplo, se puede aplicar la función \textit{max pooling} a cada uno de los valores de $f(W*h)$ para obtener una generalización de los datos más importantes observados por la etapa de detección. \\
+	
+	Una manera efectiva de reducir el tamaño de los datos que la red tiene que procesar a través de sus capas, es utilizar la operación pooling para remuestrear. Esto se logra definiendo una ventana a la que la que se le aplicará la operación. Esta técnica también permite que algunas CNN puedan procesar imágenes de longitud variable.
+    
+    \newpage
+    
+   	
+\section{Redes Neuronales Recurrentes}
 
-Este método coincide con el primero en que debe de utilizar una técnica de reconocimiento de patrones para etiquetar primero los símbolos. Las etiquetas que utiliza tienen que ver son su posición en la imagen, así como su tamaño. 
+Las redes neuronales recurrentes (RNNs) son una familia de redes neuronales especializadas en procesar secuencias de datos. Es decir, pueden procesar entradas de la forma: $x^{(1)}, x^{(2)}, \dots, x^{(t)}$. Esta particular arquietectura, permite modelar secuencias de datos de longitud variable que serían imprácticas para cualquier otra arquitectura. \\
 
-La diferencia en este método, radica en su segunda etapa. No se realizará un análisis con gramáticas, en su lugar se intentara deducir la estructura jerárquica con algún otro método. El artículo \cite{spanningtree} propone utilizar el algoritmo de Kruskal para obtener un árbol de recubrimiento mínimo por niveles, de este modo se puede saber la estructura de la expresión matemática recorriendo el gráfo resultante.La Figura \ref{fig:spanningtree} muestra un ejemplo de como funciona este método.
+Las RNNs modelan sistemas dinámicos, es decir, que cada instante $t$ tenemos un sistema $s(t)$ con un estado diferente. Para que los siguientes estados del sistema tengan información de los estados pasados, las RNNs tienen al menos una conexión que es recurrente, es decir, que depende de un estado anterior o en algunos casos de estados futuros. \\
 
-\begin{figure}[h]
+Una de sus principales ventajas es la compartición de parámetros. Esto quiere decir que para diferentes estados del sistema, podemos aplicar los mismos parámetros $\theta$, permitiendo así, entrenar solo un conjunto de parámetros para todo el sistema en vez de un conjunto particular para cada estado. \\
+
+En la Figura \ref{fig:rnn} se puede apreciar un ejemplo de una RNN que cuya ecuación es: $s(t) = f(s^{(t-1)}, \theta)$. Como se han definido las redes neuronales en términos de gráfos, es posible utilizar el algoritmo de back-propagation para calcular los gradientes de cada estado. Normalmente cuando se aplica back-propagation a una RNN se le conoce como back-propagation through time (BPTT). \\
+
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=8cm]{capitulo2/images/spanningtree}
-	\caption{Utilización de un árbol de recubrimiento mínimo para el reconocimiento de expresiones matemáticas.}
-	\label{fig:spanningtree}
+	\includegraphics[width=4cm, height=5.5cm]{capitulo2/images/rnn}
+	\caption{Ejemplo de una RNN que modela la ecuación $s(t) = f(s^{(t-1)}, \theta)$, donde $\theta$ representa los parámetros $W$ y $V$, $f$ la función no lineal aplicada a $Wx^{(t)}$ y $V$ la matriz de pesos aplicada a $s^{(t-1)}$.}
+	\label{fig:rnn}
 \end{figure}
+
+La manera que tiene una RNN para poder procesar una secuencia de longitud variable y brindar información respecto de ella, es a través de los estados $s(t)$ ya que estos si tienen una longitud fija. De este modo se puede decir que funcionan muy parecido a una CNN, ya que sumarizan las características de la secuencia hasta el momento $t$. Para realizar alguna predicción final, normalmente se utiliza algúna otra capa que efectue una función $f$, justo como lo hacen las CNNs. \\
+  
+    \subsection{Arquitectura Encoder-Decoder}
+    Esta arquitectura de RNN se ha vuelto muy popular pues permite a una red procesar secuencias de longitud variable y obtener como resultado secuencias de longitud variable. Este tipo de problemas son conocidos como problemas sequence-to-sequence. Algunos ejemplos de problemas de este estilo son el reconocimiento del habla en tiempo real o el reconocimiento de la escritura. \\
+    
+    La arquitectura se compone de dos redes recurrentes, la primera es denominada el \textit{encoder}, el cual es una red que 'codifica' la entrada $x^{(t)}$. Si lo que se quiere es codificar una serie de tiempo, normalmente se usará una RNN y como salida será la señal $s(t)$. En este tipo de redes a la señal $s(t)$ se le conoce como el contexto $C$. \\
+    
+    La segunda red que compone a la arquitectura es el \textit{decoder}, el cual toma como entrada el contexto $C$ generado previamente por el encoder y lo utiliza para generar la secuencia de salida. El decoder es en general una RNN.
+    
+    \subsection{Long Short-Term Memory}
+   	Hasta ahora, las arquitecturas más exitosas para procesar secuencias son las llamadas Gated RNN. Estas redes permiten aprender secuencias muy largas o que requieran memorizar mucha información. El problema que existía, era que el gradiente tendía desaparecer conforme la red se volviera más y más profunda. Las Gated RNN son la solución más exitosa a este problema. \\
+   	
+   	La Gated RNN más popular es la Long Short-Term Memory (LSTM). La idea de esta red, es crear ciclos entre los mismos nodos pero que esten condicionados con el contexto, de modo que la red pueda decidir cuando olvidar la información previa. \\
+   	
+   	La LSTM es puede verse como una compuerta lógica que puede ser implementada en otra RNN para crear una arquitectura más robusta. En la Figura \ref{fig:lstm} se muestra un ejemplo de la compuerta LSTM. La LSTM implementa diferentes puertas las cuales son: \textbf{input gate}, \textbf{forget gate} y la \textbf{output gate}. Todas estas puertas ayudan a la LSTM a controlar en que momento es oportuno olvidar la información previamente encontrada en los anteriores estados. \\
+   	
+   	\begin{figure}
+   		\centering
+   		\includegraphics[width=\textwidth]{capitulo2/images/lstm}
+   		\caption{Una compuerta LSTM típica.}
+   		\label{fig:lstm}
+   	\end{figure}
+   	
+   	
+
 \newpage
 \subsection{Aprendizaje profundo como servicio}
 El entrenamiento de redes neuronales profundas, conocidas como aprendizaje profundo es en la actualidad áltamente complejo computacionalmente. Requiere un sistema con la combinación correcta de software, drivers, memoria, red y recursos de almacenamiento, por factores como estos los proveedores de cloud computing como Amazon Web Services, Microsoft Azure o Google Cloud ofrecen actualmente servicios de Machine Learning proveyendo API's como pueden ser de entrenamiento de modelos o de visualización de datos y generación de estadísticas, permitiendo que desarrolladores y científicos de datos se enfoquen mas en tareas como el entrenamiento de modelos, análisis de datos, etc.
@@ -174,8 +162,71 @@ En la figura \ref{fig:DLAAS} se puede observar la arquitectura de un sistema div
 	\includegraphics[width=0.7\textwidth]{capitulo2/images/DLAAS.png}
 	\caption{Ejemplo de sistema con módulo de Machine Learning}
 	\label{fig:DLAAS}
-\end{figure}    
+\end{figure}
 
+%==============================================================
+
+\section{Métodos de reconocimiento de expresiones matemáticas}
+\subsection{Análisis sintáctico dirigido}
+Los lenguajes libres de contexto, son aquellos que tienen una notación recursiva natural llamada \textit{gramática libre de contexto}. Por ende, un lenguaje libre de contexto es todo aquel que puede ser representado por una gramática libre de contexto.
+
+Una gramática libre de contexto G, queda definida de la siguiente manera:
+
+\begin{equation}
+G = (V, T, P, S)
+\end{equation}
+
+de donde, V es el conjunto de variables, T el conjunto de símbolos terminales, P el conjunto de producciones y S el punto de inicio \cite{automata}.
+
+El lenguaje matemático, es decir, las expresiones matemáticas son un lenguaje libre de contexto. Esto quiere decir que es posible definir una gramática libre de contexto para definir a las expresiones matemáticas. Esta es una práctica muy común en la teoría de compiladores.
+
+Sabiendo esto, una aproximación a la resolución del problema de reconocer expresiones matemáticas en imágenes es la que describe \cite{gramaticasAnderson}. El método consiste en dos etapas:
+
+\begin{itemize}
+	\item Reconocimiento de caracteres: Utilizar algún método de reconocimiento de patrones para localizar los caracteres y anotar sus coordenadas. 
+	\item Análisis sintáctico dirigido: Utilizar la etapa previa para determinar la jerarquía, basándose en un conjunto de reglas definidas (las gramáticas libres de contexto).
+\end{itemize}
+
+En la Figura \ref{fig:gramaticas}, se puede ver un ejemplo del proceso de reconocimiento propuesto por este método.
+
+\begin{figure}[h]
+	\centering
+	\subfigure[]{\includegraphics[width=6cm]{capitulo2/images/gramaticas1}}
+	\subfigure[]{\includegraphics[width=6cm]{capitulo2/images/gramaticas2}}
+	\caption{\textbf{a)} La primera etapa del método de reconocimiento, se anotan las coordenadas de de cada caracter. \textbf{b)} Se realiza un análisis sintáctico con las gramáticas libres de contexto definidas.}
+	\label{fig:gramaticas}
+\end{figure}
+
+\subsection{Análisis estructural}
+
+Este método coincide con el primero en que debe de utilizar una técnica de reconocimiento de patrones para etiquetar primero los símbolos. Las etiquetas que utiliza tienen que ver son su posición en la imagen, así como su tamaño. 
+
+La diferencia en este método, radica en su segunda etapa. No se realizará un análisis con gramáticas, en su lugar se intentara deducir la estructura jerárquica con algún otro método. El artículo \cite{spanningtree} propone utilizar el algoritmo de Kruskal para obtener un árbol de recubrimiento mínimo por niveles, de este modo se puede saber la estructura de la expresión matemática recorriendo el gráfo resultante.La Figura \ref{fig:spanningtree} muestra un ejemplo de como funciona este método.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=8cm]{capitulo2/images/spanningtree}
+	\caption{Utilización de un árbol de recubrimiento mínimo para el reconocimiento de expresiones matemáticas.}
+	\label{fig:spanningtree}
+\end{figure}
+
+
+\subsection{Image Captioning}
+
+Es una rama emergente del \textit{deep learning} que ha ido ganando atención en los últimos años. Este campo es un punto intermedio entre la vision por computadora y el procesamiento del lenguaje natural. El actual estado del arte en image captioning tiene una aproximación similar a los modelos sequence-to-sequence, los cuales utilizan una arquitecura Encoder-Decoder \cite{imagetolatex}.
+
+Si se trata al problema de reconocer expresiones matemáticas en imagenes como un problema sequence-to-sequence de image captioning, se puede emplear una arquitectura de Encoding-Decoding para hacer la conversión de la imagen a LaTeX de manera directa. Esto permite a la red manejar imagenes de longitud variable y reconocer los símbolos a la vez que va reconociendo las expresiones.
+
+La arquitectura que se esta utilizando actualmente para solucionar este problema se muestra en la Figura \ref{fig:imgcaptioning} \cite{imagetolatex}\cite{imagemarkup}\cite{chino}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=8cm]{capitulo2/images/imgcaptioning}
+	\caption{Arquitectura de image captioning para reconocer expresiones matemáticas en imagenes.}
+	\label{fig:imgcaptioning}
+\end{figure}
+
+%==============================================================
 
 \section{Aplicación web}
 En la ingeniería de software se denomina aplicación web a aquellas herramientas que los usuarios pueden utilizar accediendo a un servidor web a través de internet o de una intranet mediante un navegador. En otras palabras, es un programa que se codifica en un lenguaje interpretable por los navegadores web en la que se confía la ejecución al navegador \cite{appweb}.
