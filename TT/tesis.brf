@@ -1,6 +1,56 @@
+<<<<<<< HEAD
 \backcite {ddi}{{9}{1.2}{table.1.2}}
 \backcite {ddi}{{9}{1.2}{table.1.2}}
 \backcite {basesComparacion}{{10}{1.6.2}{subsection.1.6.2}}
 \backcite {fComparacion}{{11}{1.6.3}{subsection.1.6.3}}
 \backcite {chino}{{19}{1.8}{section.1.8}}
 \backcite {chino}{{19}{1.8}{section.1.8}}
+=======
+\backcite {cleanCodeBlog}{{\es@scroman {v}}{(document)}{Doc-Start}}
+\backcite {cleanGuide}{{\es@scroman {vi}}{(document)}{Doc-Start}}
+\backcite {cleanWay}{{\es@scroman {vi}}{(document)}{Doc-Start}}
+\backcite {cleanWay}{{\es@scroman {vi}}{(document)}{Doc-Start}}
+\backcite {cleanWayReload}{{\es@scroman {vi}}{(document)}{Doc-Start}}
+\backcite {chino}{{2}{1.2}{section.1.2}}
+\backcite {mathphix}{{3}{1.3}{section.1.3}}
+\backcite {nebo}{{3}{1.3}{section.1.3}}
+\backcite {AlvaroPR16}{{3}{1.3}{section.1.3}}
+\backcite {idmath}{{3}{1.3}{section.1.3}}
+\backcite {iterativeDevelopment}{{6}{1.6}{section.1.6}}
+\backcite {sommerville}{{6}{1.6}{section.1.6}}
+\backcite {imgAnalySeg}{{8}{2.1.1}{subsection.2.1.1}}
+\backcite {imgAnalySeg}{{9}{2.1.3}{subsection.2.1.3}}
+\backcite {deeplearningbook}{{10}{2.2.1}{subsection.2.2.1}}
+\backcite {deeplearningbook}{{11}{2.2.2}{subsection.2.2.2}}
+\backcite {automata}{{17}{2.4.1}{equation.2.4.4}}
+\backcite {gramaticasAnderson}{{17}{2.4.1}{equation.2.4.4}}
+\backcite {spanningtree}{{18}{2.4.2}{subsection.2.4.2}}
+\backcite {imagetolatex}{{18}{2.4.3}{subsection.2.4.3}}
+\backcite {imagetolatex}{{18}{2.4.3}{subsection.2.4.3}}
+\backcite {imagemarkup}{{18}{2.4.3}{subsection.2.4.3}}
+\backcite {chino}{{18}{2.4.3}{subsection.2.4.3}}
+\backcite {appweb}{{18}{2.5}{section.2.5}}
+\backcite {mtv}{{20}{2.5.1.1}{subsubsection.2.5.1.1}}
+\backcite {apiArticle}{{20}{2.5.2.1}{subsubsection.2.5.2.1}}
+\backcite {restArticle}{{21}{2.5.2.2}{subsubsection.2.5.2.2}}
+\backcite {authent}{{21}{2.5.2.3}{subsubsection.2.5.2.3}}
+\backcite {cleanCodeBlog}{{22}{2.12}{figure.caption.16}}
+\backcite {cleanCodeBlog}{{22}{2.6.1}{figure.caption.16}}
+\backcite {solidCode}{{23}{2.6.3}{subsection.2.6.3}}
+\backcite {solidEjemplos}{{24}{2.6.3}{paragraph*.17}}
+\backcite {solidEjemplos}{{24}{2.6.3}{paragraph*.18}}
+\backcite {solidEjemplos}{{24}{2.6.3}{paragraph*.19}}
+\backcite {solidEjemplos}{{24}{2.6.3}{paragraph*.20}}
+\backcite {solidEjemplos}{{24}{2.6.3}{paragraph*.21}}
+\backcite {ddi}{{33}{3.2}{table.3.2}}
+\backcite {ddi}{{33}{3.2}{table.3.2}}
+\backcite {basesComparacion}{{34}{3.6.2}{subsection.3.6.2}}
+\backcite {fComparacion}{{35}{3.6.3}{subsection.3.6.3}}
+\backcite {cleanGuide}{{110}{5.1}{figure.caption.111}}
+\backcite {cleanWay}{{112}{5.2}{figure.caption.113}}
+\backcite {cleanWay}{{117}{5.3}{figure.caption.115}}
+\backcite {cleanWayReload}{{123}{5.4}{figure.caption.116}}
+\backcite {cleanWayReload}{{123}{5.1.1.3}{figure.caption.116}}
+\backcite {imagetolatex}{{126}{5.3.1}{figure.caption.117}}
+\backcite {kanervisto_anssi_2016_56198}{{126}{5.3.1}{figure.caption.117}}
+>>>>>>> 4f0eae5cde3a936a4999391a059a83f49ea27c60
