@@ -33,21 +33,14 @@ A pesar de lo práctico que puede ser LaTeX, si el documento contiene muchas exp
 
 \section{Palabras Clave}
 [Aplicación móvil, LaTeX, Image Captioning] %siento que faltan
+\newpage
 \section{Planteamiento del problema}
+En la actualidad no existe un sistema que permita reconocer expresiones matemáticas tomando como entrada una fotografía para su posterior traducción a LaTeX, si bien en los últimos años la investigación ha permitido que haya avances en cuanto al reconocimiento y traducción de expresiones matemáticas, al tener un enfoque de investigación se quedan como modelos fuera de lo práctico y los pocos existentes como se muestra en el estado del arte \ref{tab:state_of_art} trabajan con entradas ideales como son expresiones escritas desde dispositivos tales como tabletas digitalizadoras o plumas electrónicas sin considerar entradas como pueden ser fotografías tomadas por un smartphone en las que la resolución varía de dispositivo a dispositivo eliminando un tamaño fijo de la entrada y otros elementos como el ruido que puede incorporarse al momento de la toma de la fotografía que afectan el reconocimiento de las expresiones matemáticas.
+\\\\
 
 %\textbf{JUSTIFICACIÓN}
 
- Debido a la naturaleza de LaTex (producción de documentos de alta calidad) los usuarios que en su mayoría utilizan este sistema pertenecen a la comunidad científica y académica y específicamente provenientes de áreas como las ciencias de la computación, física y matemáticas para producción de documentos en su mayoría de divulgación de conocimiento, sin embargo de acuerdo a diversos estudios \cite{latexUsage} que muestran que en áreas de ciencia como Medicina, Psicología, GeoCiencias entre otras, el uso de LaTex no es tan extendido como se puede ver en la Figura \ref{fig:estadisticasUso}, impidiendo que estos usuarios aprovechen las ventajas que un sistema como LaTex ofrece, esto debido a que requiere que los usuarios estén familiarizados con procesos específicos como la compilación de código y por lo tanto para aquellos usuarios que no tienen relación directa con estos procesos el superar la curva de aprendizaje puede llegar a ser complicado y en muchos casos llegan a optar por utilizar alternativas que no impliquen los procesos ya mencionados que no proporcionan la calidad que LaTex puede llegar a ofrecer.
-\\\\%\bigskip
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.8\textwidth]{capitulo1/images/estadisticasUso.png}
-	\caption{Resumen de estadísticas del uso de LaTeX en disciplinas de ciencia (\% de papers enviados) y el número de palabras contenidas en los lineamientos para los autores.}
-	\label{fig:estadisticasUso}
-\end{figure}
-
-El enfoque del presente trabajo terminal consiste en desarrollar un sistema conformado por una aplicación tanto móvil como web que en conjunto permitan tomar fotografías y extraer las expresiones matemáticas para su posterior traducción con el objetivo de introducir a nuevos usuarios de cualquier área de estudio al sistema LaTex y así superar esa curva de aprendizaje en un menor tiempo y de inicio ser una herramienta práctica, si bien es cierto (como se puede ver en la tabla																							 \ref{tab:state_of_art}) existen otros sistemas que buscan resolver el problema de traducir expresiones matemáticas a partir de imágenes, sin embargo, ninguno de ellos ataca este problema directamente y ninguno de estos cuenta con una aplicación móvil para resolver dicho problema.
+El enfoque del presente trabajo terminal consiste en desarrollar un sistema conformado por una aplicación tanto móvil como web que en conjunto permitan tomar fotografías y extraer las expresiones matemáticas para su posterior traducción incluyendo la capacidad de gestionar las traducciones incluyendo la clasificación de las mismas mediante usuarios y proyectos asociados a dichas traducciones.
 \\\\%\bigskip
 
 Con el desarrollo de este prototipo de sistema se debe tener en cuenta que específicamente se ataca el problema de expresiones matemáticas (que a diferencia del reconocimiento de texto plano el cual es un problema que se considera resuelto por los buenos resultados que se han obtenido) este sigue siendo un problema abierto debido a su naturaleza jerárquica y bidimensional y que en la actualidad las soluciones existentes no brindan buenos resultados aún \cite{chino}, por lo que mejorar los resultados del estado del arte no es el objetivo de este trabajo.
