@@ -38,17 +38,49 @@
     \end{enumerate}
     
 \section{Requerimientos No Funcionales} 
-    A continuación se enlistan los requerimientos no funcionales.
-        \begin{enumerate}[label=RNF\arabic*.]
-            \item Usabilidad. La interfaz de usuario debe de ser intuitiva con el objetivo de hacer uso de las funcionalidades del sistema de una forma fácil para el usuario.
+
+ %   A continuación se enlistan los requerimientos no funcionales.
+ \begin{tabularx}{1.0\textwidth} { 
+ 		| >{\raggedright\arraybackslash}X 
+ 		| >{\arraybackslash}X 
+ 		| >{\raggedright\arraybackslash}X | }
+ 	\hline
+ 	
+ 	Requerimiento No Funcional & Descripción & Métricas asociadas  \\
+ 	\hline
+ 	RNF1 Seguridad  &  La seguridad se incrementa al realizar un cifrado de las contraseñas de los usuarios así como una verificación de la cuenta del usuario para poder hacer uso del sistema. Por otro lado, en la comunicación que se realiza entre la aplicación móvil y el API REST se utiliza un token para autenticar las peticiones que se realizan, dicho token es único para cada usuario.  &    Al utilizar el framework de desarrollo Django se cubren los aspectos de seguridad como vulnerabilidades tales como SQL injection, CSRF, CSS, Clickjacking y Session Hijacking, ataques JWT son manejados por autenticación por acceso limitado con el uso de oauth2 que define 4 tipos de autorización: 
+ 	\begin{itemize}
+ 		\item Código de autorización: usado con aplicaciones del lado del servidor
+ 		 \item Implícito:utilizado con aplicaciones móviles o aplicaciones web (aplicaciones que se ejecutan en el dispositivo del usuario).
+
+ 		 \item Credenciales de contraseña del propietario del recurso: utilizado con aplicaciones confiables, como aquellas pertenecientes al servicio
+ 		 \item Credenciales del cliente: Usadas con el acceso API de aplicaciones.
+ 		\end{itemize} \\
+ 	\hline
+
+ \end{tabularx}
+ \begin{tabularx}{1.0\textwidth} { 
+		| >{\raggedright\arraybackslash}X 
+		| >{\arraybackslash}X 
+		| >{\raggedright\arraybackslash}X | }
+	
+	\hline
+	RNF2 Usabilidad  & La interfaz de usuario debe de ser intuitiva con el objetivo de hacer uso de las funcionalidades del sistema de una forma fácil para el usuario.  & La aplicación android y web fueron desarrollados utilizando material design que respalda con métricas de Actitud y Comportamiento de User Experience (UX) tales como:
+	\begin{itemize}
+		\item Abandonment Rate
+		\item Usability
+		\item Appearance
+		\item credibility
+	\end{itemize}  \\
+	\hline
+		RNF3 Escalabilidad  &   El sistema deberá ser fácilmente escalable y con ello poseer la cualidad de que si se agregan nuevas funcionalidades, estas sean fáciles de acoplar con lo ya desarrollado. Además, de que debe de ser posible aumentar sus capacidades para brindar servicio a más usuarios.
+	& La escalabilidad puede llevarse a cabo mediante los proveedores de servicios de Cloud que implementan el denominado Auto Scaling que es un sub-sistema propio de cada servicio de Cloud con la función de ajustar automáticamente la capacidad para mantener un desempeño predecible y estable, sin mencionar que también se dispone de medidores de recursos gráfico.  \\
+	\hline
+RNF4 Disponibilidad  &   El sistema debería estar disponible en la mayor parte del tiempo, para lograr esto el uso de un proveedor de hosting es necesario. Entre las posibles opciones están Amazon Web Services, Azure o Google Cloud
+&   Actualmente los proveedores de servicios de Cloud ofrecen una disponibilidad que se mide como "Monthly Uptime Percentage" que se calcula al sustraer del 100\% el porcentaje de minutos durante el mes se encuentra en estado "Region No Disponible" garantizando un porcentaje mayor al 99\% mensual pero menor al 99.9\%. \\
+\hline
+ \end{tabularx}
             
-            \item Seguridad. La seguridad se solventa al realizar un cifrado de las contraseñas de los usuarios así como una verificación de la cuenta del usuario para poder hacer uso del sistema. Por otro lado, en la comunicación que se realiza entre la aplicación móvil y el API REST se utiliza un token para autenticar las peticiones que se realizan, dicho token es único para cada usuario. 
-            
-            \item Escalabilidad. El sistema deberá ser fácilmente escalable y con ello poseer la cualidad de que si se agregan nuevas funcionalidades, estas sean fáciles de acoplar con lo ya desarrollado. Además, de que debe de ser posible aumentar sus capacidades para brindar servicio a más usuarios.
-            
-            \item Disponibilidad. El sistema debería estar disponible en la mayor parte del tiempo, para lograr esto el uso de un proveedor de hosting es necesario. Entre las posibles opciones están Amazon Web Services, Azure o Google Cloud
-            
-        \end{enumerate}    
 \section{Requerimientos técnicos}
     A continuación se en listan los requerimientos técnicos para un mejor funcionamiento del sistema:
     \subsection{Aplicación móvil}
