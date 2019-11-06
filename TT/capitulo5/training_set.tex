@@ -8,7 +8,14 @@ Uno de los principales retos al trabajar con redes neuronales es la obtención d
 	\caption{Imagen de ejemplo del conjunto de datos de CROHME}
 	\label{fig:crohme}
 \end{figure}
+\newpage
+A pesar de parecer un conjunto de datos prometedor para el desarrollo del presente trabajo terminal se deben considerar factores como el ruido que puede tener una imagen a partir de una fotografía tomada con un smartphone, por lo que se considera también otro conjunto de entrenamiento llamado \textbf{im2latex-100k} \cite{imagetolatex}. El cual a diferencia de CROHME no se enfoca en expresiones matemáticas escritas a mano sino extraídas de documentos generados por computadora como pueden ser libros o artículos impresos. \cite{kanervisto_anssi_2016_56198}.
 
-A pesar de parecer un conjunto de datos prometedor para el desarrollo del presente trabajo terminal se deben considerar factores como el ruido que puede tener una imagen a partir de una fotografía tomada con un smartphone, por lo que se ha optado por utilizar una técnica denominada data aumentation que consiste en agregar ruido al conjunto de entrenamiento y otros procesos de análisis de imágenes como los mencionados en \ref{imAnalysis} permitiendo que el conjunto sea menos ideal y se puedan lograr mejores resultados 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.4\textwidth]{capitulo5/dataset/Dengetal.png}
+	\caption{Imagen de ejemplo del conjunto de datos de Im2latex-100k}
+	\label{fig:deng}
+\end{figure}
 
-
+Para la segunda parte de este trabajo terminal se utilizarán algunas métricas de evaluación donde el principal parámetro será la precisión. Se propondrán varias arquitecturas de redes neuronales de prueba y se entrenarán con ambos conjuntos para así comparar la precisión que ofrecería un modelo entrenado por cada conjunto, una vez hecho esto se elijirá el modelo y el conjunto que presente mayor precisión.  
