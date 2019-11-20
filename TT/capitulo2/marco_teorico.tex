@@ -1,6 +1,12 @@
 \chapter{Marco teórico}
 Con el desarrollo del sistema producto del presente trabajo terminal se involucran ciertos conceptos provenientes en su mayoría de ramas de ciencias de la computación y en general en alusión a la Inteligencia Artificial, por lo que es conveniente dar contexto sobre los elementos necesarios para el desarrollo del trabajo terminal.
 \section{Análisis de Imágenes}\label{imAnalysis}
+		
+		Una imagen puede definirse como una función bidimensional. $f(x,y)$, donde $x$ y $y$ son coordenadas espaciales (plano) y la amplitud de $f$ en cualquier par de coordenadas $(x,y)$ es llamada \textit{intensity} o \textit{gray level} (nivel de grises) de la imagen en ese punto.
+		\\
+		Cuando $x, y$ y los valores de amplitud de $f$ son todas cantidades discretas finitas, la imagen se denomina imagen digital. El campo de análisis de imagen se refiere a procesar imagenes por medio de una computadora digital. Una imagen digital está compuesta por número de elementos finitos, de los cuales cada uno tiene una posición particular y valor. Estos elementos son referidos como \textbf{picture elements, image elements, pels} y \textbf{pixels}. Pixel es el término más ampliamente usado para denotar los elementos de una imagen digital.
+		\\
+		
         El análisis de imágenes comprende un conjunto de operaciones sobre una o varias imágenes con el propósito de obtener una imagen con mayor realce o para extraer características útiles, es un tipo de dispensación de señales en el que la entrada es una imagen y la salida puede ser otra imagen o características asociadas a la imagen, algunos de los pasos generales se describen a continuación:
         
         \subsection{Preprocesamiento}
@@ -15,7 +21,24 @@ Con el desarrollo del sistema producto del presente trabajo terminal se involucr
             El realce no incrementa o decrementa el contenido de la información inherente de los datos pero sí incrementa el rango dinámico de las características elegidas de tal modo que puedan ser detectadas fácilmente.
             \\\\%\bigskip
             Proveé \'mejor\' entrada para otras técnicas avanzadas de procesamiento automatizadas de imágenes.
-                        
+			\\\\%\bigskip
+			Los enfoques de realce de imagen se dividen en categorías amplias: métodos de dominio espacial y métodos de dominio de frecuencia. El término \textit{dominio espacial} se refiere al plano mismo de la imagen y las aproximaciones en esta categoría son basadas en manipulación directa en una imagen. Técnicas de procesamiento de  \textit{dominio de frecuencia} están basadas en modificar la transformada de Fourier de una imagen.
+			
+			El término \textit{dominio espacial} se refiere al agregado de pixeles que componen una imagen. Los métodos de dominio espacial son procesos que operan directamente en estos pixeles. Los procesos de dominio espacial serán denotados por la expresión
+			\begin{equation}
+				g(x,y) = T[f(x,y)]
+			\end{equation}
+			donde $f(x,y)$ es la imagen de entrada, $g(x,y)$ es la imagen procesada y $T$ es un operador sobre $f$, definido sobre alguna vecindad de $(x,y)$. Además, $T$ puede operar sobre un conjunto de imágenes de entrada, como llevar a cabo la suma \texttt{pixel-by-pixel} de $K$ imágenes para reducción de ruido.
+			\\\\%bigskip
+			La principal aproximación para definir una vecindad de un punto $(x,y)$ es usar una área de una sub-imagen cuadrada o rectangular centrada en $(x,y)$, como se muestra en %ref
+			
+			El centro de la subimagen es movido de pixel a pixel iniciando por ejemplo en la esquina superior izquierda. El operador $T$ es aplicado en cada posición $(x,y)$ para producir la salida $g$ en esa posición. El proceso utiliza solo los pixeles en el área de la imagen expandida por la vecindad. A pesar de que otras vecindades le dan forma, como aproximaciones a un círculo son usadas en ocasiones, arreglos cuadrados y rectangulares son por mucho los más predominantes por la facilidad de implementación.
+			\\\\%bigskip
+			La forma mas simple de $T$ es cuando la vecindad es de tamaño $1x1$ (un solo pixel). En este caso, $g$ depende solo del valor de $f$ en $(x,y)$ y $T$ se convierte en una \textit{función de transformación a nivel de grises} (también llamada \textit{intensity o mapeo}) de la forma
+			\begin{equation}
+				s = T(r)
+			\end{equation}
+			donde por simplicidad de notación, $r$ y $s$ son variables denotando respectivamente el nivel de gris de $f(x,y)$ y $g(x,y)$ en cualquier punto $(x,y)$. Por ejemplo, si $T(r)$ tiene la forma mostrada en %refIm
         \subsection{Segmentación de la imagen}
             El término segmentación utilizada en el contexto de análisis de imágenes se refiere a la partición de una imagen en un conjunto de regiones que la cubren. El objetivo en muchas de las tareas es que para las regiones se representen áreas significativas de la imagen, como áreas urbanas, fronteras o bosques de una imagen satelital. En otras tareas de análisis, las regiones pueden ser conjuntos de bordes de pixeles agrupados en estructuras como segmentos de líneas y segmentos de arcos circulares en imágenes de objetos industriales en 3D. Las regiones pueden también estar definidas como grupos de pixeles teniendo ambos un borde y una forma particular como un circulo o una elipse or polígono. Cuando las regiones de interés no cubren la imagen completa, aún se requiere el proceso de segmentación en regiones de y de fondo para ignorarse. 
             \cite{imgAnalySeg}
