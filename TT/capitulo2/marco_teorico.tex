@@ -36,9 +36,37 @@ Con el desarrollo del sistema producto del presente trabajo terminal se involucr
 			\\\\%bigskip
 			La forma mas simple de $T$ es cuando la vecindad es de tamaño $1x1$ (un solo pixel). En este caso, $g$ depende solo del valor de $f$ en $(x,y)$ y $T$ se convierte en una \textit{función de transformación a nivel de grises} (también llamada \textit{intensity o mapeo}) de la forma
 			\begin{equation}
+			\label{eq:str_eq}
 				s = T(r)
 			\end{equation}
-			donde por simplicidad de notación, $r$ y $s$ son variables denotando respectivamente el nivel de gris de $f(x,y)$ y $g(x,y)$ en cualquier punto $(x,y)$. Por ejemplo, si $T(r)$ tiene la forma mostrada en %refIm
+			donde por simplicidad de notación, $r$ y $s$ son variables denotando respectivamente el nivel de gris de $f(x,y)$ y $g(x,y)$ en cualquier punto $(x,y)$. Por ejemplo, si $T(r)$ tiene la forma mostrada en \ref{fig:contrast__enhanc}(a), el efecto de esta transformación sería producir una imagen de mas alto contraste que la original al oscurecer los niveles debajo de $m$ y darle brillo a los niveles arriba de $m$ en la imagen original. En esta técnica conocida como contrast stretching, los valores de $r$ por debajo de $m$ son comprimidos por la función de transformación en un rango estrecho de $s$ hacia el negro. El efecto opuesto da lugar para valores de $r$ por encima de $m$. En el caso limitante mostrado en \ref{fig:contrast__enhanc}(b), $T(r)$ produce una imagen two-level (binaria). Un mapeo de esta forma es llamado una función de \textit{thresholding}.
+			
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.7\textwidth]{capitulo2/images/glev_trans.png}
+				\caption{Transformación de nivel de grises para realce de contraste.}
+				\label{fig:contrast__enhanc}
+			\end{figure}
+		\subsubsection{Transformaciones a nivel de grises básicas}
+		Las transformaciones a nivel de grises son las más básicas en el proceso de realce de imágenes. Los valores de los pixeles antes y después de ser procesados se denotan por $r$ y $s$ respectivamente. Como se mencionó ateriormente, estos valores son relacionados por \ref{eq:str_eq}, como se trabaja con cantidades digitales, los valores de las funciones de transformación típicamente son almacenadas en un arreglo unidimensional y los mapeos de $r$ y $s$ son implementados via por búsquedas de tabla (lookup tables). Para un entorno de 8 bits, una tabla lookup que contiene los valores de $T$ tendrá 256 entradas.
+		\\\\
+		Como introducción a las transformaciones a nivel de grises, considera la figura \ref{fig:inp_gray_lev} la cual muestra tres tipos básicos de funciones usadas frecuentemente para realce de imágenes: lineal (transformaciones negative e identity), logarítmicas (transformaciones log e inverse-log) y power-law (transformaciones de potencia $n$th y raíz $n$th). La función identidad es el caso trivial en el cual las intensidades de salida son idénticas a la intensidades de entrada.
+		
+		\subsubsection{Negativos de Imagen}
+		El negativo de una imagen con niveles de gris en el rango $[0, L-1]$ es obtenido al usar la transformación negativa mostrada en \ref{fig:inp_gray_lev}, la cual es dado por la expresión
+		\begin{equation}
+			s = L - 1 - r 
+		\end{equation}
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.7\textwidth]{capitulo2/images/input_gray_level.png}
+			\caption{Algunas transformaciones básicas a nivel de grises usadas para realce de imagen.}
+			\label{fig:inp_gray_lev}
+		\end{figure}
+	
+		
+		
         \subsection{Segmentación de la imagen}
             El término segmentación utilizada en el contexto de análisis de imágenes se refiere a la partición de una imagen en un conjunto de regiones que la cubren. El objetivo en muchas de las tareas es que para las regiones se representen áreas significativas de la imagen, como áreas urbanas, fronteras o bosques de una imagen satelital. En otras tareas de análisis, las regiones pueden ser conjuntos de bordes de pixeles agrupados en estructuras como segmentos de líneas y segmentos de arcos circulares en imágenes de objetos industriales en 3D. Las regiones pueden también estar definidas como grupos de pixeles teniendo ambos un borde y una forma particular como un circulo o una elipse or polígono. Cuando las regiones de interés no cubren la imagen completa, aún se requiere el proceso de segmentación en regiones de y de fondo para ignorarse. 
             \cite{imgAnalySeg}
