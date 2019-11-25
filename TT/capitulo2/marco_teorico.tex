@@ -64,7 +64,23 @@ Con el desarrollo del sistema producto del presente trabajo terminal se involucr
 			\caption{Algunas transformaciones básicas a nivel de grises usadas para realce de imagen.}
 			\label{fig:inp_gray_lev}
 		\end{figure}
-	
+	      Invertir los niveles de intensidad de una imagen en esta formar produce el equivalente del negativo de fotografía. Este tipo de procesamiento es particularmente ajustado para el realce de detalles de blanco y negro embebidos en regiones oscuras de una imagen, especialmente cuando las áreas negras dominan en tamaño. 
+		\subsubsection{Transformaciones Log}
+		
+		La forma general de la transformación log que se muestra en la figura \ref{fig:inp_gray_lev} es
+		\begin{equation}
+			s = clog(1 + r)
+		\end{equation}
+		donde $c$ es una constante y se asume que $r\geq0$. La forma de la curva log en \ref{fig:inp_gray_lev} muestra que esta transformación mapea un rango estrecho de valores con bajos niveles de gris en la imagen de entrada a un rango más amplio de niveles  de salida. Lo opuesto es verdadero de valores más altos de niveles de entrada. Este tipo de transformaciones se usa para expandir los valores de pixeles oscuros en una imagen mientras se comprimen los valores de nivel más altos. Lo opuesto es verdadero de la transformación inversa de log.
+		
+		Cualquier curva que tiene la forma general de funciones log mostradas en \ref{fig:inp_gray_lev} completaría esta expansión/compresión de niveles de gris de una imagen. Las transformaciones log tienen la importante característica de que comprime el rango dinámico de imágenes con grandes variaciones en valores de pixeles. Una clásica ilustración de una aplicación en la cual los valores de pixel tienen un gran rango dinámico es el espectro de Fourier, no es inusual encontrar valores de espectro entre $0$ y $10^6$ o más grandes.
+		
+		\subsubsection{Transformaciones Power-Law}
+		Las transformaciones power-law tienen la forma básica
+		\begin{equation}\label{eq:power_trans}
+			s = cr^\gamma
+		\end{equation}
+		donde $c$ y $\gamma$ son constantes positivas. En ocasiones \ref{eq:power_trans} se escribe como $c(r+\epsilon)^\gamma$	para considerar una compensación (esto es, una salida medible cuando la entrada es cero). Sin embargo, las compensaciones típicamente son un problema de calibración y como resultado se ignoran normalmente en la ecuación \ref{eq:power_trans}. Las gráficas de $r$ vs $s$ para distintos valores de $\gamma$ se muestran en
 		
 		
         \subsection{Segmentación de la imagen}
@@ -77,6 +93,9 @@ Con el desarrollo del sistema producto del presente trabajo terminal se involucr
                 \caption{Imagen con bloques (Izquierda) y conjunto de segmentos de linea extraídos (Derecha).}
                 \label{fig:segmentacion}
             \end{figure}
+  
+        
+        
         %\subsection{Extracción de características}
             
             %http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.375.6848&rep=rep1&type=pdf
