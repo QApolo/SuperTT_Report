@@ -1,16 +1,49 @@
-\backcite {cleanGuide}{{\es@scroman {iii}}{(document)}{Doc-Start}}
-\backcite {cleanWay}{{\es@scroman {iii}}{(document)}{Doc-Start}}
-\backcite {cleanWay}{{\es@scroman {iii}}{(document)}{Doc-Start}}
-\backcite {cleanWayReload}{{\es@scroman {iii}}{(document)}{Doc-Start}}
-\backcite {mathphix}{{3}{1.2}{section.1.2}}
-\backcite {nebo}{{3}{1.2}{section.1.2}}
-\backcite {AlvaroPR16}{{3}{1.2}{section.1.2}}
-\backcite {idmath}{{3}{1.2}{section.1.2}}
-\backcite {iterativeDevelopment}{{7}{1.6}{section.1.6}}
-\backcite {sommerville}{{7}{1.6}{section.1.6}}
-\backcite {cleanGuide}{{9}{2.1}{figure.caption.5}}
-\backcite {cleanWay}{{11}{2.2}{figure.caption.7}}
-\backcite {cleanWay}{{16}{2.3}{figure.caption.9}}
-\backcite {cleanWayReload}{{22}{2.4}{figure.caption.10}}
-\backcite {cleanWayReload}{{22}{2.1.1.3}{figure.caption.10}}
-\backcite {chino}{{24}{2.3}{section.2.3}}
+\backcite {cleanCodeBlog}{{\es@scroman {iv}}{(document)}{Doc-Start}}
+\backcite {cleanGuide}{{\es@scroman {iv}}{(document)}{Doc-Start}}
+\backcite {cleanWay}{{\es@scroman {iv}}{(document)}{Doc-Start}}
+\backcite {cleanWay}{{\es@scroman {iv}}{(document)}{Doc-Start}}
+\backcite {cleanWayReload}{{\es@scroman {iv}}{(document)}{Doc-Start}}
+\backcite {imgAnalySeg}{{2}{1.1.1}{subsection.1.1.1}}
+\backcite {imgAnalySeg}{{5}{1.1.3}{subsection.1.1.3}}
+\backcite {deeplearningbook}{{7}{1.2.1}{subsection.1.2.1}}
+\backcite {batch-normalization}{{8}{1.2.2}{subsection.1.2.2}}
+\backcite {deeplearningbook}{{9}{1.2.3}{subsection.1.2.3}}
+\backcite {bahdanau2014neural}{{14}{1.3.4}{subsection.1.3.4}}
+\backcite {attentionisallyouneed}{{14}{1.3.5}{subsection.1.3.5}}
+\backcite {automata}{{16}{1.4.1}{equation.1.4.18}}
+\backcite {gramaticasAnderson}{{16}{1.4.1}{equation.1.4.18}}
+\backcite {spanningtree}{{17}{1.4.2}{subsection.1.4.2}}
+\backcite {imagetolatex}{{17}{1.4.3}{subsection.1.4.3}}
+\backcite {imagetolatex}{{17}{1.4.3}{subsection.1.4.3}}
+\backcite {imagemarkup}{{17}{1.4.3}{subsection.1.4.3}}
+\backcite {chino}{{17}{1.4.3}{subsection.1.4.3}}
+\backcite {appweb}{{17}{1.5}{section.1.5}}
+\backcite {mtv}{{19}{1.5.1.1}{subsubsection.1.5.1.1}}
+\backcite {apiArticle}{{19}{1.5.2.1}{subsubsection.1.5.2.1}}
+\backcite {restArticle}{{20}{1.5.2.2}{subsubsection.1.5.2.2}}
+\backcite {authent}{{20}{1.5.2.3}{subsubsection.1.5.2.3}}
+\backcite {cleanCodeBlog}{{21}{1.15}{figure.caption.18}}
+\backcite {cleanCodeBlog}{{21}{1.6.1}{figure.caption.18}}
+\backcite {solidCode}{{22}{1.6.3}{subsection.1.6.3}}
+\backcite {solidEjemplos}{{23}{1.6.3}{paragraph*.19}}
+\backcite {solidEjemplos}{{23}{1.6.3}{paragraph*.20}}
+\backcite {solidEjemplos}{{23}{1.6.3}{paragraph*.21}}
+\backcite {solidEjemplos}{{23}{1.6.3}{paragraph*.22}}
+\backcite {solidEjemplos}{{23}{1.6.3}{paragraph*.23}}
+\backcite {mathphix}{{23}{1.7}{section.1.7}}
+\backcite {nebo}{{23}{1.7}{section.1.7}}
+\backcite {AlvaroPR16}{{23}{1.7}{section.1.7}}
+\backcite {idmath}{{23}{1.7}{section.1.7}}
+\backcite {cleanGuide}{{26}{2.1}{figure.caption.24}}
+\backcite {cleanWay}{{28}{2.2}{figure.caption.26}}
+\backcite {cleanWay}{{33}{2.3}{figure.caption.28}}
+\backcite {cleanWayReload}{{39}{2.4}{figure.caption.29}}
+\backcite {cleanWayReload}{{39}{2.1.1.3}{figure.caption.29}}
+\backcite {chino}{{41}{2.3}{section.2.3}}
+\backcite {superprecision}{{48}{2.4}{section.2.4}}
+\backcite {harvard}{{50}{2.4.1.1}{subsubsection.2.4.1.1}}
+\backcite {harvard}{{50}{2.4.1.1}{table.caption.31}}
+\backcite {attentionisallyouneed}{{50}{2.4.1.1}{table.caption.31}}
+\backcite {positionalencodings}{{50}{2.4.1.1}{table.caption.31}}
+\backcite {bahdanau2014neural}{{52}{2.4.1.2}{equation.2.4.11}}
+\backcite {harvard}{{52}{2.4.1.2}{equation.2.4.14}}

@@ -33,21 +33,13 @@ A pesar de lo práctico que puede ser \LaTeX{}, si el documento contiene muchas 
  %siento que faltan
 \newpage
 \section{Planteamiento del problema}
-<<<<<<< HEAD
 
 En la actualidad no existe un sistema que permita reconocer expresiones matemáticas tomando como entrada una fotografía para su posterior traducción a \LaTeX, si bien en los últimos años la investigación ha permitido que haya avances en cuanto al reconocimiento y traducción de expresiones matemáticas, al tener un enfoque de investigación se quedan como modelos fuera de lo práctico y los pocos existentes como se muestra en el estado del arte (Tabla \ref{tab:state_of_art}) trabajan con entradas ideales como son expresiones escritas desde dispositivos tales como tabletas digitalizadoras o plumas electrónicas sin considerar entradas como pueden ser fotografías tomadas por un smartphone en las que la resolución varía de dispositivo a dispositivo eliminando un tamaño fijo de la entrada y otros elementos como el ruido que puede incorporarse al momento de la toma de la fotografía que afectan el reconocimiento de las expresiones matemáticas. Además, no cuentan con un control sobre dichas traducciones que se realizan o sobre los usuarios.
-=======
-En la actualidad no existe un sistema que permita reconocer expresiones matemáticas tomando como entrada una fotografía para su posterior traducción a \LaTeX{}, si bien en los últimos años la investigación ha permitido que haya avances en cuanto al reconocimiento y traducción de expresiones matemáticas, al tener un enfoque de investigación se quedan como modelos fuera de lo práctico y los pocos existentes como se muestra en el estado del arte \ref{tab:state_of_art} trabajan con entradas ideales como son expresiones escritas desde dispositivos tales como tabletas digitalizadoras o plumas electrónicas sin considerar entradas como pueden ser fotografías tomadas por un smartphone en las que la resolución varía de dispositivo a dispositivo eliminando un tamaño fijo de la entrada y otros elementos como el ruido que puede incorporarse al momento de la toma de la fotografía que afectan el reconocimiento de las expresiones matemáticas. Además, no cuentan con un control sobre dichas traducciones que se realizan o sobre los usuarios.
->>>>>>> a3f3f5dcfa75140c7721cd7143ec24888d8e9b60
 \\\\
 
 %\textbf{JUSTIFICACIÓN}
 
-<<<<<<< HEAD
 El enfoque del presente trabajo terminal consiste en desarrollar un sistema conformado por una aplicación tanto móvil como web que en conjunto permitan tomar fotografías y extraer las expresiones matemáticas para su posterior traducción incluyendo la capacidad de gestionar las traducciones con la posibilidad de la clasificación de las mismas mediante usuarios y proyectos asociados a dichas traducciones.
-=======
-El enfoque del presente trabajo terminal consiste en desarrollar un sistema conformado por una aplicación tanto móvil como web que en conjunto permitan tomar fotografías y extraer las expresiones matemáticas para su posterior traducción a \LaTeX{} incluyendo la capacidad de gestionar las traducciones incluyendo la clasificación de las mismas mediante usuarios y proyectos asociados a dichas traducciones.
->>>>>>> a3f3f5dcfa75140c7721cd7143ec24888d8e9b60
 \\\\%\bigskip
 
 %\\\\%\bigskip
@@ -56,7 +48,6 @@ El enfoque del presente trabajo terminal consiste en desarrollar un sistema conf
 
 \newpage
 
-<<<<<<< HEAD
 \section{Estado del arte}
 
 %ESTADO DEL ARTE
@@ -88,21 +79,11 @@ Los cuales se describen en la tabla \ref{tab:state_of_art}: \\\\
 \section{Objetivos}
 \subsection{Objetivo general}
 Desarrollar un sistema que reconozca un conjunto delimitado de tipos de expresiones matemáticas en una imagen dada y las traduzca a un formato que un compilador de \LaTeX pueda procesar, el conjunto de entrenamiento se encuentra delimitado en el capítulo de análisis.
-=======
-
-\section{Objetivos}
-\subsection{Objetivo general}
-Desarrollar un sistema que reconozca un conjunto delimitado de tipos de expresiones matemáticas en una imagen dada y las traduzca a un formato que un compilador de \LaTeX{} pueda procesar.
->>>>>>> a3f3f5dcfa75140c7721cd7143ec24888d8e9b60
 \subsection{Objetivos específicos}
 \begin{enumerate}
 	\item Desarrollar una aplicación móvil que permita tomar fotografías y que pueda conectarse a una aplicación web para su posterior procesamiento.
 	\item Desarrollar un módulo de análisis de imágenes para el reconocimiento de las expresiones matemáticas.
-<<<<<<< HEAD
 	\item Desarrollar un módulo de traducción a \LaTeX.
-=======
-	\item Desarrollar un módulo de traducción a \LaTeX{}.
->>>>>>> a3f3f5dcfa75140c7721cd7143ec24888d8e9b60
 	\item Desarrollar la interfaz que conecte el módulo de análisis de imágenes alojado en el servidor con la aplicación móvil y web.
 \end{enumerate}
 
@@ -113,19 +94,12 @@ Podemos separar el sistema en dos bloques principales, el primero el lado del cl
 El sistema se compone de cinco módulos:
 \begin{enumerate}
     \item Módulo de análisis de imágenes. Este módulo se encargará de procesar las imágenes e identificar un conjunto delimitado de tipos de expresiones matemáticas.
-<<<<<<< HEAD
-    \item Módulo de traducción. Este módulo tomará como entrada lo obtenido en la etapa de análisis de imágenes y regresará el respectivo código de \LaTeX que represente las expresiones matemáticas reconocidas.
+    
+	\item Módulo de traducción. Este módulo tomará como entrada lo obtenido en la etapa de análisis de imágenes y regresará el respectivo código de \LaTeX que represente las expresiones matemáticas reconocidas.
     
     \item Módulo de gestión de usuarios. En este módulo se hará la gestión de la información de los usuarios de la aplicación, lo que implica tener un control de su información y de los archivos que generen al usar el sistema. Esta gestión de usuarios estará presente tanto en la aplicación móvil como en el servidor web.
 
     \item Aplicación móvil. Este módulo consiste en el desarrollo de la aplicación móvil que el usuario final llevará en su Smartphone y con la cual podrá tomar fotos que cumplan ciertos requisitos para así obtener el código en \LaTeX a través de la comunicación con la aplicación web.
-=======
-    \item Módulo de traducción. Este módulo tomará como entrada lo obtenido en la etapa de análisis de imágenes y regresará el respectivo código de \LaTeX{} que represente las expresiones matemáticas reconocidas.
-    
-    \item Módulo de gestión de usuarios. En este módulo se hará la gestión de la información de los usuarios de la aplicación, lo que implica tener un control de su información y de los archivos que generen al usar el sistema. Esta gestión de usuarios estará presente tanto en la aplicación móvil como en el servidor web.
-
-    \item Aplicación móvil. Este módulo consiste en el desarrollo de la aplicación móvil que el usuario final llevará en su Smartphone y con la cual podrá tomar fotos que cumplan ciertos requisitos para así obtener el código en \LaTeX{} a través de la comunicación con la aplicación web.
->>>>>>> a3f3f5dcfa75140c7721cd7143ec24888d8e9b60
 
     \item Servidor web. El servidor web hará uso de los módulos de análisis de imágenes, de traducción y de gestión de usuarios por lo que deberá de mantener una comunicación entre ellos y la aplicación móvil, así como con la base de datos. Además, es el punto que permite visualizar el resultado final de todo el procesamiento de imágenes a través de una interfaz web.
 \end{enumerate}

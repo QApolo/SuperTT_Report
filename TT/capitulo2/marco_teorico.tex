@@ -110,7 +110,7 @@ El aprendizaje profundo o \textit{deep learning} es una rama del aprendizaje aut
 
 El perceptrón multicapa (MLP) es el modelo más básico y aún así uno de los más útiles en el campo de las redes neuronales. Su principal objetivo es tratar de aproximar una función $f^{*}$. En el caso del \textit{aprendizaje supervisado}, la función $f^{*}$ toma la forma $y^{*} = f^{*}(x)$ de donde x es un parámetro de entrada que puede ser desde un simple número hasta un tensor y $y^{*}$ es la salida de la función. Entonces, una red neuronal que quiera aproximar $f^{*}$ definirá una función de mapeo de la forma $y = f(x,\theta)$ y aprenderá los parámetros $\theta$ (usualmente conocidos como $W$ y $b$) que dan como resultado la mejor aproximación de tal forma que $y \approx y^{*}$. \\
 
-Las redes neuronales profundas son llamadas redes porque pueden representarse mediante la composición de varias funciones de mapeo. Es decir, un MLP que quiera aproximar una función puede expresarse como $y^{n} = f^{n}(y^{n-1}, \theta^{n})$ con $y^{1} = f^{1}(x, \theta^{1})$ y $n$ siendo la profundidad de la red. 
+Las redes neuronales profundas son llamadas redes porque pueden representarse mediante la composición de varias funciones de mapeo. Es decir, un MLP que quiera aproximar una función puede expresarse como $y^{n} = f^{n}(y^{n-1}, \theta^{n})$ con $y^{1} = f^{1}(x, \theta^{1})$ y $n$ siendo la profundidad de la red.
 
 	\subsection{Gráfos computacionales}
 	Para describir con formalidad a las redes neuronales es preciso utilizar una notación que pueda ser expresada a través de gráfos. Según \cite{deeplearningbook} se puede indicar cada nodo del gráfo como una variable que puede ser un tensor para no perder generalidad. 
@@ -122,18 +122,55 @@ Las redes neuronales profundas son llamadas redes porque pueden representarse me
 	\begin{figure}[h]
 		\centering
 		\includegraphics[width=10cm]{capitulo2/images/grafo}
-		\caption{Ejemplo de un perceptrón de una sola capa representado mediante un gráfo computacional, siendo $x$ la entrada, $w^{1}$ la matriz de pesos, $b^{1}$ la matriz de bias, $u^{(1)}$ y $u^{(2)}$ nodos intermedios en el gráfo y $y^{1}$ la salida de la red.}
+		\caption{Ejemplo de un perceptrón de una sola capa representado mediante un gráfo computacional, siendo $x$ la entrada, $w^{1}$ la matriz de pesos, $b^{1}$ la matriz de bias, $u^{(1)}$ y $u^{(2)}$ nodos intermedios en el gráfo y $y^{1}$ la salida de la red. La ecuación modelada es $y ^ {1} = f(W^{1}x + b ^ {1})$.}
 		\label{fig:grafo-computacional}
 	\end{figure}
 
 	%\subsection{Algoritmos de aprendizaje}
+
+
+	\subsection{Batch Normalization}
+
+	Cada capa de una red neuronal tiene entradas con su correspondiente distribución la cual es afectada durante el entrenamiento por la aleatoriedad en la inicialización de parámetros y en la aleatoriedad de los datos de entrada. Los efectos de esta aleatoriedad en la distribución de las entradas de la red hacia las capas internas en el momento de entrenamiento es descrita como un cambio en la covarianza, el cual provoca inestabilidad en la red.
+	
+	La técnica de \textit{Batch Normalization} es utilizada para incrementar la estabilidad, la velocidad y el desempeño de una red neuronal. Esta técnica fue introducida en el 2005 por \cite{batch-normalization}.
+
+	En una red neuronal, la técnica de Batch Normalization consiste en una etapa de normalización de las medias y varianzas de las entradas de una capa de la red. Esta operación esta definida de la siguiente manera:
+
+	\begin{equation}
+		\mu_{B} = \frac{1}{m} \sum_{i=1}^{m} x_{i} 
+	\end{equation}
+
+	\begin{equation}
+		\sigma_{B}^{2} = \frac{1}{m} \sum_{i=1}^{m} (x_{i} - \mu_{B})^{2}
+	\end{equation}
+
+	done $B$ denota algún mini batch de tamaño $m$. Para una capa con una entrada $x \in \mathbb{R}^{n}$ entonces:
+
+	\begin{equation}
+		\hat{x}^{(k)}_{i} = \frac{x^{(k)}_{i} - \mu_{B}^{(k)}}{\sqrt{\sigma_{B}^{(k)^{2}} + \epsilon}}
+	\end{equation}
+
+	done $k \in [1, n]$, $i \in [1, m]$, $\mu_{B}^{(k)}$ y $\sigma_{B}^{(k)^{2}}$ son la media y varianza por cada dimensión respectivamente; $\epsilon$ es añadido como una constante arbitraria y pequeña para asegurar la estabilidad numérica del denominador.
+
+	Finalmente, la salida de la capa es:
+
+	\begin{equation}
+		y^{(k)}_{i} = \gamma^{(k)} \hat{x}^{(k)}_{i} + \beta^{(k)}
+	\end{equation}
     
+	de donde los parámetros $\gamma^{(k)}$ y $\beta^{(k)}$ serán aprendidos durante el entrenamiento.
+
     \subsection{Redes Neuronales Convolucionales}
     
     Las redes neuronales convolucionales también llamadas convolutivas (CNN), son una arquitectura especial de redes neuronales que permite el procesamiento de datos que tengan una estructura de grilla. Algunos ejemplos de esta estructura son: una serie de tiempo es una grilla 1D o una imágene, la cual puede ser vista como una grilla 2D de pixeles. Se puede decir, que una red convolutiva no es más que una red neuronal que utiliza la operación de convolución en lugar de una multiplicación tensorial normal \cite{deeplearningbook}. \\
     
-    La operación de convolución que se utiliza en matemáticas e ingeniería esta definida de la siguiente manera:
+    La operación de convolución esta definida de la siguiente manera:
     
+	\begin{equation}
+		y(t) = x(t) * w(t)
+	\end{equation}
+
     \begin{equation}
     	y(t) = \int_{-\infty}^{\infty} x(\tau)w(t-\tau)d\tau
     \end{equation}
@@ -151,6 +188,14 @@ Las redes neuronales profundas son llamadas redes porque pueden representarse me
     \begin{equation}
     	y(i,j) = \sum_{m}\sum_{n} x(i,j)w(i-m, j-n)
     \end{equation}
+
+	Si se toma el gráfo computacional del ejemplo de la Figura \ref{fig:grafo-computacional} el cual modela a un perceptrón de una sola capa y se cambia su operación de multiplicación matricial por la operación de convolución, tenemos una capa convolucional:
+
+	\begin{equation}
+		y ^ {1} = f(W ^ {1} * x + b ^ {1}) 
+	\end{equation}
+
+	La manera en la que se entrenan estas variantes de MLP es con el mismo algoritmo de optimización que un perceptrón.
     
     En la Figura \ref{fig:CNNFilter} se puede ver un ejemplo de cómo una imagen es procesada por la etapa de convolución en una CNN.
     
@@ -173,8 +218,15 @@ Las redes neuronales profundas son llamadas redes porque pueden representarse me
 	La operación de pooling permite que la red sea tolerante a traslaciones y rotaciones leves de la imagen. Por ejemplo, se puede aplicar la función \textit{max pooling} a cada uno de los valores de $f(W*h)$ para obtener una generalización de los datos más importantes observados por la etapa de detección. \\
 	
 	Una manera efectiva de reducir el tamaño de los datos que la red tiene que procesar a través de sus capas, es utilizar la operación pooling para remuestrear. Esto se logra definiendo una ventana a la que la que se le aplicará la operación. Esta técnica también permite que algunas CNN puedan procesar imágenes de longitud variable.
-    
-    \newpage
+
+	Existen diversas operaciones de pooling, las más comúnes son \textit{Max Pooling} y \textit{Average Pooling}. En la Figura \ref{fig:max-pooling} se puede apreciar una representación gráfica de la operación de Max Pooling sobre alguna matríz.
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.6\textwidth]{capitulo2/images/max_pooling}
+		\caption{Representación gráfica de la operación Max Pooling.}
+		\label{fig:max-pooling}
+	\end{figure}
     
    	
 \section{Redes Neuronales Recurrentes}
@@ -217,9 +269,51 @@ La manera que tiene una RNN para poder procesar una secuencia de longitud variab
    		\label{fig:lstm}
    	\end{figure}
    	
-   	
+	
+	\subsection{Modelos de Lenguaje Condicional}
 
-\newpage
+	Un modelo de lenguaje define la distribución de probabilidad sobre una serie de tokens en un lenguaje natural. Dependiendo de como el modelo es diseñado, un token puede representar una letra, una palabra o incluso un solo bit. Cuando se utilizan modelos de deep learning para resolver este problema, usualmente este modelo es llamado modelo de lenguaje neural.
+
+	Los modelos de lenguaje neurales tienen ventajas tales como:
+	\begin{itemize}
+		\item Resuelven el problema de dimensionalidad presentado por otros modelos.
+		\item Son capaces de reconocer la similitud entre dos palabras sin perder la generalidad de codificarlas de una forma distinta.
+		\item Alcanzan una buena comprensión estadística entre una palabra y su contexto.
+	\end{itemize}
+
+	En estos modelos, las palabras tienden a ser representadas por un identificador, el cual usualmente es un número, no obstante, una práctica muy común y que ha demostrado ser muy útil son los \textit{word embeddings}. Estos concisten en codificar las palabras no a través de un solo número, sino a través de un conjunto de números decimales.
+
+	Un modelo de lenguaje condicional, es entonce, un modelo de lenguaje que toma en cuenta las palabras que han sido generadas previamente. Es decir:
+
+	\begin{equation}
+		P(w_{1}, \dots, w_{m}) = \prod_{i = 1}^{m} P(w_{i}|w_{1}, \dots, w_{i-1})
+	\end{equation}
+
+	\subsection{Sistema de Atención}
+
+	El sistema de atención fue introducido por \cite{bahdanau2014neural} y es en escencia un promedio con pesos. El resultado de un sistema de atención es un vector de contexto $c_{t}$ el cual es obtenido al realizar el promedio entre las anotaciones $a_{t}$ y multiplicarlas por unos pesos $\alpha_{t}$, los cuales usualemente estan en el rango $[0,1]$. El modelo de atención es capaz de aprender en que parte del texto enfocarse en cada instante de tiempo $t$ por lo que ha supuesto un impresionante avance en los modelos de lenguaje natural.
+
+	\subsection{Positional Embeddings}
+
+	Debido a que en un modelo de lenguaje una palabra puede representar cosas diferentes dependiendo de la posición que ocupe en la secuencia, es en ocasiones necesario brindar a la red de más información sobre la ubicación de cada token. Los \textit{Positional Embeddings} fueron originalmente propuestos por \cite{attentionisallyouneed}. La técnica conciste en sumar un vector $pe$ a los \textit{words embeddings} de cada token. Los autores del artículo proponen al vector $pe$ de tal forma que:
+
+	\begin{equation}
+		pe_{t}^{(i)} = f(t)^{(i)} = \left\{
+										\begin{array}{ll}
+											sin(\omega_{k}t), & \mbox{si } i = 2k \\
+											cos(\omega_{k}t), & \mbox{si } i = 2k + 1
+										\end{array}
+									\right.
+	\end{equation}
+
+	con
+
+	\begin{equation}
+		\omega_{k} = \frac{1}{10000^{2k/d}}
+	\end{equation}
+
+	donde $d$ es la dimensión de los \textit{word embeddings}.
+
 \subsection{Aprendizaje profundo como servicio}
 El entrenamiento de redes neuronales profundas, conocidas como aprendizaje profundo es en la actualidad áltamente complejo computacionalmente. Requiere un sistema con la combinación correcta de software, drivers, memoria, red y recursos de almacenamiento, por factores como estos los proveedores de cloud computing como Amazon Web Services, Microsoft Azure o Google Cloud ofrecen actualmente servicios de Machine Learning proveyendo API's como pueden ser de entrenamiento de modelos o de visualización de datos y generación de estadísticas, permitiendo que desarrolladores y científicos de datos se enfoquen mas en tareas como el entrenamiento de modelos, análisis de datos, etc.
 \\\\
@@ -229,7 +323,7 @@ En la figura \ref{fig:DLAAS} se puede observar la arquitectura de un sistema div
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\textwidth]{capitulo2/images/DLAAS.png}
+	\includegraphics[width=0.5\textwidth]{capitulo2/images/DLAAS.png}
 	\caption{Ejemplo de sistema con módulo de Machine Learning}
 	\label{fig:DLAAS}
 \end{figure}
