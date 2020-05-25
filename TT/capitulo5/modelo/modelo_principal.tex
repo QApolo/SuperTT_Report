@@ -1,3 +1,4 @@
+\newpage
 \section{Reconocimiento de expresiones matemáticas}
 
 El problema de reconocer expresiones matemáticas en imágenes conciste en encontrar una función capaz de convertir una imagen preprocesada en una secuencia de caracteres que describa en su totalidad la expresión incluida en la imagen. La imagen de entrada $x$ es preprocesada para obtener una imagen en escala de grises de tal forma que $x \in \mathbb{R} ^ {H x W x 1}$, siendo $H$ y $W$ la altura y el ancho de la imagen respectivamente. La secuencia de caracteres objetivo $y$ es de la forma $y_{1}, y_{2}, \dots , y_{k}$ siendo $k$ la longitud de la secuencia y $y_{i}$ es un caracter válido de \LaTeX{} para el presente Trabajo Terminal.
@@ -130,7 +131,7 @@ donde $W_{h}$ y $W_{v}$ son parámetros que serán aprendidos. Con esto el model
 
 \subsubsection{Implementación}
 
-El lenguaje de programación utilizado para desarrollar la red fue Python 3 junto con el framework para deep learning TensorFlow 2. Las unidades usadas en el estado $h_{t}$ de la LSTM son $512$ y $80$ para la dimensión de \textit{embedding} para los tokens $80$. El algoritmo de optimización utilizado fue Adam con la Crosentropia Categórica como .
+El lenguaje de programación utilizado para desarrollar la red fue Python 3 junto con el framework para deep learning TensorFlow 2. Las unidades usadas en el estado $h_{t}$ de la LSTM son $512$ y $80$ para la dimensión de \textit{embedding} para los tokens $80$. El algoritmo de optimización utilizado fue Adam con la Crosentropia Categórica como función de perdida.
 
 El código que implementa la red es el siguiente:
 
