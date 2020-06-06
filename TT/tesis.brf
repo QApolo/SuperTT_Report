@@ -76,3 +76,6 @@
 \backcite {positionalencodings}{{149}{5.5.1.1}{table.caption.125}}
 \backcite {bahdanau2014neural}{{151}{5.5.1.2}{equation.5.5.13}}
 \backcite {harvard}{{151}{5.5.1.2}{equation.5.5.16}}
+\backcite {chino}{{151}{5.5.1.2}{equation.5.5.18}}
+\backcite {gru}{{159}{5.5.1.6}{subsubsection.5.5.1.6}}
+\backcite {deeplearningbook}{{161}{5.5.1.6}{figure.caption.126}}

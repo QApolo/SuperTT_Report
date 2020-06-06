@@ -121,6 +121,7 @@ $\phi$ y $u$ son funciones que pueden ser escogidas libremente, en este caso se 
 
 \begin{equation}
     e_{it} = \beta ^ {T} tanh(W_{h}h_{i-1} + W_{v}a)
+    \label{eq:e-attention}
 \end{equation}
 
 \begin{equation}
@@ -129,9 +130,28 @@ $\phi$ y $u$ son funciones que pueden ser escogidas libremente, en este caso se 
 
 donde $W_{h}$ y $W_{v}$ son parámetros que serán aprendidos. Con esto el modelo de atención puede saber que parte de las anotaciones es importante en el instante $t$. Una consecuencia de esto, es que la segmentación de símbolos es delegada también a este sistema.
 
+Finalmente, se decidio modificar la atención para implementar la técnica del \textit{Coverage Vector} como en \cite{chino}. El coverage vector $F$ se incorporó para dar más información al sistema de atención sobre el historial de la misma atentción, de este modo, es posible mejorar la cobertura global del sistema lo cual ayuda a reducir los errores de símbolos no parseados. El vector de coverage se calcula como sigue:
+
+\begin{equation}
+    \eta_{t} = \sum_{l}^{t-1} \alpha_{l}
+\end{equation}
+
+\begin{equation}
+    F = Q * \eta_{t}
+    \label{eq:coverage-vector}
+\end{equation}
+
+Donde $\eta_{t}$ es la suma de todos los pesos de las attenciones pasadas y $Q$ es una matriz de pesos que serán aprendidos. De este modo, la Ecuación \ref{eq:e-attention} se modifica por:
+
+\begin{equation}
+    e_{it} = \beta ^ {T} tanh(W_{h}h_{i-1} + W_{v}a + W_{f}F)
+\end{equation}
+
+de donde $W_{f}$ es una matriz de pesos que serán aprendidos.
+
 \subsubsection{Implementación}
 
-El lenguaje de programación utilizado para desarrollar la red fue Python 3 junto con el framework para deep learning TensorFlow 2. Las unidades usadas en el estado $h_{t}$ de la LSTM son $512$ y $80$ para la dimensión de \textit{embedding} para los tokens $80$. El algoritmo de optimización utilizado fue Adam con la Crosentropia Categórica como función de perdida.
+El lenguaje de programación utilizado para desarrollar la red fue Python 3 junto con el framework para deep learning TensorFlow 2. Las unidades usadas en el estado $h_{t}$ de la LSTM son $512$ y $80$ para la dimensión de \textit{embedding} para los tokens $80$. El algoritmo de optimización utilizado fue Adam con la Crosentropia Categórica como función de perdida. 
 
 El código que implementa la red es el siguiente:
 
@@ -139,9 +159,69 @@ El código que implementa la red es el siguiente:
 
 \lstinputlisting[language=Python]{capitulo5/modelo/src/decoder.py}
 
+\subsubsection{Entrenamiento}
+
+La red fue entranada en el entorno Colaboratory de Google utilizando una GPU, el proceso de entrenamiento es de alrededor de 30 horas.
+
+Gracias al uso del framework Tensorflow 2, el entrenamiento de la red se puede simplificar mucho. El cálculo de los gradientes de la función de perdida se puede automatizar así como la actualización de los pesos, no obstante, dada la arquitectura de la red, no es posible utilizar los métodos \textit{compile} y \textit{fit} implementados en Keras para Tensorflow 2. Por lo tanto, el ciclo de entrenamiento tuvo que ser diseñado acorde con las necesidades de la arquitectura propuesta.
+
+El código del ciclo de entrenamiento es el siguiente:
+
+\lstinputlisting[language=Python]{capitulo5/modelo/src/training.py}
+
 \subsubsection{Resultados}
 
 \subsubsection{Experimentos Previos}
+
+Antes de encontrar la configuración adecuada para la red neuronal, se llevaron a cabo varios experimentos. A continuación, se presentan los más relevantes.
+
+\vspace{1em}
+\textbf{Variante con GRU}
+\vspace{1em}
+
+Se utilizó una GRU como en \cite{gru} en lugar de una LSTM en el \textit{Decoder}. No existe un consenso respecto a cual tipo de RNN basadas en compuertas es mejor, por lo que lo más recomendable es experimentar con ambas. En este caso particular, la GRU no logró abstraer las características del problema. El código fuente del \textit{Decoder} con GRU se muestra a continuación:
+
+\lstinputlisting[language=Python]{capitulo5/modelo/src/gru.py}
+
+Una muestra del resultado del entrenamiento se muestra en la Figura \ref{fig:gru-bad}, en (a) vemos que la función de perdida se estanca, demostrando que no es capaz de modelar el problema en su totalidad mientras que en (b), la atención no mostro aprendizaje alguno.
+
+\begin{figure}[H]
+    \centering
+    \subfigure[Función de perdida más característica del modelo.]{\includegraphics[width=0.5\textwidth]{capitulo5/modelo/img/gru-loss}}
+    \subfigure[Atención del sistema.]{\includegraphics[width=0.5\textwidth]{capitulo5/modelo/img/gru-attention}}
+    \caption{(a) Función de perdida del sistema, el modelo se entreno en varias ocasiones, siempre obteniendo una gráfica parecida. (b) Se muestra la atención obtenida por este modelo, se observa un aprendizaje nulo.}
+    \label{fig:gru-bad}
+\end{figure}
+
+
+\vspace{1em}
+\textbf{Variante con Dropout}
+\vspace{1em}
+
+Acorde con \cite{deeplearningbook}, el \textit{dropout} es una técnica utilizada para regularizar redes neuronales, es decir, para que la probabilidad de que un modelo se sobreentrene disminuya. Conciste en aplicar un muestreo a las salidas de alguna capa en un modelo con la finalidad de desactivar un porcentaje de neuronas. Suponiendo a $\mu$ como el vector de muestreo y a $p(\mu)$ como la distribución de probabilidad que modela si la neurona se desactiva o no, podemos aplicar dropout a una capa de alguna red neuronal que modele una distribución $p(y|x)$ de la siguiente manera:
+
+\begin{equation}
+    P' = p(\mu)p(y|x,\mu)
+\end{equation}
+
+De este modo, algunas neuronas son "desconectadas" haciendo que cada neurona aprenda sobre la información proveida en el entrenamiento de manera independiente. Esto produce también, un efecto de regularización.
+
+La técnica del dropout es recomendada en la mayoría de los modelos de deep learning, sin embargo en el caso del presente Trabajo Terminal no tuvo ningún efecto. Esto es debido posiblemente a que el modelo no es suficientemente profundo para mostrar los efectos del dropout. En la Figura \ref{fig:dropout-bad} se pueden ver los resultados de generales de este modelo.
+
+\lstinputlisting[language=Python]{capitulo5/modelo/src/dropout.py}
+
+\begin{figure}[H]
+    \centering
+    \subfigure[Función de perdida más característica del modelo.]{\includegraphics[width=0.5\textwidth]{capitulo5/modelo/img/dropout-loss}}
+    \subfigure[Atención del sistema.]{\includegraphics[width=0.5\textwidth]{capitulo5/modelo/img/dropout-attention}}
+    \caption{(a) Función de perdida del sistema, el modelo se entreno en varias ocasiones, siempre obteniendo una gráfica parecida. (b) Se muestra la atención obtenida por este modelo, se observa un que el modelo aprendió que a indentificar donde estaba la ecuación, no obstante no aprendio a segmentar los símbolos.}
+    \label{fig:dropout-bad}
+\end{figure}
+ 
+
+
+
+
 
 
 

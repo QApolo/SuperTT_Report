@@ -19,15 +19,21 @@ class BahdanauAttention(tf.keras.layers.Layer):
     self.W2 = tf.keras.layers.Dense(units)
     self.V = tf.keras.layers.Dense(1)
 
-  def call(self, features, hidden):
+    self.Q = tf.keras.layers.Conv1D(filters=16, kernel_size=64, padding="same", use_bias=False)
+    self.Uf = tf.keras.layers.Dense(units, use_bias=False)
+
+
+  def call(self, features, hidden, B):
     # features(Encoder output) shape == (batch_size, L, 512)
 
     # hidden shape == (batch_size, hidden_size)
     # hidden_with_time_axis shape == (batch_size, 1, hidden_size)
     hidden_with_time_axis = tf.expand_dims(hidden, 1)
 
+    F = self.Q(B)
+
     # score shape == (batch_size, L, hidden_size)
-    score = tf.nn.tanh(self.W1(features) + self.W2(hidden_with_time_axis))
+    score = tf.nn.tanh(self.W1(features) + self.W2(hidden_with_time_axis) + self.Uf(F))
 
     # attention_weights shape == (batch_size, L, 1)
     # you get 1 at the last axis because you are applying score to self.V
@@ -38,7 +44,7 @@ class BahdanauAttention(tf.keras.layers.Layer):
     context_vector = tf.reduce_sum(context_vector, axis=1)
 
     return context_vector, attention_weights
-
+    
 
 class Decoder(tf.keras.Model):
 
