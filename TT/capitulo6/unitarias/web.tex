@@ -15,7 +15,7 @@ Se logro cubrir el 100\% del código y se excluyeron algunas partes debido a que
 
 Para realizar pruebas sobre estos bloques de código encontrados, se utilizo el módulo de pruebas unitarias con el que cuenta Django y se realizaron pruebas sobre los modelos, vistas y las clases de utilitaria que se desarrollaron.
 
-Como se puede apreciar en la figura \ref{fig:pruebasDjango}, se realizaron 777 pruebas sobre modelos, vistas y utilitaria, al final siendo exitosas cada una de ellas.
+Como se puede apreciar en la figura \ref{fig:pruebasDjango}, se realizaron 777 pruebas sobre modelos, vistas y utilería, al final siendo exitosas cada una de ellas.
 
 \begin{figure}[H]
 	\centering
@@ -38,8 +38,22 @@ Para las siguientes tres pruebas como se espera que se arroje una excepción se 
 
 \subsubsection{Pruebas sobre los vistas}
 
+Las vistas, al ser el componente encargado de presentar el contenido al usuario se tiene que simular la petición HTTP que se hará y se tiene que verificar si la respuesta que se genera es la adecuada. Esto se puede apreciar en el siguiente código, en el cual se prueba el correcto funcionamiento de la vista encargada de enviar el correo electrónico.
+
+Para realizar esto, lo primero es crear un usuario de prueba en el método setUp  de la clase, este método se ejecuta por cada test dentro de la clase y se elimina lo creado en este método al finalizar cada prueba.
+
+Después, utilizando el método reverse se obtiene la URL asociado a la vista a probar, se realiza la petición correspondiente y se evalúa el resultado obtenido.
+
 \lstinputlisting[language=Python]{capitulo6/unitarias/codigo/test_views.py}
 
-\subsubsection{Pruebas sobre las clases de utilitaria}
+En la primera prueba, se espera que se arroje un error debido a que al ser una petición de tipo post se espera recibir información la cual no se envía, por lo que el código de respuesta será 302 indicando que se hará una redirección a otra pagina.
+
+En la segunda prueba, ya que si se envía información correcta lo que se espera es que la respuesta que se obtiene contenga la variable de sesión con el nombre: resp.
+
+\subsubsection{Pruebas sobre las clases de utilería}
+
+Un ejemplo del como se probaron las clases de utilería se muestra en el siguiente código, en el cual se prueba la clase Validator que se uso para asegurar que los datos ingresados en los formularios fueran correctos.
+
+Para este caso se crea una instancia de la clase Validator en el método setUp de la clase junto a un usuario de prueba. En cada una de las pruebas que se tiene se verifica el funcionamiento de ca método de la clase Validator mediante el uso de los métodos assertFalse y assertTrue que se encargan de validar que el valor de retorno de cada método sometido a prueba sea el esperado.
 
 \lstinputlisting[language=Python]{capitulo6/unitarias/codigo/test_util.py}
