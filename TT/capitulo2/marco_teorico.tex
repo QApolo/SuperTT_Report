@@ -229,7 +229,7 @@ Las redes neuronales profundas son llamadas redes porque pueden representarse me
 	\end{figure}
     
    	
-\section{Redes Neuronales Recurrentes}
+\subsection{Redes Neuronales Recurrentes}
 
 Las redes neuronales recurrentes (RNNs) son una familia de redes neuronales especializadas en procesar secuencias de datos. Es decir, pueden procesar entradas de la forma: $x^{(1)}, x^{(2)}, \dots, x^{(t)}$. Esta particular arquietectura, permite modelar secuencias de datos de longitud variable que serían imprácticas para cualquier otra arquitectura. \\
 
@@ -248,29 +248,52 @@ En la Figura \ref{fig:rnn} se puede apreciar un ejemplo de una RNN que cuya ecua
 
 La manera que tiene una RNN para poder procesar una secuencia de longitud variable y brindar información respecto de ella, es a través de los estados $s(t)$ ya que estos si tienen una longitud fija. De este modo se puede decir que funcionan muy parecido a una CNN, ya que sumarizan las características de la secuencia hasta el momento $t$. Para realizar alguna predicción final, normalmente se utiliza algúna otra capa que efectue una función $f$, justo como lo hacen las CNNs. \\
   
-    \subsection{Arquitectura Encoder-Decoder}
+    \subsubsection{Arquitectura Encoder-Decoder}
     Esta arquitectura de RNN se ha vuelto muy popular pues permite a una red procesar secuencias de longitud variable y obtener como resultado secuencias de longitud variable. Este tipo de problemas son conocidos como problemas sequence-to-sequence. Algunos ejemplos de problemas de este estilo son el reconocimiento del habla en tiempo real o el reconocimiento de la escritura. \\
     
     La arquitectura se compone de dos redes recurrentes, la primera es denominada el \textit{encoder}, el cual es una red que 'codifica' la entrada $x^{(t)}$. Si lo que se quiere es codificar una serie de tiempo, normalmente se usará una RNN y como salida será la señal $s(t)$. En este tipo de redes a la señal $s(t)$ se le conoce como el contexto $C$. \\
     
     La segunda red que compone a la arquitectura es el \textit{decoder}, el cual toma como entrada el contexto $C$ generado previamente por el encoder y lo utiliza para generar la secuencia de salida. El decoder es en general una RNN.
     
-    \subsection{Long Short-Term Memory}
+    \subsubsection{Long Short-Term Memory}
    	Hasta ahora, las arquitecturas más exitosas para procesar secuencias son las llamadas Gated RNN. Estas redes permiten aprender secuencias muy largas o que requieran memorizar mucha información. El problema que existía, era que el gradiente tendía desaparecer conforme la red se volviera más y más profunda. Las Gated RNN son la solución más exitosa a este problema. \\
    	
    	La Gated RNN más popular es la Long Short-Term Memory (LSTM). La idea de esta red, es crear ciclos entre los mismos nodos pero que esten condicionados con el contexto, de modo que la red pueda decidir cuando olvidar la información previa. \\
    	
-   	La LSTM es puede verse como una compuerta lógica que puede ser implementada en otra RNN para crear una arquitectura más robusta. En la Figura \ref{fig:lstm} se muestra un ejemplo de la compuerta LSTM. La LSTM implementa diferentes puertas las cuales son: \textbf{input gate}, \textbf{forget gate} y la \textbf{output gate}. Todas estas puertas ayudan a la LSTM a controlar en que momento es oportuno olvidar la información previamente encontrada en los anteriores estados. \\
+   	La LSTM es puede verse como una compuerta lógica que puede ser implementada en otra RNN para crear una arquitectura más robusta. En la Figura \ref{fig:lstm} se muestra un ejemplo de la compuerta LSTM. La LSTM implementa diferentes puertas las cuales son: \textbf{input gate} $g^{(t)}$, \textbf{forget gate} $f^{(t)}$ y la \textbf{output gate} $q^{(t)}$. Todas estas puertas ayudan a la LSTM a controlar en que momento es oportuno olvidar la información previamente encontrada en los anteriores estados. \\
    	
    	\begin{figure}
    		\centering
    		\includegraphics[width=\textwidth]{capitulo2/images/lstm}
    		\caption{Una compuerta LSTM típica.}
    		\label{fig:lstm}
-   	\end{figure}
-   	
-	
-	\subsection{Modelos de Lenguaje Condicional}
+	   \end{figure}
+	   
+	Las ecuaciones que describen a una LSTM típicamente son:  
+
+	\begin{equation}
+		f_{i}^{(t)} = \sigma \left( b_{i}^{f} + \sum_{j} U_{i,j}^{f} x_{j}^{(t)} + \sum_{j} W_{i,j}^{f} h_{j}^{t-1} \right)
+	\end{equation}
+
+	\begin{equation}
+		s_{i}^{(t)} = f_{i}^{(t)} s_{i}^{t-1} + g_{i}^{(t)} \sigma \left( b_{i} + \sum_{j} U_{i,j} x_{j}^{(t)} + \sum_{j} W_{i,j} h_{j}^{t-1} \right)
+	\end{equation}
+
+	\begin{equation}
+		g_{i}^{(t)} = \sigma \left( b_{i}^{g} + \sum_{j} U_{i,j}^{g} x_{j}^{(t)} + \sum_{j} W_{i,j}^{g} h_{j}^{t-1} \right)
+	\end{equation}
+
+	\begin{equation}
+		h_{i}^{(t)} = tanh \left( s_{i}^{(t)} \right) q_{i}^{(t)}
+	\end{equation}
+
+	\begin{equation}
+		q_{i}^{(t)} = = \sigma \left( b_{i}^{o} + \sum_{j} U_{i,j}^{o} x_{j}^{(t)} + \sum_{j} W_{i,j}^{o} h_{j}^{t-1} \right)
+	\end{equation}
+
+	de donde $s^{(t)}$ es el estado interno de la RNN, los parámtreos $b, W, U$ son transformaciones lineales que serán aprendidas, $x^{(t)}$ son las entradas a la red.
+
+	\subsubsection{Modelos de Lenguaje Condicional}
 
 	Un modelo de lenguaje define la distribución de probabilidad sobre una serie de tokens en un lenguaje natural. Dependiendo de como el modelo es diseñado, un token puede representar una letra, una palabra o incluso un solo bit. Cuando se utilizan modelos de deep learning para resolver este problema, usualmente este modelo es llamado modelo de lenguaje neural.
 
@@ -289,21 +312,21 @@ La manera que tiene una RNN para poder procesar una secuencia de longitud variab
 		P(w_{1}, \dots, w_{m}) = \prod_{i = 1}^{m} P(w_{i}|w_{1}, \dots, w_{i-1})
 	\end{equation}
 
-	\subsection{Sistema de Atención}
+	\subsubsection{Sistema de Atención}
 
 	El sistema de atención fue introducido por \cite{bahdanau2014neural} y es en escencia un promedio con pesos. El resultado de un sistema de atención es un vector de contexto $c_{t}$ el cual es obtenido al realizar el promedio entre las anotaciones $a_{t}$ y multiplicarlas por unos pesos $\alpha_{t}$, los cuales usualemente estan en el rango $[0,1]$. El modelo de atención es capaz de aprender en que parte del texto enfocarse en cada instante de tiempo $t$ por lo que ha supuesto un impresionante avance en los modelos de lenguaje natural.
 
-	\subsection{Positional Embeddings}
+	\subsubsection{Positional Embeddings}
 
-	Debido a que en un modelo de lenguaje una palabra puede representar cosas diferentes dependiendo de la posición que ocupe en la secuencia, es en ocasiones necesario brindar a la red de más información sobre la ubicación de cada token. Los \textit{Positional Embeddings} fueron originalmente propuestos por \cite{attentionisallyouneed}. La técnica conciste en sumar un vector $pe$ a los \textit{words embeddings} de cada token. Los autores del artículo proponen al vector $pe$ de tal forma que:
+	Debido a que en un modelo de lenguaje una palabra puede representar cosas diferentes dependiendo de la posición que ocupe en la secuencia, es en ocasiones necesario brindar a la red de más información sobre la ubicación de cada token. Los \textit{Positional Embeddings} fueron originalmente propuestos por \cite{attentionisallyouneed}. La técnica conciste en sumar un vector $pe$ a los \textit{words embeddings} de cada token. Los autores del artículo proponen al vector $pe$ de tal forma que: 
 
 	\begin{equation}
 		pe_{t}^{(i)} = f(t)^{(i)} = \left\{
-										\begin{array}{ll}
-											sin(\omega_{k}t), & \mbox{si } i = 2k \\
-											cos(\omega_{k}t), & \mbox{si } i = 2k + 1
-										\end{array}
-									\right.
+			\begin{array}{ll}
+				sin(\omega_{k}t), & \mbox{si } i = 2k \\
+				cos(\omega_{k}t), & \mbox{si } i = 2k + 1
+			\end{array}
+		\right.
 	\end{equation}
 
 	con

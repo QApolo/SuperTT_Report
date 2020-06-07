@@ -204,7 +204,7 @@ Acorde con \cite{deeplearningbook}, el \textit{dropout} es una técnica utilizad
     P' = p(\mu)p(y|x,\mu)
 \end{equation}
 
-De este modo, algunas neuronas son "desconectadas" haciendo que cada neurona aprenda sobre la información proveida en el entrenamiento de manera independiente. Esto produce también, un efecto de regularización.
+De este modo, algunas neuronas \cite{harvard} son "desconectadas" haciendo que cada neurona aprenda sobre la información proveida en el entrenamiento de manera independiente. Esto produce también, un efecto de regularización.
 
 La técnica del dropout es recomendada en la mayoría de los modelos de deep learning, sin embargo en el caso del presente Trabajo Terminal no tuvo ningún efecto. Esto es debido posiblemente a que el modelo no es suficientemente profundo para mostrar los efectos del dropout. En la Figura \ref{fig:dropout-bad} se pueden ver los resultados de generales de este modelo.
 
@@ -217,6 +217,7 @@ La técnica del dropout es recomendada en la mayoría de los modelos de deep lea
     \caption{(a) Función de perdida del sistema, el modelo se entreno en varias ocasiones, siempre obteniendo una gráfica parecida. (b) Se muestra la atención obtenida por este modelo, se observa un que el modelo aprendió que a indentificar donde estaba la ecuación, no obstante no aprendio a segmentar los símbolos.}
     \label{fig:dropout-bad}
 \end{figure}
+
  
 
 
