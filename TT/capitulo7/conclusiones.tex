@@ -1,16 +1,24 @@
 \chapter{Conclusiones}
-La detección de expresiones matemáticas es un problema
+La detección de expresiones matemáticas es un problema interesante de atacar y que puede resultar útil, es por esto que el hecho de que este trabajo terminal busque el implementar la solución a este problema en una aplicación a la que pueda acceder cualquier usuario que la requiera y que no se quede en un simple trabajo de investigación resulta ser algo que puede resultar útil.
 
-El utilizar el algoritmo Sauvola para la binarización por sobre Otsu fue buena elección ya que presento mejores resultados en las diferentes pruebas que se realizaron, permitió hacer que la imágenes que se toman con la cámara del teléfono fueran semejantes a las que se presentan en el conjunto de entrenamiento.\\ll
+Es por esto que el buscar que el trabajo terminal cumpliera con todos los requerimientos funcionales fue importante para lograr esto y los objetivos planteados en un inicio.
 
-Con respecto al modulo de traducción de expresiones matemáticas, la precisión de dicho modulo está directamente afectada por el conjunto de entrenamiento. En el caso de las expresiones escritas a mano un conjunto con una mayor cantidad de imágenes podría mejorar significativamente los resultados del trabajo realizado esto de acuerdo a la precisión obtenida con imágenes renderizadas por computadora en cuyo caso el conjunto de entrenamiento es al menos 10 veces mayor a su contraparte de expresiones escritas a mano.\\
+Sin embargo, como se ha reportado a lo largo de este trabajo, la parte en la cual no se logro satisfacer al 100\% lo requerido es lo relacionado con el modulo de traducción.
 
-Finalmente y tomando en cuenta lo anterior, es evidente que varios puntos plateados en un inicio del trabajo terminal se lograron cubrir, sin embargo, la traducción de las expresiones matemáticas es algo que se tiene que mejorar.
+Por otro lado, los requerimientos funcionales planteados para la aplicación web y  android se lograron alcanzar a través de un correcto análisis y diseño lo cual permitió que su desarrollo fuera lo más ágil posible al elegir las mejores tecnologías para su elaboración de acuerdo a las necesidades que se tenían.
+
+Otro punto a señar es que el utilizar el algoritmo Sauvola para la binarización por sobre Otsu fue buena elección ya que presento mejores resultados en las diferentes pruebas que se realizaron, permitió hacer que la imágenes que se toman con la cámara del teléfono fueran semejantes a las que se presentan en el conjunto de entrenamiento.
+
+Con respecto al modulo de traducción de expresiones matemáticas, la precisión de dicho modulo está directamente afectada por el conjunto de entrenamiento. En el caso de las expresiones escritas a mano un conjunto con una mayor cantidad de imágenes podría mejorar significativamente los resultados del trabajo realizado esto de acuerdo a la precisión obtenida con imágenes renderizadas por computadora en cuyo caso el conjunto de entrenamiento es al menos 10 veces mayor a su contraparte de expresiones escritas a mano, no se detecto otra posible solución a este problema ya que incluso probando variaciones en la red neuronal los resultados no mejoraron para expresiones escritas a mano.
+
+Finalmente y tomando en cuenta lo anterior, es evidente que varios puntos plateados en un inicio del trabajo terminal se lograron cubrir, sin embargo, el reconocimiento y traducción de las expresiones matemáticas escritas a mano es algo que se tiene que mejorar debido a las razones ya mencionadas.
 
 \chapter{Trabajo futuro}
 
-%Con los resultados obtenidos se puede plantear incrementar el conjunto de entrenamiento de expresiones matemáticas escritas a mano para que la cantidad de ejemplos disponibles sea similar al de conjunto de entrenamiento Harvard 100k, esto debido a que es el principal problema que se detectó a lo largo de la realización del trabajo terminal y que pese a las variantes que se probaron no se logro solventar este problema.\\
+Lo principal que se tiene que hacer es incrementar el conjunto de entrenamiento de expresiones matemáticas escritas a mano para que la cantidad de ejemplos disponibles sea similar al de conjunto de entrenamiento Harvard 100k. \\
 
-Al realizar esto se podrían obtener mejores resultados, ya que como se demostró con este segundo conjunto de entrenamiento el hecho de contar con una mayor cantidad de elementos nos proporciona un mejor resultado.\\
+Una forma de alcanzar este nuevo objetivo y que es una propuesta para trabajo a futuro es el proporcionar al usuario la oportunidad de brindar retroalimentación al sistema a través de correcciones que se hagan a traducciones hechas por el sistema.
 
-Una forma de alcanzar este nuevo objetivo podría ser el proporcionar al usuario la oportunidad de brindar retroalimentación al sistema, esto es algo que se planteo como una posibilidad desde TT1 y que ahora pude ser una oportunidad para mejorar el funcionamiento del sistema.
+Esto se puede implementar en la parte android y el la parte web para que la funcionalidad de estas dos aplicaciones aumente.  Además de buscar el llevar a producción estas dos aplicaciones una vez que se tenga un mejor resultado.\\
+
+El proporcionar la oportunidad para un ambiente colaborativo en la gestión de proyectos para muchos usuarios y no solo la gestión de proyectos individuales agregara mayor valor al trabajo.
