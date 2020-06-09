@@ -161,15 +161,58 @@ El código que implementa la red es el siguiente:
 
 \subsubsection{Entrenamiento}
 
-La red fue entranada en el entorno Colaboratory de Google utilizando una GPU, el proceso de entrenamiento es de alrededor de 30 horas.
+La red fue entranada en el entorno Colaboratory de Google utilizando una GPU, se utilizaron dos conjuntos de entrenamiento. El primero fue CROHME únicamente, mientras que el segundo, fue una combinación entre CROHME y Harvard 100k, esto con la intención de provar cual sería el resultado del modelo si se incrementara el tamaño del conjunto de entrenamiento. Dado que el modelo esta basado solamente en los datos, no fue necesario hacer ningún cambio a la arquitectura.
 
-Gracias al uso del framework Tensorflow 2, el entrenamiento de la red se puede simplificar mucho. El cálculo de los gradientes de la función de perdida se puede automatizar así como la actualización de los pesos, no obstante, dada la arquitectura de la red, no es posible utilizar los métodos \textit{compile} y \textit{fit} implementados en Keras para Tensorflow 2. Por lo tanto, el ciclo de entrenamiento tuvo que ser diseñado acorde con las necesidades de la arquitectura propuesta.
+Para el primer conjunto de entrenamiento, se necesitaron 16 epocas tomando un total de 10 horas. Con respecto al segundo, se entreno la red por 6 epocas tomando un total de 30 horas.
+
+Al utilizar Tensorflow 2, el cálculo de los gradientes de la función de perdida se puede automatizar, así como la actualización de los pesos, no obstante, dada la arquitectura de la red, no es posible utilizar los métodos \textit{compile} y \textit{fit} implementados en Keras para Tensorflow 2. Por lo tanto, el ciclo de entrenamiento tuvo que ser diseñado acorde con las necesidades de la arquitectura propuesta.
 
 El código del ciclo de entrenamiento es el siguiente:
 
 \lstinputlisting[language=Python]{capitulo5/modelo/src/training.py}
 
 \subsubsection{Resultados}
+
+Al utilizar dos conjuntos de entrenamiento distintos se obtuvieron dos resultados completamente diferentes.
+
+Para el caso de la red entrenada con CROHME, se puede notar que el sistema de atención aún no funciona completamente, esto es debido posiblemente a que la red aún no ha sido capaz de abstraer todas las caracterísitcas importantes del conjunto de entrenamiento. En la Figura \ref{fig:modelo-crohme-loss}, se puede apreciar que a pesar del entrenamiento, la función de pérdida sigue siendo mayor a 5.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{capitulo5/modelo/img/modelo-crohme-loss}
+    \caption{Función de pérdida del modelo entrenado con CROHME.}
+    \label{fig:modelo-crohme-loss}
+\end{figure}
+
+La razón de esto, es el reducido tamaño de CROHME, pues 7170 imágenes no han sido suficientes para obtener un buen resultado en la predicción de expresiones matemáticas escritas a mano. Incrementar la capacidad de la red mediante el aumento del número de parámetros no es una opción viable, pues al ser un conjunto pequeño, el riesgo de sobreentrenamiento auménta considerablemente.
+
+No obstante, se puede observar que la red si ha aprendido a segmentar símbolos y lo que es mucho más sobresaliente, el modelo es capaz de representar las relaciones espaciales y de jerarquía que existen en una expresión matemática, sin embargo, solo es capaz de hacer esto para secuencias cortas. La Figura \ref{fig:modelo-crohme-attention} muestra la comparación de la atención entre dos imágenes, la primera (a), es una secuencia corta mientras que la segunda (b) es una secuencia más larga. 
+
+\begin{figure}[H]
+    \centering
+    \subfigure[$ \backslash sqrt \{ 2 \} = \backslash frac \{ r \} \{ q \}$]{\includegraphics[width=0.9\textwidth]{capitulo5/modelo/img/modelo-crohme-attention1}}
+    \subfigure[$ \backslash lim \_ \{ t \backslash rightarrow 0 \} \backslash frac \{ \backslash sin ( x + t ) \} \{ x + 1 \} $]{\includegraphics[width=0.9\textwidth]{capitulo5/modelo/img/modelo-crohme-attention2}}
+    \caption{(a) Atención de una secuencia corta junto con la secuencia predicha por el modelo. (b) Atención en una secuencia larga junto con la secuencia predicha por el modelo.}
+    \label{fig:modelo-crohme-attention}
+\end{figure} 
+
+Con respecto al conjunto entrenado con la combinación entre CROHME y Harvard 100k se obtuvieron resultados satisfactorios al momento de reconocer expresiones matemáticas renderizadas por computadora. La Figura \ref{fig:modelo-harvard-attention}  muestra los resultados de una predicción de la red. No obstante, la red no muestra buenos resultados para predecir imágenes con expresiones escritas a mano. Esto es natural, pues el conjunto se compone principalmente de imágenes renderizadas por computadora. 
+
+Lo que se puede concluir, es que el modelo propuesto funciona, es capaz de aprender a segmentar símbolos y entender las relaciones bidimensionales que componen a las expresiones matemáticas, sin embargo su efectividad depende completamente del conjunto de entrenamiento, pues este debe de tener un tamaño suficientemente largo y debe de representar adecuadamente las expresiones que se buscan predecir.
+
+\begin{figure}[H]
+    \centering
+    \subfigure[$ L ~ = ~ \backslash sum \_ \{ i \} \backslash operatorname \{ m a z \} ( 0 , 1 \backslash \; - \backslash  a \_ \{ \nu \} + a \_ \{ , \} ) $]{\includegraphics[width=0.9\textwidth]{capitulo5/modelo/img/modelo-harvard-attention}}
+    \subfigure[Función de perdida del modelo entrenado con Harvard 100k y CROHME]{\includegraphics[width=0.5\textwidth]{capitulo5/modelo/img/modelo-harvard-loss}}
+    \caption{(a) Atención de una secuencia larga renderizada por computadora junto con la secuencia predicha por el modelo. (b) Función de perdida del modelo.}
+    \label{fig:modelo-harvard-attention}
+\end{figure} 
+
+
+
+% \ 2 ~ = ~ \sum _ { i } \operatorname { m a z } ( 0 , 1 \; - \ a _ { \nu } + a _ { , } ) .
+
+% d y / d \sigma = b \sqrt { ( y ^ { 4 } - 1 ) ( y ^ { 4 } - 1 + \epsilon ) }
 
 \subsubsection{Experimentos Previos}
 
@@ -195,7 +238,7 @@ Una muestra del resultado del entrenamiento se muestra en la Figura \ref{fig:gru
 
 
 \vspace{1em}
-\textbf{Variante con Dropout}
+\textbf{Variante con alto Dropout}
 \vspace{1em}
 
 Acorde con \cite{deeplearningbook}, el \textit{dropout} es una técnica utilizada para regularizar redes neuronales, es decir, para que la probabilidad de que un modelo se sobreentrene disminuya. Conciste en aplicar un muestreo a las salidas de alguna capa en un modelo con la finalidad de desactivar un porcentaje de neuronas. Suponiendo a $\mu$ como el vector de muestreo y a $p(\mu)$ como la distribución de probabilidad que modela si la neurona se desactiva o no, podemos aplicar dropout a una capa de alguna red neuronal que modele una distribución $p(y|x)$ de la siguiente manera:
@@ -206,7 +249,7 @@ Acorde con \cite{deeplearningbook}, el \textit{dropout} es una técnica utilizad
 
 De este modo, algunas neuronas \cite{harvard} son "desconectadas" haciendo que cada neurona aprenda sobre la información proveida en el entrenamiento de manera independiente. Esto produce también, un efecto de regularización.
 
-La técnica del dropout es recomendada en la mayoría de los modelos de deep learning, sin embargo en el caso del presente Trabajo Terminal no tuvo ningún efecto. Esto es debido posiblemente a que el modelo no es suficientemente profundo para mostrar los efectos del dropout. En la Figura \ref{fig:dropout-bad} se pueden ver los resultados de generales de este modelo.
+La técnica del dropout es recomendada en la mayoría de los modelos de deep learning, usualmente con una probabilidad de desconexión de $0.5\%$, sin embargo, este radio no provoco ningun efecto en la red. Esto es debido posiblemente a que al ser implementado en las capas convolucionales, un dropout muy alto para una red no tan profunda provoca una perdida significativa de la información. En la Figura \ref{fig:dropout-bad} se pueden ver los resultados de generales de este modelo.
 
 \lstinputlisting[language=Python]{capitulo5/modelo/src/dropout.py}
 
