@@ -1,3 +1,22 @@
 \chapter{Conclusiones}
+La detección de expresiones matemáticas es un problema interesante de atacar, es por esto que el hecho de que este trabajo terminal busque el implementar la solución a este problema en una aplicación a la que pueda acceder cualquier usuario que la requiera y que no se quede en un simple trabajo de investigación resulta ser algo que puede resultar útil.
 
-Pues conclusiones que más seria xDDDDD
+Es por esto que el buscar que el trabajo terminal cumpliera con todos los requerimientos funcionales fue importante para lograr esto y los objetivos planteados en un inicio.
+
+Los requerimientos funcionales planteados para la aplicación web y  android se lograron alcanzar a través de un correcto análisis y diseño lo cual permitió que su desarrollo fuera lo más ágil posible al elegir las mejores tecnologías para su elaboración de acuerdo a las necesidades que se tenían.
+
+Por otro lado, utilizar el algoritmo Sauvola para la binarización por sobre Otsu fue buena elección ya que presento mejores resultados en las diferentes pruebas que se realizaron, permitió hacer que la imágenes que se toman con la cámara del teléfono fueran semejantes a las que se presentan en el conjunto de entrenamiento.
+
+Con respecto al modulo de traducción de expresiones matemáticas no se logro satisfacer al 100\% lo requerido, debido a que la precisión de dicho modulo está directamente afectada por el conjunto de entrenamiento. En el caso de las expresiones escritas a mano un conjunto con una mayor cantidad de imágenes podría mejorar significativamente los resultados del trabajo realizado esto de acuerdo a la precisión obtenida con imágenes renderizadas por computadora en cuyo caso el conjunto de entrenamiento es al menos 10 veces mayor a su contraparte de expresiones escritas a mano, no se detecto otra posible solución a este problema ya que incluso probando variaciones en la red neuronal los resultados no mejoraron para expresiones escritas a mano.
+
+Finalmente y tomando en cuenta lo anterior, varios puntos plateados en un inicio del trabajo terminal se lograron cubrir, sin embargo, el reconocimiento y traducción de las expresiones matemáticas escritas a mano es un problema aún no resulto y por ende se puede trabajar más en buscar nuevas alternativas que brinden mejores resultados a los obtenidos en el presente trabajo terminal.
+
+\chapter{Trabajo futuro}
+
+Lo principal que se tiene que hacer es incrementar el conjunto de entrenamiento de expresiones matemáticas escritas a mano para que la cantidad de ejemplos disponibles sea similar al de conjunto de entrenamiento Harvard 100k.
+
+Una forma de alcanzar este nuevo objetivo es el proporcionar al usuario la oportunidad de brindar retroalimentación a través de correcciones que se hagan a traducciones hechas por el sistema.
+
+Esto se puede implementar en la parte android y el la parte web para que la funcionalidad de estas dos aplicaciones aumente. Además de buscar el llevar a producción estas dos aplicaciones una vez que se tenga un mejor resultado.
+
+El proporcionar la oportunidad para un ambiente colaborativo en la gestión de proyectos para muchos usuarios y no solo la gestión de proyectos individuales agregara mayor valor al trabajo.
