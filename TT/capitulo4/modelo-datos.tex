@@ -32,11 +32,11 @@ Se refiere a los proyectos que están asociados a un usuario, un proyecto esta c
 	\begin{longtable}{|J{3cm}|J{4cm}|J{3cm}|J{2cm}|J{2cm}|}
 		\hline
 		\textbf{Nombre} & \textbf{Descripción} & \textbf{Tipo} & \textbf{Requerido} & \textbf{Único} \\ \hline
-		id & Identificador autoincrementable del proyecto, forma parte de la llave primaria & integer & Sí & Sí \\ \hline
-		usuario\_id & Identificador del usuario que tiene el proyecto, forma parte de la llave primaria & integer & Sí & No \\ \hline
+		id\_proyecto & Identificador autoincrementable del proyecto, forma parte de la llave primaria & integer & Sí & Sí \\ \hline
+		id\_proyecto & Identificador del usuario que tiene el proyecto, forma parte de la llave primaria & integer & Sí & No \\ \hline
 		nombre & Nombre del proyecto & varchar(200) & Sí & No \\ \hline
-		fechaModificacion & Fecha que se actualiza cada vez que se modifica el proyecto & timestamp & Sí & No \\ \hline
-		fechaCreacion & Fecha en la cual se crea el proyecto & timestamp & Sí & No \\ \hline
+		fecha\_modificacion & Fecha que se actualiza cada vez que se modifica el proyecto & timestamp & Sí & No \\ \hline
+		fecha\_creacion & Fecha en la cual se crea el proyecto & timestamp & Sí & No \\ \hline
 		calificacion & Calificación que se calcula a través de las calificaciones de las traducciones asociadas con el proyecto, puede contener decimales & numeric & Sí & No \\ \hline
 		\caption{Tabla de los atributos de la entidad proyecto}
 		\label{tbl:entidad-proyecto}
@@ -49,12 +49,15 @@ Hace referencia a la traducción de \LaTeX que forma parte de un proyecto y que 
 	\begin{longtable}{|J{3cm}|J{4cm}|J{3cm}|J{2cm}|J{2cm}|}
 		\hline
 		\textbf{Nombre} & \textbf{Descripción} & \textbf{Tipo} & \textbf{Requerido} & \textbf{Único} \\ \hline
-		id & Identificador autoincrementable de la traducción, forma parte de la llave primaria & integer & Sí & Sí \\ \hline
-		proyecto\_id & Identificador del proyecto al cual pertenece la traducción, forma parte de la llave primaria & integer & Sí & No \\ \hline
-		usuario\_id & Identificador del usuario, forma parte de la llave primaria & integer & Sí & No \\ \hline
+		id\_traduccion & Identificador autoincrementable de la traducción, forma parte de la llave primaria & integer & Sí & Sí \\ \hline
+		id\_proyecto & Identificador del proyecto al cual pertenece la traducción, forma parte de la llave primaria & integer & Sí & No \\ \hline
+		id\_usuario & Identificador del usuario, forma parte de la llave primaria & integer & Sí & No \\ \hline
 		nombre & Nombre que se le da a la traducción & varchar(200) & Sí & No \\ \hline
+		traduccion & Traducción generada & text & Sí & No \\ \hline
+		archivo & Ruta de la imagen a traducir & text & Sí & No \\ \hline
 		calificacion & Calificación que se le da a la traducción para retroalimentación del usuario y del sistema & integer & Sí & No\\ \hline
-		fechaCreacion & Fecha en la cual se crea la traducción & timestamp & Sí & No \\ \hline
+		fecha\_creacion & Fecha en la cual se crea la traducción & timestamp & Sí & No \\ \hline
+		procesado & Indica si la imagen ya asociada a la traducción ya ha sido procesada & boolean & Sí & No\\ \hline
 		\caption{Tabla de los atributos de la entidad traducción}
 		\label{tbl:entidad-traduccion}
 	\end{longtable}
@@ -81,7 +84,7 @@ Se refiere al token de autenticación que tiene un usuario al momento de crear u
 		\textbf{Nombre} & \textbf{Descripción} & \textbf{Tipo} & \textbf{Requerido} & \textbf{Único} \\ \hline
 		token & Llave primaria y token de autenticación del usuario para la API REST & varchar(40) & Sí &  Sí\\ \hline
 		created & Fecha de generación del token & timestamp & Sí & No\\ \hline
-		user\_id & Identificador del usuario al que pertenece el token& integer & Sí & No\\ \hline
+		id\_usuario & Identificador del usuario al que pertenece el token& integer & Sí & No\\ \hline
 		\caption{Tabla de los atributos de la entidad usuario token}
 		\label{tbl:entidad-usuario-token}
 	\end{longtable}
