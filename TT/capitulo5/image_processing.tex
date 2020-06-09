@@ -9,7 +9,7 @@ Las imágenes generadas para el conjunto de entrenamiento se formaron insertando
 	\label{fig:example_dataset}
 \end{figure}
 
-El proceso consiste en convertir el área de la expresión matemática en negro y el resto en fondo blanco, para ello se consideraron las técnicas mencionadas en %ref
+El proceso consiste en convertir el área de la expresión matemática en negro y el resto en fondo blanco, para ello se consideraron las técnicas mencionadas en \ref{sec:imAnalysis}
  y específicamente se probaron los algoritmos de Otsu y Sauvola \cite{inproceedings}.
  
 \begin{figure}[h]
@@ -50,5 +50,6 @@ El algorimo de Sauvola tiene una implementación más extensa por lo que se disp
 \lstinputlisting[language=Python, firstline=26, lastline=30]{capitulo5/imageprocessor/code_files/scriptCV.py}
 
 \subsection{Resultados}
+Se ejecutó el algoritmo en imágenes con distintas condiciones considerando luminosidad, colores de tinta, fondo, porciones con sombra, definición de la imagen, a continuación se muestran los resultados considerando el algoritmo de Otsu con un previo filtro Gaussiano contra el algoritmo de Sauvola, siendo este último el que ofrecía mejores resultados.
 \input{capitulo5/imageprocessor/otsu_results.tex}
 
