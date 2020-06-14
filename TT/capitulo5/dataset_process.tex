@@ -45,7 +45,7 @@ Con estos subscripts fue posible desarrollar una biblioteca que permite acceder 
 \subsubsection{Generador de secuencia de tokens}
 El archivo CSV generado con lo descrito anteriormente no es suficiente para cargarlo en TensorFlow, la expresión matemática en \LaTeX{} debía ser expresada como una secuencia numérica, por lo que se necesitaba identificar a cada símbolo con un número único y conformar a la secuencia, de modo que la estructura del archivo CSV pasaría de tener la forma \textbf{RUTA\_IMAGEN}, \textbf{EXPRESION\_LATEX} a tener la forma \textbf{RUTA\_IMAGEN}, \textbf{SECUENCIA\_NUMÉRICA}, teniendo así una nueva representación del conjunto de entrenamiento conformada por una carpeta con las imágenes y un archivo CSV previamente descrito para poder cargarse en TensorFlow.
 
-Para esto se desarrolló gracias a lex en Python un script para especificar los tokens tomando como base los símbolos especificados en la sección \ref{sec:del_exp}.\\\\
+Para esto, se desarrolló gracias a lex en Python un script para especificar los tokens tomando como base los símbolos especificados en la sección \ref{sec:del_exp}.\\\\
 \lstinputlisting[language=Python, lastline=10]{capitulo5/dataset/Rules.py}
 
 \lstinputlisting[language=Python, firstline = 26, lastline=44]{capitulo5/dataset/Analyzer.py}
@@ -59,7 +59,7 @@ Es importante destacar que se debe también guardar este mapeo único y no alter
 
 El segundo conjunto de entrenamiento utilizado fue el provisto por \cite{harvard}. Los investigadores que realizaron el paper liberaron el conjunto de entrenamiento que recabaron, el cual cuenta con alrededor de cien mil expresiones matemáticas escritas a computadora.
 
-Este conjunto de entrenamiento puede descargarse libremente en la página provista por el artículo. Consiste en un conjunto de imágenes png sin preprocesar y sus respectivos resultados esperados (Grounth-Truth). Así mismo, los autores del artículo proveen scripts de normalización y de preprocesado para el tratamiento de las imágenes. Estos scripts se pueden encontrar en el github del artículo.
+Este conjunto de entrenamiento puede descargarse libremente en la página provista por el artículo. Consiste en un conjunto de imágenes png sin preprocesar y sus respectivos resultados esperados (Grounth-Truth). Así mismo, los autores del artículo proveen scripts de normalización y de preprocesado para el tratamiento de las imágenes. Estos scripts se pueden encontrar en el github del artículo \cite{harvard-scripts}.
 
 Se procedio a preprocesar las imágenes con los scripts provistos por los investigadores de Harvard y se obtuvo un conjunto de entrenamiento con 78000 imágenes. Debido a que en el presente Trabajo Terminal las estructuras matriciales no estan contempladas, se descartaron todas las imágenes que contuvieran matrices, arreglos o listas, así como aquellas que produjeron errores tras ser procesadas. El conjunto final contiene 73000 imágenes de distintos tamaños los cuales son: (200,50), (240,40), (280,40), (360,60), (160,40), (360,50), (120,50), (320,50), (400,50), (360,10), (360,40), (200,40), (320,40), (280,50) y (240,50). En la Figura \ref{fig:harvard-example} se puede ver un ejemplo de una imagen del conjunto de entrenamiento de Harvard.
 
@@ -72,7 +72,7 @@ Se procedio a preprocesar las imágenes con los scripts provistos por los invest
 
 \subsection{Normalización}
 
-Entre los scripts provistos por los investigadores de Harvard, se encuentra un normalizador. Este código, realiza una serie de transformaciones seguras con el fin de estandarizar ciertas inconsitencias con las expresiones en \LaTeX{}. Un ejemplo podría ser las distintas formas que se tienen para expresar un exponente: \textit{a\^b} y \textit{a \^ \{ b \}} producirían el mismo resultado. Para mejorar el rendimiento de la red, ambos conjuntos de entrenamiento fueron preprocesados con el script de normalizado.
+Entre los scripts provistos por los investigadores de Harvard \cite{harvard-scripts}, se encuentra un normalizador. Este código, realiza una serie de transformaciones seguras con el fin de estandarizar ciertas inconsitencias con las expresiones en \LaTeX{}. Un ejemplo podría ser las distintas formas que se tienen para expresar un exponente: \textit{a \^\ b} y \textit{a \^\ \{ b \}} producirían el mismo resultado. Para mejorar el rendimiento de la red, ambos conjuntos de entrenamiento fueron preprocesados con el script de normalizado.
 
 Cabe mencionar que ambos conjuntos de entrenamiento fueron unificados mediante la combinación de su Grounth-Truth, por lo que es posible utilizarlos indistintamente. Para unificarlos se proceso el conjunto CROHME para convertir sus tokens en tokens del conjunto de Harvard. El código usado se muestra a continuación.
 
