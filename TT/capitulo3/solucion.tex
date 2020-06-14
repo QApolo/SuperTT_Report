@@ -10,19 +10,13 @@ La segunda alternativa, combina los dos tipos de análisis en uno solo, pues bus
 
 Las dos propuestas principales, es decir, las gramáticas y la arquitectura encoder-decoder tienen sus limitaciones. En el caso de las gramáticas, podemos ver que los algoritmos para el procesamiento de las mismas incrementan su complejidad exponencialmente entre más expresiones son capaces de reconocer, además de que requieren un conocimiento previo de los símbolos. Mientras que con el avance de los procesadores y GPUs las aproximaciones globales con redes neuronales se vuelven cada vez más plausibles y es por esta razón que los investigadores en el campo del machine learning le han prestado particular atención mejorando así, los resultados obtenidos por cualquier otro método. \\
 
-En el presente Trabajo Terminal, se ha decidido utilizar la aproximación global propuesta por \cite{chino}, la cual es llamada Watch, Attend, Parse (WAP) que es una RNN encoder-decoder con un sistema de atención que permite reconocer expresiones matemáticas escritas a mano con una precisión del 46.55\%. En la Figura \ref{fig:wap} podemos ver un diagrama de esta arquitectura.\\
+En el presente Trabajo Terminal, se ha decidido utilizar la aproximación global de encoder-decoder con redes neuronales como método de traducción. En la Figura \ref{fig:wap} se muestra a modo de ejemplo la arquitectura encoder-decoder creada por \cite{chino} y que esta orientada a resolver el mismo problema.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[]{capitulo3/imgs/wap}
-	\caption{Diagrama de la arquitectura Watch, Attend, Parse (WAP).}
+	\includegraphics[width=0.5\textwidth]{capitulo3/imgs/wap}
+	\caption{Diagrama de la arquitectura Watch, Attend, Parse (WAP) creada por \cite{chino}.}
 	\label{fig:wap}
 \end{figure}
 
-La red WAP, se compone de dos partes:
-
-\begin{enumerate}
-	\item \textbf{Encoder}: El cual es una CNN que permite extraer las características de la imagen y sumarizarlas en un vector de contexto $C$.
-	\item  \textbf{Decoder}: El cual es una LSTM que toma el contexto $C$ y junto con sistema de atención retorna como salida la secuencia de símbolos de \LaTeX, un símbolo a la vez.
-\end{enumerate}
 
