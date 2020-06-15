@@ -149,9 +149,9 @@ Donde $\eta_{t}$ es la suma de todos los pesos de las attenciones pasadas y $Q$ 
 
 de donde $W_{f}$ es una matriz de pesos que serán aprendidos.
 
-\subsubsection{Implementación}
+\subsection{Implementación}
 
-El lenguaje de programación utilizado para desarrollar la red fue Python 3 junto con el framework para deep learning TensorFlow 2. Las unidades usadas en el estado $h_{t}$ de la LSTM son $512$ y $80$ para la dimensión de \textit{embedding} para los tokens $80$. El algoritmo de optimización utilizado fue Adam con la Crosentropia Categórica como función de perdida. 
+El lenguaje de programación utilizado para desarrollar la red fue Python 3 junto con el framework para deep learning TensorFlow 2. Las unidades usadas en el estado $h_{t}$ de la LSTM son $512$ y $128$ para la dimensión de \textit{embeddings}. El algoritmo de optimización utilizado fue Adam con la Crosentropia Categórica como función de pérdida. 
 
 El código que implementa la red es el siguiente:
 
@@ -159,19 +159,120 @@ El código que implementa la red es el siguiente:
 
 \lstinputlisting[language=Python]{capitulo5/modelo/src/decoder.py}
 
-\subsubsection{Entrenamiento}
+\subsection{Entrenamiento}
 
-La red fue entranada en el entorno Colaboratory de Google utilizando una GPU, el proceso de entrenamiento es de alrededor de 30 horas.
+La red fue entranada en el entorno Colaboratory de Google utilizando una GPU, se utilizaron dos conjuntos de entrenamiento. El primero fue CROHME únicamente, mientras que el segundo, fue una combinación entre CROHME y Harvard 100k, esto con la intención de provar cual sería el resultado del modelo si se incrementara el tamaño del conjunto de entrenamiento. Dado que el modelo esta basado solamente en los datos, no fue necesario hacer ningún cambio a la arquitectura.
 
-Gracias al uso del framework Tensorflow 2, el entrenamiento de la red se puede simplificar mucho. El cálculo de los gradientes de la función de perdida se puede automatizar así como la actualización de los pesos, no obstante, dada la arquitectura de la red, no es posible utilizar los métodos \textit{compile} y \textit{fit} implementados en Keras para Tensorflow 2. Por lo tanto, el ciclo de entrenamiento tuvo que ser diseñado acorde con las necesidades de la arquitectura propuesta.
+Para el primer conjunto de entrenamiento, se necesitaron 16 epocas tomando un total de 10 horas. Con respecto al segundo, se entreno la red por 6 epocas tomando un total de 30 horas.
+
+Al utilizar Tensorflow 2, el cálculo de los gradientes de la función de perdida se puede automatizar, así como la actualización de los pesos, no obstante, dada la arquitectura de la red, no es posible utilizar los métodos \textit{compile} y \textit{fit} implementados en Keras para Tensorflow 2. Por lo tanto, el ciclo de entrenamiento tuvo que ser diseñado acorde con las necesidades de la arquitectura propuesta.
 
 El código del ciclo de entrenamiento es el siguiente:
 
 \lstinputlisting[language=Python]{capitulo5/modelo/src/training.py}
 
-\subsubsection{Resultados}
+\subsection{Resultados}
 
-\subsubsection{Experimentos Previos}
+\subsubsection{Métricas}
+
+Debido a que la arquitectura presentada es un modelo de lenguaje condicional, no sería correcto medir su desempeño solamente evaluando su porcentaje de aciertos totales absolutos contra un conjunto de entrenamiento de prueba. Por esta razón, se utilizaron dos métricas reconocidas en la evaluación de lenguajes condicionales: \textit{BLEU} y \textit{WER}.
+
+La métrica BLEU (Bilingual Evaluation Understudy) es un puntaje utilizado para comparar una traducción candidata contra una o más traducciones referencia. A pesar de ser diseñada para evaluar sistemas de traducción, esta métrica puede ser empleada para evaluar texto generado para una gran variedad de tareas de NLP (Natural Lenguage Processing) entre las que se encuentran el Image Captioning. 
+
+BLEU calcula la precisión $P$ de ngramas o tokens entre dos frases, una candidata y una referencia de la siguiente manera:
+
+\begin{equation}
+    P = \frac{ngramas comunes}{ngramas candidata}
+\end{equation}
+
+\vspace{1em}
+
+De este modo, tiene en cuenta el número de tokens que fueron correctos. No obstante esto no es suficiente. BLEU penaliza la diferencia de longitudes entre las dos frases:
+
+\begin{equation}
+    PB = \left\{ \begin{array}{lcc}
+        1 &   si  & c > r \\
+        \\ e ^ {1-\frac{r}{c}} &  si & c \leq r \\
+        \end{array}
+    \right.
+\end{equation}
+
+Para calcular BLEU, se utiliza la media geométrica para los $N$ ngramas a utilizar. Cada ngrama tiene un peso $w_{n}$ tal que $\sum_{n = 1}^{N} w_{n} = 1$ con $w_{n} = \frac{1}{N}$ para el presente Trabajo Terminal. Finalmente el puntaje BLEU se obtiene como sigue:
+
+\begin{equation}
+    BLEU = PB \exp \left(\sum_{n = 1}^{N}w_{n} \log P_{n} \right)
+\end{equation}
+
+\vspace{1em}
+
+Para su implementación, se utilzó la librería NLTK (Natural Lenguage Processing Tool Kit) de Python la cual provee una función para calcular BLEU.
+
+La métrica WER (Word Error Rate) fue derivada de la \textit{distancia de Levenshtein}, la cual es usada en la Teoría de la Información para calcular la diferencia entre dos secuencias. WER, toma en cuenta las sustituciones, inserciones y omisiones que puedan llegar a producirse en las predicciones del modelo, por lo tanto, se dice que WER evalua al modelo a nivel de palabra. 
+
+El puntaje WER, se calcula como sigue:
+
+\begin{equation}
+    WER = \frac{S + I + O}{N} = \frac{S + O + I}{S + O + C}
+\end{equation}
+
+de donde:
+
+\begin{itemize}
+    \item $S$ es el número de sustituciones
+    \item $I$ es el número de inserciones
+    \item $O$ es el número de omisiones
+    \item $N$ es el número de tokens en la referencia
+    \item $C$ es el número de tokens correctos
+\end{itemize}
+
+Para su implementación se utilizó el código creado por \cite{wer-implementation}.
+
+\subsubsection{CROHME}
+
+Para el caso de la red entrenada con CROHME, se utilizó un conjunto de prueba con 1501 imágenes provistas por CROHME. El \textbf{puntaje BLEU obtenido fue 0.39} y el \textbf{puntaje WER obtenido fue 1.2}. Es decir, la red tiene una precisión de alrededor del $39\%$ para predecir los tokens de una imagen, sin embargo, el puntaje WER al ser muy alto, indica que las predicciones no son confiables y por lo tanto, el modelo no esta listo para ser usado en producción. Acorde con \cite{chino}, ellos obtuvieron una precisión del $46.55\%$ sobre CROHME. No obstante, utilizaron los archivos InkML para obtener más información respecto a la trayectoria de las imágenes, brindandoles imágenes de 9 canales, mientras que en el presente trabajo, solo se utilizaron imágenes de 1 canal, por lo que no hay una comparación directa entre los dos trabajos y solo se menciona a modo de referencia.
+
+Con respecto al sistema de atención de este modelo, se puede notar que aún no funciona completamente, esto es debido posiblemente a que la red aún no ha sido capaz de abstraer todas las caracterísitcas importantes del conjunto de entrenamiento. En la Figura \ref{fig:modelo-crohme-loss}, se puede apreciar que a pesar del entrenamiento, la función de pérdida sigue siendo mayor a 5.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{capitulo5/modelo/img/modelo-crohme-loss}
+    \caption{Función de pérdida del modelo entrenado con CROHME.}
+    \label{fig:modelo-crohme-loss}
+\end{figure}
+
+La razón del pobre desempeño del modelo al momento de generalizar, es el reducido tamaño de CROHME, pues 7170 imágenes no han sido suficientes para obtener un buen resultado en la predicción de expresiones matemáticas escritas a mano. Incrementar la capacidad de la red mediante el aumento del número de parámetros no es una opción viable, pues al ser un conjunto pequeño, el riesgo de sobreentrenamiento auménta considerablemente.
+
+No obstante, se puede observar que la red si ha aprendido a segmentar símbolos y lo que es mucho más sobresaliente, el modelo es capaz de representar las relaciones espaciales y de jerarquía que existen en una expresión matemática, sin embargo, solo es capaz de hacer esto para secuencias cortas. La Figura \ref{fig:modelo-crohme-attention} muestra la comparación de la atención entre dos imágenes, la primera (a), es una secuencia corta mientras que la segunda (b) es una secuencia más larga. 
+
+\begin{figure}[H]
+    \centering
+    \subfigure[$ \backslash sqrt \{ 2 \} = \backslash frac \{ r \} \{ q \}$]{\includegraphics[width=0.9\textwidth]{capitulo5/modelo/img/modelo-crohme-attention1}}
+    \subfigure[$ \backslash lim \_ \{ t \backslash rightarrow 0 \} \backslash frac \{ \backslash sin ( x + t ) \} \{ x + 1 \} $]{\includegraphics[width=0.9\textwidth]{capitulo5/modelo/img/modelo-crohme-attention2}}
+    \caption{(a) Atención de una secuencia corta junto con la secuencia predicha por el modelo. (b) Atención en una secuencia larga junto con la secuencia predicha por el modelo.}
+    \label{fig:modelo-crohme-attention}
+\end{figure} 
+
+\subsubsection{Harvard 100k}
+
+Con respecto al modelo entrenado con la combinación entre CROHME y Harvard 100k, se utilizó un conjunto de prueba con $9300$ imágenes provistas por Harvard 100k. El \textbf{puntaje BLEU obtenido fue 0.77} y el \textbf{puntaje WER obtenido fue 0.3}. Los resultados obtenidos son satisfactorios al momento de reconocer expresiones matemáticas renderizadas por computadora, pues la precisión de la red es de alrededor de $77\%$, lo que se corresponde con una buena confianza a nivel de palabra por su bajo puntaje WER. En comparación con \cite{harvard}, obtuvimos los mismos resultados de BLEU, y con respecto a WER ellos no calcularon esa métrica. La Figura \ref{fig:modelo-harvard-attention}  muestra los resultados de una predicción de la red. 
+
+No obstante, \textbf{la red no muestra buenos resultados para predecir imágenes con expresiones escritas a mano}. Esto es debido a la gran diferencia entre ambos conjuntos de entrenamiento, a pesar de haber sido combinados, CROHME es demasiado pequeño a comparación de Harvard 100k, por lo que CROHME solo introducia ruido al entrenamiento, por lo que actuaba a modo de regularizador más que como ejemplos de los que la red pudiera aprender. 
+
+\begin{figure}[H]
+    \centering
+    \subfigure[$ L ~ = ~ \backslash sum \_ \{ i \} \backslash operatorname \{ m a z \} ( 0 , 1 \backslash \; - \backslash  a \_ \{ \nu \} + a \_ \{ , \} ) $]{\includegraphics[width=0.9\textwidth]{capitulo5/modelo/img/modelo-harvard-attention}}
+    \subfigure[Función de perdida del modelo entrenado con Harvard 100k y CROHME]{\includegraphics[width=0.5\textwidth]{capitulo5/modelo/img/modelo-harvard-loss}}
+    \caption{(a) Atención de una secuencia larga renderizada por computadora junto con la secuencia predicha por el modelo. (b) Función de perdida del modelo.}
+    \label{fig:modelo-harvard-attention}
+\end{figure}
+
+
+\subsubsection{Conclusiones}
+
+Comparando los resultados obtenidos de los conjuntos de entrenamiento, se puede ver que el modelo propuesto es capaz de aprender a segmentar símbolos y entender las relaciones bidimensionales que componen a las expresiones matemáticas. No obstante, su efectividad depende completamente del conjunto de entrenamiento, pues este debe de tener un tamaño suficientemente largo y debe de representar adecuadamente las expresiones que se buscan predecir.
+
+
+\subsection{Experimentos Previos}
 
 Antes de encontrar la configuración adecuada para la red neuronal, se llevaron a cabo varios experimentos. A continuación, se presentan los más relevantes.
 
@@ -195,7 +296,7 @@ Una muestra del resultado del entrenamiento se muestra en la Figura \ref{fig:gru
 
 
 \vspace{1em}
-\textbf{Variante con Dropout}
+\textbf{Variante con alto Dropout}
 \vspace{1em}
 
 Acorde con \cite{deeplearningbook}, el \textit{dropout} es una técnica utilizada para regularizar redes neuronales, es decir, para que la probabilidad de que un modelo se sobreentrene disminuya. Conciste en aplicar un muestreo a las salidas de alguna capa en un modelo con la finalidad de desactivar un porcentaje de neuronas. Suponiendo a $\mu$ como el vector de muestreo y a $p(\mu)$ como la distribución de probabilidad que modela si la neurona se desactiva o no, podemos aplicar dropout a una capa de alguna red neuronal que modele una distribución $p(y|x)$ de la siguiente manera:
@@ -206,7 +307,7 @@ Acorde con \cite{deeplearningbook}, el \textit{dropout} es una técnica utilizad
 
 De este modo, algunas neuronas \cite{harvard} son "desconectadas" haciendo que cada neurona aprenda sobre la información proveida en el entrenamiento de manera independiente. Esto produce también, un efecto de regularización.
 
-La técnica del dropout es recomendada en la mayoría de los modelos de deep learning, sin embargo en el caso del presente Trabajo Terminal no tuvo ningún efecto. Esto es debido posiblemente a que el modelo no es suficientemente profundo para mostrar los efectos del dropout. En la Figura \ref{fig:dropout-bad} se pueden ver los resultados de generales de este modelo.
+La técnica del dropout es recomendada en la mayoría de los modelos de deep learning, usualmente con una probabilidad de desconexión de $0.5\%$, sin embargo, este radio no provoco ningun efecto en la red. Esto es debido posiblemente a que al ser implementado en las capas convolucionales, un dropout muy alto para una red no tan profunda provoca una perdida significativa de la información. En la Figura \ref{fig:dropout-bad} se pueden ver los resultados de generales de este modelo.
 
 \lstinputlisting[language=Python]{capitulo5/modelo/src/dropout.py}
 
