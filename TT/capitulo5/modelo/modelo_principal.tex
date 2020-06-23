@@ -1,15 +1,15 @@
 \newpage
 \section{Reconocimiento de expresiones matemáticas}
 
-El problema de reconocer expresiones matemáticas en imágenes conciste en encontrar una función capaz de convertir una imagen preprocesada en una secuencia de caracteres que describa en su totalidad la expresión incluida en la imagen. La imagen de entrada $x$ es preprocesada para obtener una imagen en escala de grises de tal forma que $x \in \mathbb{R} ^ {H x W x 1}$, siendo $H$ y $W$ la altura y el ancho de la imagen respectivamente. La secuencia de caracteres objetivo $y$ es de la forma $y_{1}, y_{2}, \dots , y_{k}$ siendo $k$ la longitud de la secuencia y $y_{i}$ es un caracter válido de \LaTeX{} para el presente Trabajo Terminal.
+El problema de reconocer expresiones matemáticas en imágenes consiste en encontrar una función capaz de convertir una imagen preprocesada en una secuencia de caracteres que describa en su totalidad la expresión incluida en la imagen. La imagen de entrada $x$ es preprocesada para obtener una imagen en escala de grises de tal forma que $x \in \mathbb{R} ^ {H x W x 1}$, siendo $H$ y $W$ la altura y el ancho de la imagen respectivamente. La secuencia de caracteres objetivo $y$ es de la forma $y_{1}, y_{2}, \dots , y_{k}$ siendo $k$ la longitud de la secuencia y $y_{i}$ es un caracter válido de \LaTeX{} para el presente Trabajo Terminal.
 
 Para resolver el problema de reconocer expresiones matemáticas, existen aproximaciones secuenciales o globales. De acuerdo con \cite{superprecision} ambos métodos implementados de una forma convencional presentan las siguientes limitaciones: 1) La difícil segmentación de símbolos, 2) el análisis estructural es comúnmente basado en gramáticas libres de contexto, lo cual requiere un conocimiento previo de las expresiones a reconocer para diseñar una gramática, 3) la complejidad de los algoritmos de parseo se incrementa con el tamaño de la gramática usada.
 
-Recientemente el modelo de \textit{Encoder-Decoder} con un sistema de atención comenzó a cobrar relevancia por presentar excelentes resultados en campos del machine learning como el procesamiento del lenguaje natural, segmentación de imágenes e \textit{Image Captioning}. Esta aproximación es completamente opuesta a las soluciones convencionales debido a que es una solución entrenable \textit{end-to-end}, es decir, el modelo puede entrenarse como un todo y no por separado; su capacidad de predicción depende completamente del conjunto de entrenamiento por lo que para mejorar el modelo solo se necesita incrementar la cantidad de datos disponibles sin hacer cambios a la arquitectura de la red; la segmentación de símbolos puede hacerse automáticamente a través de la atención. Por las razones expuestas, se decidió utilizar este modelo de deep learning en el presente Trabajo Terminal.
+Recientemente el modelo de \textit{Encoder-Decoder} con un sistema de atención comenzó a cobrar relevancia por presentar excelentes resultados en campos de machine learning como el procesamiento del lenguaje natural, segmentación de imágenes e \textit{Image Captioning}. Esta aproximación es completamente opuesta a las soluciones convencionales debido a que es una solución entrenable \textit{end-to-end}, es decir, el modelo puede entrenarse como un todo y no por separado; su capacidad de predicción depende completamente del conjunto de entrenamiento por lo que para mejorar el modelo solo se necesita incrementar la cantidad de datos disponibles sin hacer cambios a la arquitectura de la red; la segmentación de símbolos puede hacerse automáticamente a través de la atención. Por las razones expuestas, se decidió utilizar este modelo de deep learning en el presente Trabajo Terminal.
 
 \subsection{Modelo}
 
-Como se mencionó anteriormente la arquitectura de la red neuronal es del tipo \textit{Encoder-Decoder}, en la Figura \ref{fig:modelo} se muestra un esquema de la red neuronal implementada. La traducción de imagenes se realiza de la siguiente manera: Primero se extraen las características de la imágen en forma de grilla utilizando una red convolucional (CNN), luego se procedera a utilizar una versión de dos dimensiones de los \textit{positional encodings} mostrados en el marco teórico y finalmente se procede a reagrupar las filas de la grilla en una sola, esta es la fase de codificación. 
+Como se mencionó anteriormente la arquitectura de la red neuronal es del tipo \textit{Encoder-Decoder}, en la Figura \ref{fig:modelo} se muestra un esquema de la red neuronal implementada. La traducción de imágenes se realiza de la siguiente manera: Primero se extraen las características de la imagen en forma de cuadricula utilizando una red convolucional (CNN), luego se procederá a utilizar una versión de dos dimensiones de los \textit{positional encodings} mostrados en el marco teórico y finalmente se procede a reagrupar las filas de la cuadricula en una sola, esta es la fase de codificación. 
 
 \begin{figure}[H]
     \centering
@@ -18,11 +18,11 @@ Como se mencionó anteriormente la arquitectura de la red neuronal es del tipo \
     \label{fig:modelo}
 \end{figure}
 
-Para la decodificación, las características codificadas serás usadas por una red neuronal recurrent RNN con un sistema de atención. El \textit{Decoder} implementa un modelo de lenguaje condicional sobre un vocabulario $\lambda$, el cual esta dado por el conjunto de entrenamiento y que será expuesto más adelante.
+Para la decodificación, las características codificadas serán usadas por una red neuronal recurrent RNN con un sistema de atención. El \textit{Decoder} implementa un modelo de lenguaje condicional sobre un vocabulario $\lambda$, el cual esta dado por el conjunto de entrenamiento y que será expuesto más adelante.
 
 \subsubsection{Encoder}
 
-La extracción de características de la imagen de entrada $x$ se realiza con una CNN multicapa con \textit{max pooling} y \textit{batch normalization} la cual es ahora un estandar y está completamente inspirada en \cite{harvard}. La Tabla \ref{tbl:cnn-model} sumariza la arquitectura de la red utilizada. Las características extraidas están almacenadas en vector $v \in \mathbb{R} ^ {H' x W' x D}$, siendo $H'$ y $W'$ las nuevas altura y anchura respectivamente y $D$ el tamaño del último filtro de la red, $D = 512$ en este caso.
+La extracción de características de la imagen de entrada $x$ se realiza con una CNN multicapa con \textit{max pooling} y \textit{batch normalization} la cual es ahora un estándar y está completamente inspirada en \cite{harvard}. La Tabla \ref{tbl:cnn-model} resume la arquitectura de la red utilizada. Las características extraídas están almacenadas en vector $v \in \mathbb{R} ^ {H' x W' x D}$, siendo $H'$ y $W'$ las nuevas altura y anchura respectivamente y $D$ el tamaño del último filtro de la red, $D = 512$ en este caso.
 
 \begin{table}[]
 \centering
@@ -41,7 +41,7 @@ La extracción de características de la imagen de entrada $x$ se realiza con un
 \label{tbl:cnn-model}
 \end{table}
 
-Se procede a calcular los \textit{positional encodings}. Existen dos formas de hacer esto, la primera es con parámetros aprendidos y la segunda es con valores fijos. El artículo \cite{harvard} utiliza una RNN bidireccional con el vector $v$ como entrada para aprender estos positional encodins. No obstante, acorde con los inventores de esta técnica \cite{attentionisallyouneed}, los positional encodings fijos producen resultados muy similares a los aprendidos. Así, se optó por utilizar positional encodings fijos y se utlizó la generalización a dos dimensiones propuesta por \cite{positionalencodings}. El vector de positional encodings $pe \in \mathbb{R} ^ {H'xW'xD}$ se obtiene con las siguientes ecuaciones:
+Se procede a calcular los \textit{positional encodings}. Existen dos formas de hacer esto, la primera es con parámetros aprendidos y la segunda es con valores fijos. El artículo \cite{harvard} utiliza una RNN bidireccional con el vector $v$ como entrada para aprender estos positional encodings. No obstante, acorde con los inventores de esta técnica \cite{attentionisallyouneed}, los positional encodings fijos producen resultados muy similares a los aprendidos. Así, se optó por utilizar positional encodings fijos y se utlizó la generalización a dos dimensiones propuesta por \cite{positionalencodings}. El vector de positional encodings $pe \in \mathbb{R} ^ {H'xW'xD}$ se obtiene con las siguientes ecuaciones:
 
 \begin{equation}
     pe(w,h,2i) = sin\left(\frac{w}{10000 ^ {\frac{4i}{D}}}\right)
@@ -91,7 +91,7 @@ con
     y'_{t} = E y_{t-1}
 \end{equation}
 
-donde $W ^ {out}$, $W ^ {c}$ y $E$ son parámetros que serán aprendidos. La matríz $E$, es también conocida en la literatura como la matríz de \textit{embeddings}. El vector $h_{t}$ es utilizado para sumarizar toda la historia de decodificación y el vector de contexto $c_{t}$ es usado para capturar la información de contexto de la grilla de características de la imagen $x$. Los corchetes [;], indican una concatenación entre los vectores dentro de ellos.
+donde $W ^ {out}$, $W ^ {c}$ y $E$ son parámetros que serán aprendidos. La matríz $E$, es también conocida en la literatura como la matríz de \textit{embeddings}. El vector $h_{t}$ es utilizado para resumir toda la historia de decodificación y el vector de contexto $c_{t}$ es usado para capturar la información de contexto de la cuadricula de características de la imagen $x$. Los corchetes [;], indican una concatenación entre los vectores dentro de ellos.
 
 Para los estados iniciales $h_{0}$ y $o_{0}$ se utilizó un perceptrón multicapa (MLP) que aprendiera los mejores valores iniciales. Las ecuaciones que describen $h_{0}$ y $o_{0}$ respectivamente son:
 
@@ -130,7 +130,7 @@ $\phi$ y $u$ son funciones que pueden ser escogidas libremente, en este caso se 
 
 donde $W_{h}$ y $W_{v}$ son parámetros que serán aprendidos. Con esto el modelo de atención puede saber que parte de las anotaciones es importante en el instante $t$. Una consecuencia de esto, es que la segmentación de símbolos es delegada también a este sistema.
 
-Finalmente, se decidio modificar la atención para implementar la técnica del \textit{Coverage Vector} como en \cite{chino}. El coverage vector $F$ se incorporó para dar más información al sistema de atención sobre el historial de la misma atentción, de este modo, es posible mejorar la cobertura global del sistema lo cual ayuda a reducir los errores de símbolos no parseados. El vector de coverage se calcula como sigue:
+Finalmente, se decidió modificar la atención para implementar la técnica del \textit{Coverage Vector} como en \cite{chino}. El coverage vector $F$ se incorporó para dar más información al sistema de atención sobre el historial de la misma atentción, de este modo, es posible mejorar la cobertura global del sistema lo cual ayuda a reducir los errores de símbolos no \texttt{parseados}. El vector de coverage se calcula como sigue:
 
 \begin{equation}
     \eta_{t} = \sum_{l}^{t-1} \alpha_{l}
@@ -151,7 +151,7 @@ de donde $W_{f}$ es una matriz de pesos que serán aprendidos.
 
 \subsection{Implementación}
 
-El lenguaje de programación utilizado para desarrollar la red fue Python 3 junto con el framework para deep learning TensorFlow 2. Las unidades usadas en el estado $h_{t}$ de la LSTM son $512$ y $128$ para la dimensión de \textit{embeddings}. El algoritmo de optimización utilizado fue Adam con la Crosentropia Categórica como función de pérdida. 
+El lenguaje de programación utilizado para desarrollar la red fue Python 3 junto con el framework para Deep Learning TensorFlow 2. Las unidades usadas en el estado $h_{t}$ de la LSTM son $512$ y $128$ para la dimensión de \textit{embeddings}. El algoritmo de optimización utilizado fue Adam con la Crosentropia Categórica como función de pérdida. 
 
 El código que implementa la red es el siguiente:
 
@@ -163,7 +163,7 @@ El código que implementa la red es el siguiente:
 
 La red fue entranada en el entorno Colaboratory de Google utilizando una GPU, se utilizaron dos conjuntos de entrenamiento. El primero fue CROHME únicamente, mientras que el segundo, fue una combinación entre CROHME y Harvard 100k, esto con la intención de provar cual sería el resultado del modelo si se incrementara el tamaño del conjunto de entrenamiento. Dado que el modelo esta basado solamente en los datos, no fue necesario hacer ningún cambio a la arquitectura.
 
-Para el primer conjunto de entrenamiento, se necesitaron 16 epocas tomando un total de 10 horas. Con respecto al segundo, se entreno la red por 6 epocas tomando un total de 30 horas.
+Para el primer conjunto de entrenamiento, se necesitaron 16 épocas tomando un total de 10 horas. Con respecto al segundo, se entreno la red por 6 épocas tomando un total de 30 horas.
 
 Al utilizar Tensorflow 2, el cálculo de los gradientes de la función de perdida se puede automatizar, así como la actualización de los pesos, no obstante, dada la arquitectura de la red, no es posible utilizar los métodos \textit{compile} y \textit{fit} implementados en Keras para Tensorflow 2. Por lo tanto, el ciclo de entrenamiento tuvo que ser diseñado acorde con las necesidades de la arquitectura propuesta.
 
@@ -229,7 +229,7 @@ Para su implementación se utilizó el código creado por \cite{wer-implementati
 
 \subsubsection{CROHME}
 
-Para el caso de la red entrenada con CROHME, se utilizó un conjunto de prueba con 1501 imágenes provistas por CROHME. El \textbf{puntaje BLEU obtenido fue 0.39} y el \textbf{puntaje WER obtenido fue 1.2}. Es decir, la red tiene una precisión de alrededor del $39\%$ para predecir los tokens de una imagen, sin embargo, el puntaje WER al ser muy alto, indica que las predicciones no son confiables y por lo tanto, el modelo no esta listo para ser usado en producción. Acorde con \cite{chino}, ellos obtuvieron una precisión del $46.55\%$ sobre CROHME. No obstante, utilizaron los archivos InkML para obtener más información respecto a la trayectoria de las imágenes, brindandoles imágenes de 9 canales, mientras que en el presente trabajo, solo se utilizaron imágenes de 1 canal, por lo que no hay una comparación directa entre los dos trabajos y solo se menciona a modo de referencia.
+Para el caso de la red entrenada con CROHME, se utilizó un conjunto de prueba con 1501 imágenes provistas por CROHME. El \textbf{puntaje BLEU obtenido fue 0.39} y el \textbf{puntaje WER obtenido fue 1.2}. Es decir, la red tiene una precisión de alrededor del $39\%$ para predecir los tokens de una imagen, sin embargo, el puntaje WER al ser muy alto, indica que las predicciones no son confiables y por lo tanto, el modelo no está listo para ser usado en producción. Acorde con \cite{chino}, ellos obtuvieron una precisión del $46.55\%$ sobre CROHME. No obstante, utilizaron los archivos InkML para obtener más información respecto a la trayectoria de las imágenes, brindandoles imágenes de 9 canales, mientras que en el presente trabajo, solo se utilizaron imágenes de 1 canal, por lo que no hay una comparación directa entre los dos trabajos y solo se menciona a modo de referencia.
 
 Con respecto al sistema de atención de este modelo, se puede notar que aún no funciona completamente, esto es debido posiblemente a que la red aún no ha sido capaz de abstraer todas las caracterísitcas importantes del conjunto de entrenamiento. En la Figura \ref{fig:modelo-crohme-loss}, se puede apreciar que a pesar del entrenamiento, la función de pérdida sigue siendo mayor a 5.
 
@@ -240,7 +240,7 @@ Con respecto al sistema de atención de este modelo, se puede notar que aún no 
     \label{fig:modelo-crohme-loss}
 \end{figure}
 
-La razón del pobre desempeño del modelo al momento de generalizar, es el reducido tamaño de CROHME, pues 7170 imágenes no han sido suficientes para obtener un buen resultado en la predicción de expresiones matemáticas escritas a mano. Incrementar la capacidad de la red mediante el aumento del número de parámetros no es una opción viable, pues al ser un conjunto pequeño, el riesgo de sobreentrenamiento auménta considerablemente.
+La razón del pobre desempeño del modelo al momento de generalizar, es el reducido tamaño de CROHME, pues 7169 imágenes no han sido suficientes para obtener un buen resultado en la predicción de expresiones matemáticas escritas a mano. Incrementar la capacidad de la red mediante el aumento del número de parámetros no es una opción viable, pues al ser un conjunto pequeño, el riesgo de sobreentrenamiento auménta considerablemente.
 
 No obstante, se puede observar que la red si ha aprendido a segmentar símbolos y lo que es mucho más sobresaliente, el modelo es capaz de representar las relaciones espaciales y de jerarquía que existen en una expresión matemática, sin embargo, solo es capaz de hacer esto para secuencias cortas. La Figura \ref{fig:modelo-crohme-attention} muestra la comparación de la atención entre dos imágenes, la primera (a), es una secuencia corta mientras que la segunda (b) es una secuencia más larga. 
 
@@ -256,7 +256,7 @@ No obstante, se puede observar que la red si ha aprendido a segmentar símbolos 
 
 Con respecto al modelo entrenado con la combinación entre CROHME y Harvard 100k, se utilizó un conjunto de prueba con $9300$ imágenes provistas por Harvard 100k. El \textbf{puntaje BLEU obtenido fue 0.77} y el \textbf{puntaje WER obtenido fue 0.3}. Los resultados obtenidos son satisfactorios al momento de reconocer expresiones matemáticas renderizadas por computadora, pues la precisión de la red es de alrededor de $77\%$, lo que se corresponde con una buena confianza a nivel de palabra por su bajo puntaje WER. En comparación con \cite{harvard}, obtuvimos los mismos resultados de BLEU, y con respecto a WER ellos no calcularon esa métrica. La Figura \ref{fig:modelo-harvard-attention}  muestra los resultados de una predicción de la red. 
 
-No obstante, \textbf{la red no muestra buenos resultados para predecir imágenes con expresiones escritas a mano}. Esto es debido a la gran diferencia entre ambos conjuntos de entrenamiento, a pesar de haber sido combinados, CROHME es demasiado pequeño a comparación de Harvard 100k, por lo que CROHME solo introducia ruido al entrenamiento, por lo que actuaba a modo de regularizador más que como ejemplos de los que la red pudiera aprender. 
+No obstante, \textbf{la red no muestra buenos resultados para predecir imágenes con expresiones escritas a mano}. Esto  debido a la gran diferencia entre ambos conjuntos de entrenamiento, a pesar de haber sido combinados ambos conjuntos, CROHME es demasiado pequeño a comparación de Harvard 100k, por lo que CROHME solo introducía ruido al entrenamiento, por lo que actuaba a modo de regularizador más que como ejemplos de los que la red pudiera aprender. 
 
 \begin{figure}[H]
     \centering
@@ -284,7 +284,7 @@ Se utilizó una GRU como en \cite{gru} en lugar de una LSTM en el \textit{Decode
 
 \lstinputlisting[language=Python]{capitulo5/modelo/src/gru.py}
 
-Una muestra del resultado del entrenamiento se muestra en la Figura \ref{fig:gru-bad}, en (a) vemos que la función de perdida se estanca, demostrando que no es capaz de modelar el problema en su totalidad mientras que en (b), la atención no mostro aprendizaje alguno.
+Una muestra del resultado del entrenamiento se muestra en la Figura \ref{fig:gru-bad}, en (a) vemos que la función de perdida se estanca, demostrando que no es capaz de modelar el problema en su totalidad mientras que en (b), la atención no mostró aprendizaje alguno.
 
 \begin{figure}[H]
     \centering
@@ -299,13 +299,13 @@ Una muestra del resultado del entrenamiento se muestra en la Figura \ref{fig:gru
 \textbf{Variante con alto Dropout}
 \vspace{1em}
 
-Acorde con \cite{deeplearningbook}, el \textit{dropout} es una técnica utilizada para regularizar redes neuronales, es decir, para que la probabilidad de que un modelo se sobreentrene disminuya. Conciste en aplicar un muestreo a las salidas de alguna capa en un modelo con la finalidad de desactivar un porcentaje de neuronas. Suponiendo a $\mu$ como el vector de muestreo y a $p(\mu)$ como la distribución de probabilidad que modela si la neurona se desactiva o no, podemos aplicar dropout a una capa de alguna red neuronal que modele una distribución $p(y|x)$ de la siguiente manera:
+Acorde con \cite{deeplearningbook}, el \textit{dropout} es una técnica utilizada para regularizar redes neuronales, es decir, para que la probabilidad de que un modelo se sobreentrene disminuya. Consiste en aplicar un muestreo a las salidas de alguna capa en un modelo con la finalidad de desactivar un porcentaje de neuronas. Suponiendo a $\mu$ como el vector de muestreo y a $p(\mu)$ como la distribución de probabilidad que modela si la neurona se desactiva o no, podemos aplicar dropout a una capa de alguna red neuronal que modele una distribución $p(y|x)$ de la siguiente manera:
 
 \begin{equation}
     P' = p(\mu)p(y|x,\mu)
 \end{equation}
 
-De este modo, algunas neuronas \cite{harvard} son "desconectadas" haciendo que cada neurona aprenda sobre la información proveida en el entrenamiento de manera independiente. Esto produce también, un efecto de regularización.
+De este modo, algunas neuronas \cite{harvard} son "desconectadas" haciendo que cada neurona aprenda sobre la información proveída en el entrenamiento de manera independiente. Esto produce también, un efecto de regularización.
 
 La técnica del dropout es recomendada en la mayoría de los modelos de deep learning, usualmente con una probabilidad de desconexión de $0.5\%$, sin embargo, este radio no provoco ningun efecto en la red. Esto es debido posiblemente a que al ser implementado en las capas convolucionales, un dropout muy alto para una red no tan profunda provoca una perdida significativa de la información. En la Figura \ref{fig:dropout-bad} se pueden ver los resultados de generales de este modelo.
 

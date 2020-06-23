@@ -1,10 +1,10 @@
 \subsection{Aplicación web}
 
-Para realizar pruebas unitarias a la aplicación web desarrollado con Django se utilizo la herramienta que permite analizar que partes del código de un programa se están ejecutando y con ello determinar que bloques de código se deben de someter a pruebas.
+Para realizar pruebas unitarias a la aplicación web desarrollado con Django se utilizó la herramienta que permite analizar que partes del código de un programa se están ejecutando y con ello determinar que bloques de código se deben de someter a pruebas.
 
-Al utilizar coverage.py sobre el proyecto de Django se obtuvieron los resultados que se muestran en la figura \ref{fig:coverage}. El reporte que coverage.py arroja muestra la cantidad de código que se tiene que probar, el código que falta por probar, el excluido y el que se tienen cubierto con las pruebas.
+Al utilizar coverage.py sobre el proyecto de Django se obtuvieron los resultados que se muestran en la figura \ref{fig:coverage}. El reporte que coverage.py arroja muestra la cantidad de código que se tiene que probar, el código que falta por probar, el excluido y el que se tiene cubierto con las pruebas.
 
-Se logro cubrir el 100\% del código y se excluyeron algunas partes debido a que forman parte de los archivos de configuración de Django y porque fueron pruebas complicadas de elaborar.
+Se logró cubrir el 100\% del código y se excluyeron algunas partes debido a que forman parte de los archivos de configuración de Django y porque fueron pruebas complicadas de elaborar.
 
 \begin{figure}[H]
 	\centering
@@ -42,7 +42,7 @@ Las vistas, al ser el componente encargado de presentar el contenido al usuario 
 
 Para realizar esto, lo primero es crear un usuario de prueba en el método setUp  de la clase, este método se ejecuta por cada test dentro de la clase y se elimina lo creado en este método al finalizar cada prueba.
 
-Después, utilizando el método reverse se obtiene la URL asociado a la vista a probar, se realiza la petición correspondiente y se evalúa el resultado obtenido.
+Después, utilizando el método reverse se obtiene la URL asociada a la vista a probar, se realiza la petición correspondiente y se evalúa el resultado obtenido.
 
 \lstinputlisting[language=Python]{capitulo6/unitarias/codigo/test_views.py}
 
@@ -52,7 +52,7 @@ En la segunda prueba, ya que si se envía información correcta lo que se espera
 
 \subsubsection{Pruebas sobre las clases de utilería}
 
-Un ejemplo del como se probaron las clases de utilería se muestra en el siguiente código, en el cual se prueba la clase Validator que se uso para asegurar que los datos ingresados en los formularios fueran correctos.
+Un ejemplo del como se probaron las clases de utilería se muestra en el siguiente código, en el cual se prueba la clase Validator que se usó para asegurar que los datos ingresados en los formularios fueran correctos.
 
 Para este caso se crea una instancia de la clase Validator en el método setUp de la clase junto a un usuario de prueba. En cada una de las pruebas que se tiene se verifica el funcionamiento de ca método de la clase Validator mediante el uso de los métodos assertFalse y assertTrue que se encargan de validar que el valor de retorno de cada método sometido a prueba sea el esperado.
 

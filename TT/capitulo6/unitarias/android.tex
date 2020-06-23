@@ -6,10 +6,10 @@ JUnit se utilizo sobre aquellas clases que se utilizaron para trabajar partes en
 
 \subsubsection{Pruebas sobre la clase DateFormater}
 
-La clase DateFormater se utiliza en la aplicación para obtener fechas y presentarlas en un formato correcto en pantalla, así como pasar de una cadena de texto a un objeto de tipo Date, por lo cual las as pruebas realizadas sobre esta clase fueron tres.
+La clase DateFormater se utiliza en la aplicación para obtener fechas y presentarlas en un formato correcto en pantalla, así como pasar de una cadena de texto a un objeto de tipo Date, por lo cual las pruebas realizadas sobre esta clase fueron tres.
 
 \begin{enumerate}
-	\item En la primera se valida que la conversión de una cadena de texto a un objeto de tipo Date se haga correctamente siempre y cuando se trate de una cadena valida.
+	\item En la primera se valida que la conversión de una cadena de texto a un objeto de tipo Date se haga correctamente siempre y cuando se trate de una cadena válida.
 	\item En la segunda prueba se valida que se pueda pasar de un tipo date a una cadena de texto y que el valor que se obtenga sea el mismo.
 	\item En la ultima prueba se valida que se lance una excepción si el valor a convertir a una cadena de texto no es valido.
 \end{enumerate}
@@ -18,7 +18,7 @@ El código utilizado en cada una de las pruebas es el siguiente.
 
 \lstinputlisting[language=Java]{capitulo6/unitarias/codigo/DateFormaterTest.java}
 
-En el código anterior, cada uno de los métodos anotados con @Test es una prueba a ejecutar, la forma en la que se valida que la ejecución sea correcta es con la linea de código correspondiente a Assert.assertEquals, la cual compara dos valores y los compara, en caso de ser iguales la prueba es exitosa en caso contrario la prueba ha fallado.
+En el código anterior, cada uno de los métodos anotados con @Test es una prueba a ejecutar, la forma en la que se valida que la ejecución sea correcta es con la línea de código correspondiente a Assert.assertEquals, la cual compara dos valores, en caso de ser iguales la prueba es exitosa en caso contrario la prueba ha fallado.
 
 En la ultima prueba la anotación @Test tiene como parámetro una excepción a esperar, si la excepción se dispara la prueba es correcta, por otro lado,  si no se da el caso la prueba ha fallado.
 
@@ -32,21 +32,21 @@ La correcta ejecución de las pruebas se puede apreciar en la figura \ref{fig:da
 \end{figure}
 
 \subsubsection{Pruebas sobre la clase RNN002}
-La clase RNN002 se utiliza en la aplicación para validar el formato de diversos campos que se tienen en los diferentes formularios que incluye la aplicación, es por esto que las pruebas que se realizaron en este caso fueron las siguientes.
+La clase RNN002 se utiliza en la aplicación para validar el formato de diversos campos que se tienen en los diferentes formularios que incluye la aplicación, es por esto que las pruebas que se realizaron en este caso fueron las siguientes:
 
 \begin{enumerate}
-	\item En la primera prueba se verifica que para un email valido, el resultado sea true.
-	\item En la siguiente prueba, para un email no valido, el resultado debe de ser false.
-	\item En la siguiente prueba, para una contraseña valida, el resultado debe de ser true.
-	\item En la siguiente prueba, para una contraseña no valida, el resultado debe de ser false.
-	\item En la siguiente prueba, para dos contraseñas validas, el resultado debe de ser true.
-	\item En la siguiente prueba, para dos contraseñas, una de ellas no valida, el resultado debe de ser false.
-	\item En la siguiente prueba, para un nombre valido, el resultado debe de ser true.
-	\item En la siguiente prueba, para un nombre no valido, el resultado debe de ser false.
-	\item En la siguiente prueba, para un apellido valido, el resultado debe de ser true.
-	\item En la siguiente prueba, para un apellido no valido, el resultado debe de ser false.
-	\item En la siguiente prueba, para un nombre de proyecto valido, el resultado debe de ser true.
-	\item En la ultima prueba, para un nombre de proyecto no valido, el resultado debe de ser false.
+	\item En la primera prueba se verifica que para un email válido, el resultado sea true.
+	\item En la siguiente prueba, para un email no válido, el resultado debe de ser false.
+	\item En la siguiente prueba, para una contraseña válida, el resultado debe de ser true.
+	\item En la siguiente prueba, para una contraseña no válida, el resultado debe de ser false.
+	\item En la siguiente prueba, para dos contraseñas válidas, el resultado debe de ser true.
+	\item En la siguiente prueba, para dos contraseñas, una de ellas no válida, el resultado debe de ser false.
+	\item En la siguiente prueba, para un nombre válido, el resultado debe de ser true.
+	\item En la siguiente prueba, para un nombre no válido, el resultado debe de ser false.
+	\item En la siguiente prueba, para un apellido válido, el resultado debe de ser true.
+	\item En la siguiente prueba, para un apellido no válido, el resultado debe de ser false.
+	\item En la siguiente prueba, para un nombre de proyecto válido, el resultado debe de ser true.
+	\item En la ultima prueba, para un nombre de proyecto no válido, el resultado debe de ser false.
 \end{enumerate}
 
 El código utilizado en cada una de las pruebas es el siguiente.

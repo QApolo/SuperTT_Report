@@ -1,7 +1,7 @@
 \section{Android}
 Esta sección tiene objetivo presentar las principales características en el desarrollo de la aplicación para Android.
 \subsection{Arquitectura de la aplicación}
-Para el desarrollo de la aplicación se implemento la arquitectura Clean, la cual como ya se ha mencionado antes se ha mencionado se ha vuelto muy popular en el desarrollo de aplicaciones móviles para android debido a que es una solución que produce sistemas que presentan las siguientes características.
+Para el desarrollo de la aplicación se implementó la arquitectura Clean, la cual como ya se ha mencionado antes se ha mencionado se ha vuelto muy popular en el desarrollo de aplicaciones móviles para android debido a que es una solución que produce sistemas que presentan las siguientes características.
 
 \begin{itemize}
     \item Escalables, por lo que se pueden agregar más funcionalidades de forma sencilla.
@@ -39,11 +39,11 @@ Después, en nuestro método findAllProyecttosByUser se recupera la información
 
 \paragraph{Capa de fuente de datos} En este trabajo, la fuente de datos que se tiene es un API REST, sin embargo si se requiere acceder a información que se persista en el teléfono se pude agregar otra fuente de datos. Se utiliza retrofit para poder realizar la comunicación con el API REST. 
 
-La forma de utilizar retrofit es crear una interfaz con todos los métodos para recuperar o enviar información al API REST, en esta interfaz cada método tiene la URL a la cual se realizara la petición con alguno de los métodos que tiene HTTP, se tienen los parámetro que se envían y cada método nos regresa una llamada asincrona que se trabaja en la capa de repositorio. Esto se puede apreciar en el siguiente código.
+La forma de utilizar retrofit es crear una interfaz con todos los métodos para recuperar o enviar información al API REST, en esta interfaz cada método tiene la URL a la cual se realizará la petición con alguno de los métodos que tiene HTTP, se tienen los parámetro que se envían y cada método nos regresa una llamada asincrona que se trabaja en la capa de repositorio. Esto se puede apreciar en el siguiente código.
 
 \lstinputlisting[language=Java]{capitulo5/android/src/APIService.java}
 
-Para poder hacer uso de esta interfaz se tiene que configurar bajo ciertas características específicas como lo son la URL a la cual hará peticiones, el logger que se utilizara para poder observar las peticiones que se realizan y brindar una retroalimentación a la hora de hacer pruebas y por ultimo el parser que se utilizara para trabajar y pasar de clases a datos que el API REST entienda y pueda utilizar, en este caso se utilizo el formato JSON. La definición de estas características se tiene en el siguiente código.
+Para poder hacer uso de esta interfaz se tiene que configurar bajo ciertas características específicas como lo son la URL a la cual hará peticiones, el logger que se utilizara para poder observar las peticiones que se realizan y brindar una retroalimentación a la hora de hacer pruebas y por último el parser que se utilizará para trabajar y pasar de clases a datos que el API REST entienda y pueda utilizar, en este caso se utilizó el formato JSON. La definición de estas características se tiene en el siguiente código.
 
 \lstinputlisting[language=Java]{capitulo5/android/src/ServiceGenerator.java}
 
@@ -53,7 +53,7 @@ Finalmente, en esta capa se tienen clases Java que después se mapean a objetos 
 
 
 \subsubsection{Capa de dominio}
-En esta capa es la intermediaria entre las otras dos capas que se tienen, es donde se encuentran los casos de uso también conocidos como interactors como se muestra en la figura \ref{fig:capa-dominio} en ellos la lógica del negocio es ejecutada es por esto que es el núcleo de la aplicación.
+Esta capa es la intermediaria entre las otras dos capas que se tienen, es donde se encuentran los casos de uso también conocidos como interactors como se muestra en la figura \ref{fig:capa-dominio} en ellos la lógica del negocio es ejecutada es por esto que es el núcleo de la aplicación.
 
 Es importante mencionar que esta capa, al ser la encargada del negocio es donde se hacen validaciones en la información y dicha información se adapta para que sea trabajada en la capa de presentación o en la de datos
 

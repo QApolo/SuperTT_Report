@@ -113,10 +113,10 @@ El perceptrón multicapa (MLP) es el modelo más básico y aún así uno de los 
 
 Las redes neuronales profundas son llamadas redes porque pueden representarse mediante la composición de varias funciones de mapeo. Es decir, un MLP que quiera aproximar una función puede expresarse como $y^{n} = f^{n}(y^{n-1}, \theta^{n})$ con $y^{1} = f^{1}(x, \theta^{1})$ y $n$ siendo la profundidad de la red.
 
-	\subsection{Gráfos computacionales}
-	Para describir con formalidad a las redes neuronales es preciso utilizar una notación que pueda ser expresada a través de gráfos. Según \cite{deeplearningbook} se puede indicar cada nodo del gráfo como una variable que puede ser un tensor para no perder generalidad. 
+	\subsection{Grafos computacionales}
+	Para describir con formalidad a las redes neuronales es preciso utilizar una notación que pueda ser expresada a través de grafos. Según \cite{deeplearningbook} se puede indicar cada nodo del gráfo como una variable que puede ser un tensor para no perder generalidad. 
 	
-	Para terminar con la definición de estos gráfos, es necesario introducir el concepto de operación, la cual simplemente es una función entre dos o mas nodos del gráfo. Sin perder generalidad, se dice que una operación retorna únicamente una variable, es decir, un solo nodo.
+	Para terminar con la definición de estos grafos, es necesario introducir el concepto de operación, la cual simplemente es una función entre dos o mas nodos del gráfo. Sin perder generalidad, se dice que una operación retorna únicamente una variable, es decir, un solo nodo.
 	
 	En la Figura \ref{fig:grafo-computacional} se puede ver un ejemplo de un perceptrón de una sola capa que es representado mediante un gráfo computacional. Gracias a esta definición, se puede extender facilmente el gráfo mostrado en \ref{fig:grafo-computacional} para modelar a un perceptrón de $n$ capas.
 	
@@ -164,7 +164,7 @@ Las redes neuronales profundas son llamadas redes porque pueden representarse me
 
     \subsection{Redes Neuronales Convolucionales}
     
-    Las redes neuronales convolucionales también llamadas convolutivas (CNN), son una arquitectura especial de redes neuronales que permite el procesamiento de datos que tengan una estructura de grilla. Algunos ejemplos de esta estructura son: una serie de tiempo es una grilla 1D o una imágene, la cual puede ser vista como una grilla 2D de pixeles. Se puede decir, que una red convolutiva no es más que una red neuronal que utiliza la operación de convolución en lugar de una multiplicación tensorial normal \cite{deeplearningbook}. \\
+    Las redes neuronales convolucionales también llamadas convolutivas (CNN), son una arquitectura especial de redes neuronales que permite el procesamiento de datos que tengan una estructura de cuadricula. Algunos ejemplos de esta estructura son: una serie de tiempo es una cuadricula 1D o una imágen, la cual puede ser vista como una cuadricula 2D de pixeles. Se puede decir, que una red convolucional no es más que una red neuronal que utiliza la operación de convolución en lugar de una multiplicación tensorial normal \cite{deeplearningbook}. \\
     
     La operación de convolución esta definida de la siguiente manera:
     
@@ -238,7 +238,7 @@ Las RNNs modelan sistemas dinámicos, es decir, que cada instante $t$ tenemos un
 
 Una de sus principales ventajas es la compartición de parámetros. Esto quiere decir que para diferentes estados del sistema, podemos aplicar los mismos parámetros $\theta$, permitiendo así, entrenar solo un conjunto de parámetros para todo el sistema en vez de un conjunto particular para cada estado. \\
 
-En la Figura \ref{fig:rnn} se puede apreciar un ejemplo de una RNN que cuya ecuación es: $s(t) = f(s^{(t-1)}, \theta)$. Como se han definido las redes neuronales en términos de gráfos, es posible utilizar el algoritmo de back-propagation para calcular los gradientes de cada estado. Normalmente cuando se aplica back-propagation a una RNN se le conoce como back-propagation through time (BPTT). \\
+En la Figura \ref{fig:rnn} se puede apreciar un ejemplo de una RNN que cuya ecuación es: $s(t) = f(s^{(t-1)}, \theta)$. Como se han definido las redes neuronales en términos de grafos, es posible utilizar el algoritmo de back-propagation para calcular los gradientes de cada estado. Normalmente cuando se aplica back-propagation a una RNN se le conoce como back-propagation through time (BPTT). \\
 
 \begin{figure}[H]
 	\centering
