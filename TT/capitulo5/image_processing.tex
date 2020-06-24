@@ -20,7 +20,7 @@ El proceso consiste en convertir el área de la expresión matemática en negro 
 \end{figure}
 
 De acuerdo a lo mencionado en el marco teórico existen técnicas para binarizar una imagen que calculan el umbral de manera automática, dos de estos algoritmos son el algoritmo de Otsu y el algoritmo de Sauvola, a continuación se describen brevemente y se dan detalles de la implementación o uso según el caso.
-
+\newpage
 \subsection{Algoritmo de Otsu}
 El método de Otsu evita tener que elegir un valor de umbral y lo determina automáticamente.
 
@@ -44,12 +44,29 @@ donde:
 
 \subsection{Algoritmo de Sauvola}
 
+La idea principal del algoritmo consiste en clasificar el contenido local de la imagen en 3 posibles regiones y así decidir que método utilizar para binarizar la imagen: Texto, Fondo y graficos dentro de la imagen, con base en esto aplica 2 aproximaciones, soft decision method para la región que representa el fondo de la imagen y gráficos internos y Text Binarization Method ()TBM) para la región de texto.
+
+El SDM incluye filtrado de ruido mientras que TBM se usa para separar componentes de texto del fondo en condiciones no deseables como luminosidad no uniforme.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\textwidth]{capitulo5/imageprocessor/sauvola.png}
+	\caption{Flujo del algoritmo de Sauvola.}
+	\label{fig:sauvola_process}
+\end{figure}
+
+La diferencia transitoria permite medir los cambios locales de acuerdo a la homgeneidad promedio de la superficie.
+Esto permite crear etiquetas como Uniform, Near Uniform, Differing y Transient y una vez clasificado se elige el algoritmo para binarizar la imagen del que se destaca una modificación del algoritmo de Niblack \cite{inproceedings}.
+
+
 El algorimo de Sauvola tiene una implementación más extensa por lo que se dispuso de la utilización de la implementación contenida en \textbf{skimage} dentro del paquete filters.
-\lstinputlisting[language=Python, firstline=4, lastline=7]{capitulo5/imageprocessor/code_files/scriptCV.py}
+
+\lstinputlisting[language=Python, firstline=4, lastline=4]{capitulo5/imageprocessor/code_files/scriptCV.py}
 
 \lstinputlisting[language=Python, firstline=26, lastline=30]{capitulo5/imageprocessor/code_files/scriptCV.py}
 
 \subsection{Resultados}
-Se ejecutó el algoritmo en imágenes con distintas condiciones considerando luminosidad, colores de tinta, fondo, porciones con sombra, definición de la imagen, a continuación se muestran los resultados considerando el algoritmo de Otsu con un previo filtro Gaussiano contra el algoritmo de Sauvola, siendo este último el que ofrecía mejores resultados.
+
 \input{capitulo5/imageprocessor/otsu_results.tex}
+Se ejecutó el algoritmo en imágenes con distintas condiciones considerando luminosidad, colores de tinta, fondo, porciones con sombra, definición de la imagen, a continuación se muestran los resultados considerando el algoritmo de Otsu con un previo filtro Gaussiano contra el algoritmo de Sauvola, siendo este último el que ofrecía mejores resultados.
 
