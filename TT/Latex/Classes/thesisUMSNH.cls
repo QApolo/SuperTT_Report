@@ -410,9 +410,9 @@
 	  \begin{center}
 	    \ifportada
 	        \includegraphics[height=3cm]{Latex/Classes/Escudos/ipn}\\[10pt]
-    	    \hskip2pt\colorvrule{Guinda}{2.5pt}{13cm}
+    	    \hskip2pt\colorvrule{Azul}{2.5pt}{13cm}
         	\hskip -0.4mm
-	        \colorvrule{Guinda}{1pt}{13cm}\\[10pt]
+	        \colorvrule{Azul}{1pt}{13cm}\\[10pt]
 	        \includegraphics[scale=.06]{Latex/Classes/Escudos/escom}
 	    \else
 	        \includegraphics[height=3cm]{Latex/Classes/Escudos/ipn}\\[10pt]
