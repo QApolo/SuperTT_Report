@@ -25,6 +25,8 @@
 %\usepackage{enumerate}
 \usepackage{enumitem}
 \usepackage{hyperref}
+\usepackage[toc]{glossaries-extra}
+\usepackage{glossary-mcols}
 \usepackage{array}
 \newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 \newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}} %Centra tanto vertical como horizontalmente
@@ -110,6 +112,11 @@
 \keywords{trabajo terminal}            % Palablas clave para los metadatos del PDF
 \subject{tema_1,tema_2}                     % Tema para metadatos del PDF  
 
+\glsdisablehyper
+\makeglossaries
+\glssetcategoryattribute{common}{nohyper}{true}
+\include{glosario/glosario}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                   PORTADA                         %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -152,8 +159,6 @@
 \include{capitulo5/desarrollo}
 \include{capitulo6/pruebas}
 \include{capitulo7/conclusiones}
-%\include{extras/glosario_terminos} 
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -175,5 +180,13 @@
 %\bibliographystyle{Latex/Classes/jmb} % calls style file jmb.bst
 
 \bibliography{bibliografia/referencias}             % Archivo .bib
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                    GLOSARIO                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\glsaddall
+%\printglossaries[nonumberlist]
+\printglossary[type=main,style=long,nonumberlist]
 
 \end{document}
