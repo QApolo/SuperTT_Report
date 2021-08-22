@@ -479,7 +479,7 @@
 
 	    \vspace{3.5cm}
 
-	    {\@lugar}{, }{\@degreedate}
+	    {\@lugar}{ }{\@degreedate}
 
 	  \end{center}
 	\end{minipage}

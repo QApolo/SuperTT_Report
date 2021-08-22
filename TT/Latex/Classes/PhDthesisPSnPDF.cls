@@ -356,10 +356,10 @@
 		COMITÉ TUTOR\\
 		{\Large \scshape {\@ctutoruno}}\\
 		{\Large \scshape {\@ctutordos}}\\[10mm]
-		{\MakeUppercase {\@lugar}}{, }{\MakeUppercase {\@degreedate}}
+		{\MakeUppercase {\@lugar}}{ }{\MakeUppercase {\@degreedate}}
 	\else
 		\vspace{20mm}
-		{\MakeUppercase {\@lugar}}{, }{\MakeUppercase {\@degreedate}}
+		{\MakeUppercase {\@lugar}}{ }{\MakeUppercase {\@degreedate}}
 	\fi	
 	\end{center}
 	\end{alwayssingle}
@@ -468,7 +468,7 @@
 
 	    \vspace{1cm}
 
-	    {\@lugar}{, }{\@degreedate}
+	    {\@lugar}{ }{\@degreedate}
 
 	  \end{center}
 	\end{minipage}
