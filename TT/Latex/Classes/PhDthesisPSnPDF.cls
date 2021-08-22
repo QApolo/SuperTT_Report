@@ -35,6 +35,9 @@
 \usepackage{fancyhdr}                    % for better header layout
 \usepackage{eucal}
 \usepackage[spanish,mexico]{babel}
+\addto{\captionsspanish}{%
+  \renewcommand{\bibname}{Referencias}
+}
 \usepackage{float}
 \usepackage{color}
 \usepackage[perpage]{footmisc}
